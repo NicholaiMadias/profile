@@ -800,6 +800,24 @@ textarea {
   }
 }
 
+/* Resume layout: restrained typography, readable measure, and clear hierarchy. */
+.professional-profile { max-width: 1040px; padding-top: 56px; padding-bottom: 80px; }
+.professional-profile h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(1.65rem, 3.2vw, 2.55rem); line-height: 1.2; letter-spacing: -.035em; max-width: 28ch; margin: 0 0 24px; }
+.professional-profile h2 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.35; letter-spacing: -.02em; margin: 0 0 14px; }
+.professional-profile h3 { font-size: 1rem; line-height: 1.5; margin: 22px 0 8px; }
+.professional-profile p, .professional-profile li { font-size: 1rem; line-height: 1.8; color: #c3ccd3; }
+.professional-profile .lede { font-size: 1.12rem; line-height: 1.8; max-width: 74ch; }
+.professional-profile .section { margin-top: 44px; padding-top: 30px; border-top: 1px solid #25313a; }
+.professional-profile .feature-card { border: 0; border-bottom: 1px solid #25313a; border-radius: 0; padding: 26px 0; box-shadow: none; transform: none; }
+.professional-profile .feature-card:last-child { border-bottom: 0; }
+.professional-profile .feature-card strong { color: #edf3f7; }
+.professional-profile ul { padding-left: 22px; margin: 14px 0 0; }
+.professional-profile li { padding-left: 5px; margin-bottom: 9px; }
+.professional-profile li::marker { color: #87ceeb; }
+.professional-profile .actions { gap: 26px; margin: 24px 0 0; }
+.professional-profile .eyebrow { font-size: .72rem; letter-spacing: .16em; }
+.professional-profile .card-grid { gap: 24px; }
+@media(max-width:620px) { .professional-profile { padding-top: 32px; } .professional-profile .section { margin-top: 32px; padding-top: 24px; } }
 /* Personal portfolio: black canvas and plain sky-blue links. */
 :root { --gold: #87ceeb; --accent: #87ceeb; }
 html, body { background: #000 !important; color: #edf3f7; }

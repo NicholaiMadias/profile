@@ -32,7 +32,7 @@ const skills = [
 ];
 
 export function ProfilePage() {
-  return <div className="container page narrow">
+  return <div className="container page narrow professional-profile">
     <h1>Senior Endpoint Platform Engineer</h1>
     <p className="lede">I bring 15+ years of experience supporting enterprise endpoints, identity and access, security, automation, and infrastructure operations across telecommunications, technology, media, healthcare, and enterprise environments.</p>
     <p>My work connects device lifecycle management with secure identity and practical automation. I help teams provision devices, deploy applications, improve compliance, remediate vulnerabilities, and turn operational data into useful reporting.</p>
