@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Level1NexusDefense from './Level1NexusDefense';
 import Level2SyndicateSiege from './Level2SyndicateSiege';
-import { EmergenceScene } from './EmergenceStubs';
-import { EmergenceDataProvider } from './EmergenceStubs';
+import Level3SovereignConscience from './Level3SovereignConscience';
 import UniverseMap, { SECTORS } from './UniverseMap';
 import SectorCampaignMission from './SectorCampaignMission';
 import { isCampaignMissionLevel } from './campaignMissionData';
@@ -247,12 +246,11 @@ export default function MatrixOfConscienceApp() {
         >
           ← Sector Map
         </button>
-        <EmergenceDataProvider>
-          <EmergenceScene
+          <Level3SovereignConscience
             sectorId={selectedSector}
-            onMissionComplete={() => completeLevel(3)}
+            onBack={() => setLevel(0)}
+            onVictory={() => triggerQuiz(3)}
           />
-        </EmergenceDataProvider>
       </div>
     );
   }
