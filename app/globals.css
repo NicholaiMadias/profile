@@ -800,6 +800,14 @@ textarea {
   }
 }
 
+/* Personal portfolio: black canvas and plain sky-blue links. */
+:root { --gold: #87ceeb; --accent: #87ceeb; }
+html, body { background: #000 !important; color: #edf3f7; }
+.site-header, .site-footer, .feature-card, .community-panel { background: #000 !important; }
+a, nav a, .brand, .card-link, .text-link, .eyebrow { color: #87ceeb !important; }
+a:hover { color: #c6edff !important; text-decoration: underline; }
+a.button, a.button.secondary, a.guest-badge { background: transparent !important; border: 0 !important; border-radius: 0; box-shadow: none !important; padding: 0; color: #87ceeb !important; }
+a:focus-visible { outline: 2px solid #87ceeb; outline-offset: 5px; }
 /* Accessible wordmark sizing and compact header layout. */
 .site-header .brand{gap:12px;min-width:0}
 .site-header .brand img{display:block;width:168px;height:auto;max-width:100%;object-fit:contain;flex:0 1 auto}
