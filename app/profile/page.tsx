@@ -20,7 +20,7 @@ const responsibilities = [
   ['Supported endpoint and mobility services for 70,000+ users and devices.', 'Worked with Workspace ONE UEM, Intune, Entra ID, Active Directory, BeyondTrust, and Lookout Mobile Security.', 'Supported enrollment, authentication, compliance, application deployment, and operational reporting.'],
   ['Developed workflow automation with PowerShell, Python, JavaScript, SQL, and REST APIs.', 'Integrated internal systems with third-party platforms.', 'Built learning management applications and administrative portals.'],
   ['Administered Intune, Google Workspace, Active Directory, Entra ID, Windows Autopilot, and Apple Business Manager.', 'Supported Windows, macOS, iOS, and Android provisioning, compliance, patching, and identity workflows.', 'Created PowerShell automation for deployment and administration.'],
-  ['Supported identity and access operations in environments serving 350,000+ users worldwide.', 'Contributed to Microsoft-to-Google migration initiatives affecting 400,000+ accounts.', 'Supported provisioning, authentication, authorization, and identity governance, with expertise in Google Workspace, Sites, Apps Script, and Drive API.'],
+  ['Supported identity and access operations in environments serving 350,000+ users worldwide.', 'Contributed to Microsoft-to-Google migration initiatives affecting 400,000+ accounts.', 'Supported provisioning, authentication, authorization, and identity governance, with expertise in Google Workspace / G Suite Administration, Sites, Apps Script, and Drive API.'],
   ['Administered Active Directory, MECM/SCCM, Windows infrastructure, and endpoint security.', 'Supported vulnerability remediation using Qualys, Rapid7, Tenable, and Tanium.', 'Developed KPI dashboards and reporting for patching, compliance, and endpoint operations.'],
   ['Supported EVS infrastructure across Windows, Linux, UNIX, server, endpoint, and network environments.', 'Troubleshot incidents and supported migrations, infrastructure upgrades, and service improvements.', 'Increased Customer Effort Score by 21% through process optimization and support improvements.'],
 ];
@@ -28,7 +28,7 @@ const skills = [
   ['Endpoint management', 'Workspace ONE UEM · Microsoft Intune · MECM/SCCM · Windows Autopilot · Apple Business Manager · MDM/MAM · Application deployment · Patch management'],
   ['Identity & security', 'Active Directory · Microsoft Entra ID · IAM · RBAC · Conditional Access · MFA · Group Policy · Zero Trust · Qualys · Rapid7 · Tenable · Tanium'],
   ['Automation & reporting', 'PowerShell · Python · JavaScript · SQL · REST APIs · Reporting · Analytics · KPI dashboards'],
-  ['Infrastructure', 'Windows Server · Microsoft 365 · Google Workspace · Windows · macOS · Linux · iOS · Android'],
+  ['Infrastructure', 'Windows Server · Microsoft 365 · Google Workspace / G Suite Administration · Windows · macOS · Linux · iOS · Android'],
 ];
 
 export function ProfilePage() {
@@ -41,7 +41,7 @@ export function ProfilePage() {
     <section className="section"><p className="eyebrow">FOCUS AREAS</p><div className="card-grid two"><div className="feature-card"><h2>Platform & identity</h2><p>Workspace ONE, Intune, MECM/SCCM, Active Directory, Entra ID, Google Workspace, IAM, Zero Trust, and endpoint security.</p></div><div className="feature-card"><h2>Automation & systems</h2><p>PowerShell, Python, JavaScript, SQL, REST APIs, dashboards, workflow design, documentation, and local-first web applications.</p></div></div></section>
     <section className="section" aria-labelledby="skills-title"><h2 id="skills-title">Technical skills</h2>{skills.map(([name, tools])=><div key={name}><h3>{name}</h3><p>{tools}</p></div>)}</section>
     <section id="experience" className="section"><p className="eyebrow">EXPERIENCE</p>{experience.map(([company, role, dates], index) => <article className="feature-card" key={company}><h2>{role}</h2><p><strong>{company}</strong> · {dates}</p><ul>{responsibilities[index].map(item=><li key={item}>{item}</li>)}</ul></article>)}</section>
-    <section className="section"><h2>Education & professional development</h2><h3>Bachelor of Science, Business Studies — Computer Information Technology</h3><p>Southern New Hampshire University</p><h3>Associate of Science, Computer Information Technology</h3><p>Everest University</p><p>CompTIA Network+ · LinkedIn Learning coursework in AWS and Azure administration.</p></section>
+    <section className="section"><h2>Education & professional development</h2><h3>Bachelor of Science, Business Studies — Computer Information Technology</h3><p>Southern New Hampshire University</p><h3>Associate of Science, Computer Information Technology</h3><p>Everest University</p><p>CompTIA Network+ · LinkedIn Learning coursework in AWS and Azure administration.</p><p>G Suite Administration — Infosys course completion, March 31, 2022.</p></section>
   </div>;
 }
 
