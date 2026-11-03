@@ -818,6 +818,23 @@ textarea {
 .professional-profile .eyebrow { font-size: .72rem; letter-spacing: .16em; }
 .professional-profile .card-grid { gap: 24px; }
 @media(max-width:620px) { .professional-profile { padding-top: 32px; } .professional-profile .section { margin-top: 32px; padding-top: 24px; } }
+/* Blog typography and navigation share the same restrained visual language. */
+.site-header .header-inner nav { flex-wrap: wrap; align-items: center; width: 100%; row-gap: 14px; }
+.site-header .header-inner nav a { font-family: inherit; font-size: inherit; font-weight: 400; letter-spacing: normal; line-height: 1.5; }
+.blog-shell { max-width: 850px; margin: 0 auto; padding: 48px 24px 80px; }
+.blog-intro { padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.blog-intro h1 { font-family: inherit; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+.blog-article { margin-top: 40px; overflow-wrap: anywhere; }
+.blog-article h2 { font-family: inherit; font-size: clamp(1.6rem, 4vw, 2.35rem); line-height: 1.25; letter-spacing: -.025em; }
+.blog-article h3 { font-size: 1.25rem; line-height: 1.4; margin: 36px 0 14px; }
+.blog-article p, .blog-article li { color: #c3ccd3; line-height: 1.85; }
+.blog-article li { margin-bottom: 12px; }
+.blog-meta { font-size: .82rem; }
+.blog-deck { font-size: 1.15rem; }
+.blog-article pre { max-width: 100%; overflow-x: auto; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: #0b1119; font-size: .82rem; line-height: 1.7; white-space: pre; }
+.blog-article pre code { white-space: inherit; }
+.blog-article pre:focus-visible { outline: 2px solid #87ceeb; outline-offset: 3px; }
+@media(max-width:620px) { .blog-shell { padding: 30px 18px 56px; } .blog-article pre { padding: 14px; } }
 /* Personal portfolio: black canvas and plain sky-blue links. */
 :root { --gold: #87ceeb; --accent: #87ceeb; }
 html, body { background: #000 !important; color: #edf3f7; }
