@@ -28,6 +28,13 @@ The best result in each game contributes up to 100 practice XP (200 total).
 
 ## Run and verify
 
+The `/nexus` page offers an experimental local-first Chrome extension and
+companion. `npm run package:nexus` generates the download in `public/downloads`;
+the production build runs it automatically. The package is built from the
+explicit allowlist in `scripts/package-nexus.mjs`, never from local vaults,
+environment files, or browser profiles. See `nexus-public/README.md` for setup,
+privacy details, and features not yet implemented.
+
 Requires Node 22.18 or newer. CI uses Node 22.
 
 ```sh
