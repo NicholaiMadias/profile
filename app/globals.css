@@ -107,6 +107,60 @@ img {
   justify-content: space-between;
   gap: 28px;
 }
+.site-brand {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+}
+.site-nav > a,
+.nav-dropdown > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 9px 13px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.site-nav > a:hover,
+.nav-dropdown > button:hover,
+.nav-dropdown > button[aria-expanded="true"] {
+  background: #ffffff0b;
+  border-color: var(--line);
+  text-decoration: none;
+}
+.nav-dropdown { position: relative; }
+.nav-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #10141e;
+  box-shadow: 0 16px 40px #0008;
+}
+.nav-menu[hidden] { display: none; }
+.nav-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+.nav-menu a:hover { background: #ffffff0b; text-decoration: none; }
 .brand {
   display: flex;
   align-items: center;
@@ -848,3 +902,105 @@ a:focus-visible { outline: 2px solid #87ceeb; outline-offset: 5px; }
 .site-header .brand img{display:block;width:168px;height:auto;max-width:100%;object-fit:contain;flex:0 1 auto}
 @media(max-width:900px){.site-header .header-inner{gap:14px}.site-header .header-inner nav{gap:clamp(14px,3vw,26px)}}
 @media(max-width:620px){.site-header .header-inner{min-height:76px;padding:12px 18px;gap:12px}.site-header .brand{gap:9px}.site-header .brand img{width:132px;height:auto;max-width:44vw}.site-header .brand small{font-size:.57rem;letter-spacing:0}.site-header .guest-badge{font-size:.62rem;padding:6px 9px}.site-header .header-inner nav{gap:clamp(12px,4vw,22px)}}
+
+/* Blog Novelette & Story Styles */
+.blog-featured-card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.4);
+  margin-bottom: 48px;
+}
+.blog-featured-card h2 {
+  margin-top: 8px;
+  color: #87ceeb;
+}
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: rgba(135, 206, 235, 0.15) !important;
+  border: 1px solid #87ceeb !important;
+  color: #87ceeb !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+.button-link:hover {
+  background: rgba(135, 206, 235, 0.25) !important;
+  color: #c6edff !important;
+  transform: translateY(-1px);
+}
+.story-epigraph {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #94a3b8;
+  border-left: 3px solid #87ceeb;
+  padding-left: 16px;
+  margin: 18px 0 28px;
+}
+.story-section {
+  margin: 36px 0;
+}
+.character-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 20px 0;
+}
+.character-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(11, 18, 32, 0.7);
+}
+.character-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: #87ceeb;
+}
+.character-card h4 small {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: normal;
+}
+.chapter-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: #87ceeb;
+  margin-bottom: 4px;
+}
+.scene-setting {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 14px 18px;
+  border-radius: 6px;
+  border-left: 2px solid #87ceeb;
+  margin-bottom: 24px;
+}
+.story-divider {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 40px 0;
+}
+.story-end-marker {
+  text-align: center;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  margin: 40px 0 20px;
+  color: #87ceeb;
+}
+.story-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+

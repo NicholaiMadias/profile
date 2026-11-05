@@ -54,9 +54,24 @@ export default function BlogPage() {
     <header className="blog-intro">
       <p className="eyebrow">NOTES FROM THE WORKBENCH</p>
       <h1>Nicholai’s Blog</h1>
-      <p>Technology, practical engineering, and tools that earn their place.</p>
-      <Link href="/">About Nicholai →</Link>
+      <p>Technology, practical engineering, fiction lore, and tools that earn their place.</p>
+      <nav aria-label="Blog navigation">
+        <Link href="/">About Nicholai</Link>
+        <Link href="#featured-story">Featured Novelette</Link>
+        <Link href="#why-i-replaced-chrome-and-edge">Workflow Notes</Link>
+        <Link href="/tools">Tools and profiles</Link>
+      </nav>
     </header>
+
+    <article className="blog-article blog-featured-card" id="featured-story" aria-labelledby="story-feature-title">
+      <header>
+        <p className="blog-meta"><time dateTime="2026-11-04">November 4, 2026</time> · Cyberpunk Novelette &amp; World Lore</p>
+        <h2 id="story-feature-title">Matrix of Conscience</h2>
+        <p className="blog-deck">Nexus Prime, 2087 — &ldquo;In the space between signal and noise, we find what makes us human.&rdquo;</p>
+      </header>
+      <p>A full 7-chapter cyberpunk novelette exploring neural architects, synthetic conscience modules, state-level empathy harvesting, and the courage required to choose feeling over managed compliance.</p>
+      <p><Link className="button-link" href="/blog/matrix-of-conscience">Read the Full Novelette (Chapters 1–7 + Epilogue) &rarr;</Link></p>
+    </article>
     <article className="blog-article" id="why-i-replaced-chrome-and-edge" aria-labelledby="article-title">
       <header>
         <p className="blog-meta"><time dateTime="2026-11-03">November 3, 2026</time> · By Nicholai Madias · Personal perspective</p>
