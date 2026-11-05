@@ -57,11 +57,22 @@ export default function BlogPage() {
       <p>Technology, practical engineering, fiction lore, and tools that earn their place.</p>
       <nav aria-label="Blog navigation">
         <Link href="/">About Nicholai</Link>
+        <Link href="#antigravity-dev-stack">Antigravity Dev Stack</Link>
         <Link href="#featured-story">Featured Novelette</Link>
         <Link href="#why-i-replaced-chrome-and-edge">Workflow Notes</Link>
-        <Link href="/tools">Tools and profiles</Link>
+        <Link href="/#tools">Tools and profiles</Link>
       </nav>
     </header>
+
+    <article className="blog-article blog-featured-card" id="antigravity-dev-stack" aria-labelledby="antigravity-feature-title">
+      <header>
+        <p className="blog-meta"><time dateTime="2026-11-04">November 4, 2026</time> · Tooling &amp; Architecture</p>
+        <h2 id="antigravity-feature-title">The Antigravity Dev Stack: Customizing Terminal AI Agents</h2>
+        <p className="blog-deck">Achieve escape velocity from manual configurations using agentic coding frameworks (Codex CLI, Antigravity/Gemini CLI), local LM Studio engines, Model Context Protocol (MCP), and cross-platform terminal orchestration.</p>
+      </header>
+      <p>Explore an in-depth blueprint covering cloud-native terminal agents, local LLM sovereignty via encrypted SSH tunnels, MCP filesystem integration, and robust CI/CD pipelines.</p>
+      <p><Link className="button-link" href="/blog/antigravity-dev-stack">Read the Architecture Guide &rarr;</Link></p>
+    </article>
 
     <article className="blog-article blog-featured-card" id="featured-story" aria-labelledby="story-feature-title">
       <header>
