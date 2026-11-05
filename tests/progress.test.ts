@@ -14,6 +14,11 @@ import {
   nextSpawnDelayMs,
 } from "../lib/games/quick-click.ts";
 import { questions } from "../lib/games/questions.ts";
+import {
+  parseMatrixProgress,
+  serializeMatrixProgress,
+} from "../lib/games/matrix-of-conscience/progress.ts";
+import { selectQuizQuestions } from "../lib/games/matrix-of-conscience/quiz.ts";
 
 test("games use a common 100-point scale without repeat farming", () => {
   let state = recordAttempt(emptyProgress(), "bible-quiz", 8, "quiz-1");
@@ -84,4 +89,23 @@ test("quiz data has unique ids and valid answer references", () => {
     );
     assert.ok(question.reference && question.explanation);
   }
+});
+
+test("Matrix campaign progress migrates legacy saves and rejects corrupt levels", () => {
+  assert.equal(parseMatrixProgress("4", 10).unlockedLevel, 4);
+  assert.equal(
+    parseMatrixProgress(serializeMatrixProgress(7), 10).unlockedLevel,
+    7,
+  );
+  for (const raw of [null, "", "2junk", "0", "11", "{}", "null", "[]", '{"version":1,"unlockedLevel":2.5}']) {
+    assert.equal(parseMatrixProgress(raw, 10).unlockedLevel, 1);
+  }
+});
+
+test("Matrix bonus quiz selects a bounded, unique question set", () => {
+  const selected = selectQuizQuestions(questions, 5, () => 0.25);
+  assert.equal(selected.length, 5);
+  assert.equal(new Set(selected.map((question) => question.id)).size, 5);
+  assert.deepEqual(selectQuizQuestions(questions, 0), []);
+  assert.equal(selectQuizQuestions(questions, 100, () => 0.5).length, questions.length);
 });
