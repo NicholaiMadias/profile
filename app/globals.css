@@ -818,9 +818,14 @@ textarea {
 .professional-profile .eyebrow { font-size: .72rem; letter-spacing: .16em; }
 .professional-profile .card-grid { gap: 24px; }
 @media(max-width:620px) { .professional-profile { padding-top: 32px; } .professional-profile .section { margin-top: 32px; padding-top: 24px; } }
-/* Blog typography and navigation share the same restrained visual language. */
-.site-header .header-inner nav { flex-wrap: wrap; align-items: center; width: 100%; row-gap: 14px; }
-.site-header .header-inner nav a { font-family: inherit; font-size: inherit; font-weight: 400; letter-spacing: normal; line-height: 1.5; }
+/* Keep every primary destination in one row, with touch scrolling on narrow screens. */
+.site-header { overflow: hidden; }
+.site-header .header-inner { max-width: none; min-height: 76px; padding: 14px 32px; gap: clamp(18px, 2vw, 32px); flex-wrap: nowrap; overflow: hidden; }
+.site-header .nav-brand { flex: 0 0 auto; color: #fff; font-size: clamp(.9rem, 1.25vw, 1.1rem); font-weight: 700; line-height: 1.4; white-space: nowrap; }
+.site-header .nav-links { display: flex; flex: 1 1 auto; min-width: 0; width: auto; align-items: center; justify-content: flex-end; gap: clamp(.75rem, 1.5vw, 1.5rem); overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: none; -ms-overflow-style: none; flex-wrap: nowrap; }
+.site-header .nav-links::-webkit-scrollbar { display: none; }
+.site-header .nav-links a { flex: 0 0 auto; font-family: inherit; font-size: clamp(.78rem, 1vw, .95rem); font-weight: 400; letter-spacing: normal; line-height: 1.5; white-space: nowrap; }
+/* Blog typography shares the same restrained visual language. */
 .blog-shell { max-width: 850px; margin: 0 auto; padding: 48px 24px 80px; }
 .blog-intro { padding-bottom: 32px; border-bottom: 1px solid var(--line); }
 .blog-intro h1 { font-family: inherit; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
@@ -843,8 +848,6 @@ a, nav a, .brand, .card-link, .text-link, .eyebrow { color: #87ceeb !important; 
 a:hover { color: #c6edff !important; text-decoration: underline; }
 a.button, a.button.secondary, a.guest-badge { background: transparent !important; border: 0 !important; border-radius: 0; box-shadow: none !important; padding: 0; color: #87ceeb !important; }
 a:focus-visible { outline: 2px solid #87ceeb; outline-offset: 5px; }
-/* Accessible wordmark sizing and compact header layout. */
-.site-header .brand{gap:12px;min-width:0}
-.site-header .brand img{display:block;width:168px;height:auto;max-width:100%;object-fit:contain;flex:0 1 auto}
-@media(max-width:900px){.site-header .header-inner{gap:14px}.site-header .header-inner nav{gap:clamp(14px,3vw,26px)}}
-@media(max-width:620px){.site-header .header-inner{min-height:76px;padding:12px 18px;gap:12px}.site-header .brand{gap:9px}.site-header .brand img{width:132px;height:auto;max-width:44vw}.site-header .brand small{font-size:.57rem;letter-spacing:0}.site-header .guest-badge{font-size:.62rem;padding:6px 9px}.site-header .header-inner nav{gap:clamp(12px,4vw,22px)}}
+/* Compact single-row header layout. */
+@media(max-width:900px){.site-header .header-inner{gap:16px}.site-header .nav-links{justify-content:flex-start;gap:clamp(12px,2.5vw,20px)}}
+@media(max-width:620px){.site-header .header-inner{min-height:68px;padding:10px 18px;gap:14px}.site-header .nav-brand{font-size:.84rem}.site-header .nav-links{gap:18px}.site-header .nav-links a{font-size:.78rem}}
