@@ -7,6 +7,7 @@ import SectorCampaignMission from './SectorCampaignMission';
 import { isCampaignMissionLevel } from './campaignMissionData';
 import { BibleQuizOverlay } from './BibleQuizOverlay';
 import { useConscience } from './ConscienceProvider';
+import { parseMatrixProgress, serializeMatrixProgress } from './progress';
 import './cosmic-strategy.css';
 
 const CAMPAIGN_ACTS = SECTORS.map((sector) => sector.name);
@@ -23,14 +24,11 @@ export default function MatrixOfConscienceApp() {
   useEffect(() => {
     try {
       const savedProgress = localStorage.getItem('moc-progress');
-      if (savedProgress) {
-        const parsed = parseInt(savedProgress, 10);
-        if (!isNaN(parsed) && parsed >= 1 && parsed <= SECTORS.length) {
-          setUnlockedLevel(parsed);
-          setSelectedSector(parsed);
-          setUserLevel(parsed);
-        }
-      }
+      const progress = parseMatrixProgress(savedProgress, SECTORS.length);
+      setUnlockedLevel(progress.unlockedLevel);
+      setSelectedSector(progress.unlockedLevel);
+      setUserLevel(progress.unlockedLevel);
+      localStorage.setItem('moc-progress', serializeMatrixProgress(progress.unlockedLevel));
     } catch (e) {
       console.error('Failed to load level progress:', e);
     }
@@ -40,7 +38,7 @@ export default function MatrixOfConscienceApp() {
     if (nextLevel > unlockedLevel && nextLevel <= SECTORS.length) {
       setUnlockedLevel(nextLevel);
       try {
-        localStorage.setItem('moc-progress', nextLevel.toString());
+        localStorage.setItem('moc-progress', serializeMatrixProgress(nextLevel));
       } catch (e) {
         console.error('Failed to save level progress:', e);
       }
@@ -54,7 +52,7 @@ export default function MatrixOfConscienceApp() {
       setSelectedSector(1);
       setLevel(0);
       try {
-        localStorage.setItem('moc-progress', '1');
+        localStorage.setItem('moc-progress', serializeMatrixProgress(1));
       } catch (e) {
         console.error('Failed to reset level progress:', e);
       }
@@ -69,7 +67,7 @@ export default function MatrixOfConscienceApp() {
     if (selectedMissionLevel <= unlockedLevel) setLevel(selectedMissionLevel);
   };
 
-  const triggerQuiz = (completedLevel: number, autoAdvance = false) => {
+  const triggerQuiz = (completedLevel: number) => {
     setQuizPendingNextLevel(completedLevel);
   };
 
@@ -98,10 +96,10 @@ export default function MatrixOfConscienceApp() {
     return (
       <div className="universe-map-container">
         <header className="universe-header">
-          <div className="universe-eyebrow">THE SEVEN-STAR CAMPAIGN</div>
+          <div className="universe-eyebrow">THE CONSCIENCE CAMPAIGN</div>
           <h1>Matrix of Conscience</h1>
           <p className="universe-intro">
-            A broken beacon divides the star grid. Reconnect its worlds through courage, trust, and alliances that can outlast a war. In this universe, the Matrix of Conscience is a metaphysical construct that links all living souls. As you progress, you will uncover ancient scriptures and learn powerful spiritual truths that will aid you in the fight against the Syndicate's darkness.
+            A broken beacon divides the star grid. Reconnect ten sectors through courage, trust, and alliances that can outlast a war. Select an open signal, read its briefing, and deploy when you are ready.
           </p>
           <div className="campaign-status">
             <div className="campaign-status-copy">
@@ -205,7 +203,7 @@ export default function MatrixOfConscienceApp() {
     return (
       <Level1NexusDefense
         onBack={() => setLevel(0)}
-        onVictory={() => triggerQuiz(1, true)}
+        onVictory={() => triggerQuiz(1)}
       />
     );
   }
@@ -215,7 +213,7 @@ export default function MatrixOfConscienceApp() {
     return (
       <Level2SyndicateSiege
         onBack={() => setLevel(0)}
-        onVictory={() => triggerQuiz(2, true)}
+        onVictory={() => triggerQuiz(2)}
         sectorId={selectedSector}
       />
     );
