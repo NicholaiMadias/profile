@@ -5,6 +5,7 @@ export default function NexusAssistantPage() {
     <div className="container page narrow">
       <p className="eyebrow">NEXUS / EARLY PREVIEW</p>
       <h1>Your AI workspace, on your terms.</h1>
+      <nav aria-label="Nexus navigation"><Link href="/">About Nicholai</Link><Link href="/tools">Tools and profiles</Link></nav>
       <p>Try a free, local-first Chrome sidebar for your own models, coding tools, and PDF signatures. Bring your own accounts and API keys; the companion runs on your computer. Cloud model providers may charge for their services.</p>
       <p><a className="button" href="/downloads/nexus-assistant-preview.zip" download>Download the preview (.zip)</a></p>
       <h2>What works today</h2>
