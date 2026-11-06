@@ -35,6 +35,11 @@ explicit allowlist in `scripts/package-nexus.mjs`, never from local vaults,
 environment files, or browser profiles. See `nexus-public/README.md` for setup,
 privacy details, and features not yet implemented.
 
+Legacy `/Apps/academy` pages that depended on missing assets redirect to current
+tools, arcade, and study routes. These destinations are alternatives, not
+equivalent versions of every retired game; legacy game progress is not migrated.
+The older `/Apps/tools/index.html` page is retained separately pending review.
+
 Requires Node 22.18 or newer. CI uses Node 22.
 
 ```sh

@@ -1,13 +1,35 @@
 import type { NextConfig } from "next";
 
+const legacyAcademyPages = [
+  ["/Apps/academy", "/tools"],
+  ["/Apps/academy/bible-study", "/arcade/bible-quiz"],
+  ["/Apps/academy/games/code-matrix", "/arcade"],
+  ["/Apps/academy/games/matrix-of-conscience", "/arcade"],
+  ["/Apps/academy/games/powershell-defense", "/arcade"],
+  ["/Apps/academy/games/seven-stars", "/bible-study/seven-stars"],
+  ["/Apps/academy/games/signal-operations", "/arcade"],
+  ["/Apps/academy/vim-defense", "/arcade/vim-defender"],
+] as const;
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
-    return [{
-      source: "/connections",
-      destination: "https://voiceofjesusnet.blogspot.com/",
-      permanent: false,
-    }];
+    return [
+      {
+        source: "/connections",
+        destination: "https://voiceofjesusnet.blogspot.com/",
+        permanent: false,
+      },
+      ...legacyAcademyPages.flatMap(([source, destination]) => [
+        { source, destination, permanent: false },
+        { source: `${source}/index.html`, destination, permanent: false },
+      ]),
+      {
+        source: "/Apps/academy/games/matrix-of-conscience/matrix-act-iv.html",
+        destination: "/arcade",
+        permanent: false,
+      },
+    ];
   },
   async headers() {
     return [
