@@ -19,7 +19,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <div className="header-inner">
               <Link className="nav-brand" href="/">Nicholai Maro Madias</Link>
               <nav className="nav-links" aria-label="Main navigation">
-                <Link href="/blog">Nicholai’s Blog</Link>
+
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
                 <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
                 <Link href="/arcade">Matrix of Conscience</Link>
