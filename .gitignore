@@ -7,3 +7,4 @@ out/
 playwright-report/
 test-results/
 public/downloads/nexus-assistant-preview.zip
+public/Apps/*.tar.gz
