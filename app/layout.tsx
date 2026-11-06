@@ -23,7 +23,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
                 <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
                 <Link href="/arcade">Matrix of Conscience</Link>
-                <Link href="/#tools">Tools</Link>
+                <Link href="/tools">Tools</Link>
               </nav>
             </div>
           </header>
