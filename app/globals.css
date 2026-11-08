@@ -876,6 +876,79 @@ textarea::placeholder {
 .professional-profile .eyebrow { font-size: .72rem; letter-spacing: .16em; }
 .professional-profile .card-grid { gap: 24px; }
 @media(max-width:620px) { .professional-profile { padding-top: 32px; } .professional-profile .section { margin-top: 32px; padding-top: 24px; } }
+
+.profile-hero {
+  max-width: 820px;
+  padding: clamp(2.5rem, 7vw, 6rem) 0 clamp(2.5rem, 5vw, 4.5rem);
+}
+.profile-hero h1 {
+  max-width: 16ch;
+  margin-bottom: 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.65rem, 6vw, 5.2rem);
+  font-weight: 400;
+  letter-spacing: -.055em;
+  line-height: 1.02;
+}
+.profile-hero .lede { max-width: 58ch; font-size: clamp(1.15rem, 2vw, 1.4rem); color: var(--ink); }
+.profile-summary { max-width: 63ch; }
+.profile-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 1.75rem; margin-top: 2rem; }
+.profile-actions .button { background: var(--gold); border-color: var(--gold); color: #14110a; gap: .75rem; }
+.profile-actions .button:hover { background: #e6cb81; }
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.profile-stats > div { min-height: 132px; padding: 1.5rem; border-left: 1px solid var(--line); display: grid; align-content: center; gap: .35rem; }
+.profile-stats > div:first-child { border-left: 0; }
+.profile-stats strong { color: var(--gold); font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1; }
+.profile-stats span { color: var(--muted); font-size: .82rem; }
+.profile-section { padding: clamp(3rem, 7vw, 6rem) 0; border-bottom: 1px solid var(--line); }
+.profile-section h2 { max-width: 21ch; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 400; letter-spacing: -.045em; }
+.profile-intro { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 8vw, 8rem); }
+.impact-list { margin: 0; padding: 0; list-style: none; }
+.impact-list li { padding: 0 0 1.25rem 2rem; position: relative; color: var(--muted); }
+.impact-list li::before { content: "→"; position: absolute; left: 0; color: var(--gold); }
+.profile-focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2.5rem; background: var(--line); border: 1px solid var(--line); }
+.profile-focus-grid article { min-height: 230px; padding: 1.75rem; background: #0d1119; }
+.profile-focus-grid span { color: var(--gold); font-size: .75rem; letter-spacing: .12em; }
+.profile-focus-grid h3 { margin: 2.25rem 0 .75rem; font-size: 1.3rem; }
+.profile-focus-grid p { margin: 0; font-size: .92rem; }
+.experience-list { margin-top: 2.5rem; }
+.experience-list article { display: grid; grid-template-columns: minmax(220px, .75fr) minmax(0, 1.25fr); gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+.experience-list article:last-child { border-bottom: 1px solid var(--line); }
+.experience-list header p { margin-bottom: .35rem; color: var(--gold); font-size: .77rem; letter-spacing: .04em; }
+.experience-list h3 { margin: 0 0 .45rem; font-size: 1.15rem; }
+.experience-list strong { color: var(--ink); font-size: .9rem; }
+.experience-list ul { margin: 0; padding-left: 1.2rem; }
+.experience-list li { margin-bottom: .65rem; color: var(--muted); font-size: .93rem; }
+.profile-skills dl { margin: 2rem 0 0; }
+.profile-skills dl > div { display: grid; grid-template-columns: minmax(190px, .6fr) minmax(0, 1.4fr); gap: 2rem; padding: 1.25rem 0; border-top: 1px solid var(--line); }
+.profile-skills dl > div:last-child { border-bottom: 1px solid var(--line); }
+.profile-skills dt { color: var(--ink); font-weight: 700; }
+.profile-skills dd { margin: 0; color: var(--muted); }
+.profile-links > div { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 2.25rem; background: var(--line); border: 1px solid var(--line); }
+.profile-links a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 1.5rem; background: #0d1119; font-weight: 600; }
+.profile-links a:hover { background: #151c29; color: var(--gold); }
+.profile-education { border-bottom: 0; padding-bottom: 1rem; }
+.profile-education p { margin-bottom: 1.2rem; }
+
+@media (max-width: 760px) {
+  .profile-stats { grid-template-columns: repeat(2, 1fr); }
+  .profile-stats > div:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+  .profile-stats > div:nth-child(4) { border-top: 1px solid var(--line); }
+  .profile-intro, .experience-list article, .profile-skills dl > div { grid-template-columns: 1fr; gap: 1.25rem; }
+  .profile-focus-grid { grid-template-columns: 1fr; }
+  .profile-focus-grid article { min-height: 0; }
+  .profile-focus-grid h3 { margin-top: 1.25rem; }
+}
+@media (max-width: 520px) {
+  .profile-hero h1 { font-size: clamp(2.35rem, 13vw, 3.25rem); }
+  .profile-actions { align-items: flex-start; flex-direction: column; }
+  .profile-links > div { grid-template-columns: 1fr; }
+}
 /* Keep every primary destination in one row, with touch scrolling on narrow screens. */
 .site-header { overflow: hidden; }
 .site-header .header-inner { max-width: none; min-height: 76px; padding: 14px 32px; gap: clamp(18px, 2vw, 32px); flex-wrap: nowrap; overflow: hidden; }

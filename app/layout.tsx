@@ -19,11 +19,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
             <div className="header-inner">
               <Link className="nav-brand" href="/">Nicholai Maro Madias</Link>
               <nav className="nav-links" aria-label="Main navigation">
-
-                <a href="https://amazinggracehl.org">Amazing Grace</a>
-                <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
-                <Link href="/arcade">Matrix of Conscience</Link>
+                <Link href="/">About</Link>
+                <Link href="/blog">Writing</Link>
                 <Link href="/tools">Tools</Link>
+                <Link href="/arcade">Arcade</Link>
               </nav>
             </div>
           </header>
@@ -34,6 +33,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
               <a href="https://amazinggracehl.org">Amazing Grace</a>
               <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
               <a href="https://limitlessnexus.com">Limitless Nexus</a>
+              <a href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">GitHub</a>
               <Link href="/privacy">Privacy</Link>
             </div>
           </footer>

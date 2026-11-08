@@ -25,24 +25,126 @@ const responsibilities = [
 ];
 
 const skills = [
-  ['Endpoints & management', 'VMware Workspace ONE (AirWatch) · Microsoft Intune · MECM / SCCM · Jamf · Enterprise mobility · Zero-touch deployment · Automated provisioning · Vulnerability remediation'],
-  ['Identity & security', 'Active Directory · Microsoft Entra ID · IAM · RBAC · Conditional Access · MFA · Group Policy · Zero Trust · Qualys · Rapid7 · Tenable · Tanium'],
-  ['Automation & reporting', 'PowerShell · Python · JavaScript · SQL · REST APIs · Reporting · Analytics · KPI dashboards'],
-  ['Infrastructure', 'Windows Server · Microsoft 365 · Google Workspace / G Suite Administration · Windows · macOS · Linux · iOS · Android'],
+  ['Endpoint management', 'Workspace ONE · Intune · MECM/SCCM · Jamf · enterprise mobility · zero-touch deployment'],
+  ['Identity & security', 'Active Directory · Entra ID · IAM · RBAC · Conditional Access · MFA · Zero Trust'],
+  ['Automation & reporting', 'PowerShell · Python · JavaScript · SQL · REST APIs · dashboards · operational analytics'],
+  ['Infrastructure', 'Windows Server · Microsoft 365 · Google Workspace · Windows · macOS · Linux · iOS · Android'],
 ];
 
 export function ProfilePage() {
-  return <div className="container page narrow professional-profile">
-    <h1>Senior Endpoint Platform Engineer</h1>
-    <p className="lede">I bring 15+ years of experience supporting enterprise endpoints, identity and access, security, automation, and infrastructure operations across telecommunications, technology, media, healthcare, and enterprise environments.</p>
-    <p>My work connects device lifecycle management with secure identity and practical automation. I help teams provision devices, deploy applications, improve compliance, remediate vulnerabilities, and turn operational data into useful reporting.</p>
-    <section className="section" aria-labelledby="impact-title"><h2 id="impact-title">Selected impact</h2><ul><li>Supported endpoint and identity environments serving 350,000+ users worldwide.</li><li>Contributed to Microsoft-to-Google migrations affecting 400,000+ accounts.</li><li>Supported mobility and endpoint operations for 70,000+ users and devices.</li><li>Automated provisioning, deployment, and reporting with PowerShell, Python, SQL, and REST APIs.</li><li>Improved Customer Effort Score by 21% through service and process improvements.</li></ul></section>
-    <section id="tools" className="section" aria-labelledby="tools-title"><h2 id="tools-title">Projects &amp; Public Code</h2><p>Explore my projects, writing, professional profile, and public code.</p><div className="actions"><Link href="/tools">All tools</Link><Link href="/nexus">Nexus Assistant</Link><Link href="/blog">Blog</Link><Link href="/toolbox">Amazing Grace Toolbox</Link><a href="https://limitlessnexus.com" target="_blank" rel="noopener noreferrer">Limitless Nexus ↗</a><a href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></section>
-    <section className="section"><p className="eyebrow">FOCUS AREAS</p><div className="card-grid two"><div className="feature-card"><h2>Platform & identity</h2><p>Workspace ONE, Intune, MECM/SCCM, Active Directory, Entra ID, Google Workspace, IAM, Zero Trust, and endpoint security.</p></div><div className="feature-card"><h2>Automation & systems</h2><p>PowerShell, Python, JavaScript, SQL, REST APIs, dashboards, workflow design, documentation, and local-first web applications.</p></div></div></section>
-    <section className="section" aria-labelledby="skills-title"><h2 id="skills-title">Technical skills</h2>{skills.map(([name, tools])=><div key={name}><h3>{name}</h3><p>{tools}</p></div>)}</section>
-    <section id="experience" className="section"><p className="eyebrow">EXPERIENCE</p>{experience.map(([company, role, dates], index) => <article className="feature-card" key={`${company}-${role}`}><h2>{role}</h2><p><strong>{company}</strong> · {dates}</p><ul>{responsibilities[index].map(item=><li key={item}>{item}</li>)}</ul></article>)}</section>
-    <section className="section"><h2>Education & professional development</h2><h3>Bachelor of Science, Business Studies — Computer Information Technology</h3><p>Southern New Hampshire University</p><h3>Associate of Science, Computer Information Technology</h3><p>Everest University</p><p>CompTIA Network+ · LinkedIn Learning coursework in AWS and Azure administration.</p><p>G Suite Administration — Infosys course completion, March 31, 2022.</p></section>
-  </div>;
+  return (
+    <div className="container page professional-profile">
+      <header className="profile-hero">
+        <p className="eyebrow">ENDPOINTS · IDENTITY · AUTOMATION</p>
+        <h1>Making endpoint platforms secure, scalable, and easier to operate.</h1>
+        <p className="lede">
+          I am a senior endpoint platform engineer with 15+ years of experience
+          connecting device management, identity, security, and practical automation.
+        </p>
+        <p className="profile-summary">
+          I help teams provision devices, deploy applications, improve compliance,
+          remediate vulnerabilities, and turn operational signals into useful action.
+        </p>
+        <div className="profile-actions">
+          <a className="button" href="#experience">View experience <span aria-hidden="true">↓</span></a>
+          <a className="text-link" href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+          <a className="text-link" href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">View GitHub ↗</a>
+        </div>
+      </header>
+
+      <section className="profile-stats" aria-label="Career highlights">
+        <div><strong>15+</strong><span>years in enterprise IT</span></div>
+        <div><strong>350K+</strong><span>users supported worldwide</span></div>
+        <div><strong>400K+</strong><span>identity accounts migrated</span></div>
+        <div><strong>70K+</strong><span>devices and users supported</span></div>
+      </section>
+
+      <section className="profile-section profile-intro" aria-labelledby="impact-title">
+        <div>
+          <p className="eyebrow">HOW I HELP</p>
+          <h2 id="impact-title">Platform operations with a security and automation mindset.</h2>
+        </div>
+        <ul className="impact-list">
+          <li>Modernized mobile and desktop endpoint programs with conditional access and automated provisioning.</li>
+          <li>Built reporting that connects endpoint signals with operational and security teams.</li>
+          <li>Designed automation for provisioning, remediation, software delivery, and recurring maintenance.</li>
+        </ul>
+      </section>
+
+      <section className="profile-section" aria-labelledby="focus-title">
+        <p className="eyebrow">FOCUS AREAS</p>
+        <h2 id="focus-title">The work I enjoy solving.</h2>
+        <div className="profile-focus-grid">
+          <article>
+            <span>01</span>
+            <h3>Endpoint platforms</h3>
+            <p>Reliable lifecycle management for the people, devices, and applications an organization depends on.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Identity &amp; access</h3>
+            <p>Practical identity foundations that support secure access without making daily work harder.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Automation &amp; insight</h3>
+            <p>Repeatable workflows and useful reporting that turn operational data into better decisions.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" className="profile-section" aria-labelledby="experience-title">
+        <p className="eyebrow">EXPERIENCE</p>
+        <h2 id="experience-title">Enterprise engineering and operations.</h2>
+        <div className="experience-list">
+          {experience.map(([company, role, dates], index) => (
+            <article key={`${company}-${role}`}>
+              <header>
+                <p>{dates}</p>
+                <h3>{role}</h3>
+                <strong>{company}</strong>
+              </header>
+              <ul>
+                {responsibilities[index].map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="profile-section profile-skills" aria-labelledby="skills-title">
+        <p className="eyebrow">TOOLKIT</p>
+        <h2 id="skills-title">Technical foundation.</h2>
+        <dl>
+          {skills.map(([name, tools]) => (
+            <div key={name}>
+              <dt>{name}</dt>
+              <dd>{tools}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="profile-section profile-links" aria-labelledby="work-title">
+        <p className="eyebrow">WORK &amp; WRITING</p>
+        <h2 id="work-title">Explore the rest of the site.</h2>
+        <div>
+          <Link href="/tools">Local-first tools <span aria-hidden="true">→</span></Link>
+          <Link href="/blog">Engineering notes <span aria-hidden="true">→</span></Link>
+          <Link href="/arcade">Learning arcade <span aria-hidden="true">→</span></Link>
+          <Link href="/bible-study">Bible study <span aria-hidden="true">→</span></Link>
+        </div>
+      </section>
+
+      <section className="profile-section profile-education" aria-labelledby="education-title">
+        <p className="eyebrow">EDUCATION</p>
+        <h2 id="education-title">Education &amp; professional development.</h2>
+        <p><strong>B.S., Business Studies — Computer Information Technology</strong><br />Southern New Hampshire University</p>
+        <p><strong>A.S., Computer Information Technology</strong><br />Everest University</p>
+        <p>CompTIA Network+ · G Suite Administration · AWS and Azure administration coursework</p>
+      </section>
+    </div>
+  );
 }
 
 export default ProfilePage;
