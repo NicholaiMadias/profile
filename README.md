@@ -54,7 +54,7 @@ npm run check
 npm start
 ```
 
-`check` runs TypeScript, gameplay/progress regression tests, and the production build. The GitHub quality workflow also runs `npm audit --omit=dev --audit-level=high`. Dependabot proposes weekly package and GitHub Actions updates.
+`check` runs ESLint, gameplay/progress regression tests, and the production build (including TypeScript checks). The GitHub quality workflow also runs `npm audit --omit=dev --audit-level=high`. Dependabot proposes weekly package and GitHub Actions updates.
 
 ## Deployment
 
