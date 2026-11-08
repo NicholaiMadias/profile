@@ -1,7 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import type { QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 interface Article {
   title: string;
@@ -18,7 +21,7 @@ export const FeaturedArticles = () => {
         // Grab the 3 most recent posts from Firestore collection "posts"
         const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(3));
         const snapshot = await getDocs(q);
-        const fetched: Article[] = snapshot.docs.map((doc) => {
+        const fetched: Article[] = snapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => {
           const data = doc.data();
           return {
             title: data.title ?? 'Untitled',

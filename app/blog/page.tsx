@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FeaturedArticles } from '../../components/FeaturedArticles';
-import { useState } from 'react';
 
 export const metadata: Metadata = {
   title: 'Nicholai’s Blog | Technology, tools & practical engineering',
