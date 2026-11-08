@@ -8,11 +8,15 @@ currently being supported with security updates.
 | Version | Supported          |
 | ------- | ------------------ |
 | 5.1.x   | :white_check_mark: |
+| 1.0.x   | :white_check_mark: |
 | 5.0.x   | :x:                |
 | 4.0.x   | :white_check_mark: |
 | < 4.0   | :x:                |
 
 ## Reporting a Vulnerability
+
+If you discover a security issue, please email **info@amazinggracehl.org**. We aim to acknowledge receipt within 48 hours and provide a full response within 72 hours.
+
 
 Use this section to tell people how to report a vulnerability.
 

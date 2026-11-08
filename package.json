@@ -1,6 +1,6 @@
 {
   "name": "voice-of-jesus-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -11,9 +11,11 @@
     "build": "npm run package:nexus && next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "lint": "npm run typecheck",
+    "lint": "next lint",
+
     "test": "node --test tests/*.test.ts tests/*.test.mjs",
-    "check": "npm run typecheck && npm run lint && npm test && npm run build",
+    "check": "npm run typecheck && next lint && npm test && npm run build",
+
     "package:nexus": "node scripts/package-nexus.mjs"
   },
   "dependencies": {
