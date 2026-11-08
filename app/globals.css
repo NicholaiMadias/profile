@@ -613,9 +613,13 @@ textarea {
   border: 1px solid #c9d4cb;
   border-radius: 10px;
   background: #fcfcf8;
-  color: var(--ink);
+  color: #172b2b;
   font-size: 0.95rem;
   line-height: 1.8;
+}
+textarea::placeholder {
+  color: #5c6863;
+  opacity: 1;
 }
 .workspace-footer {
   display: flex;
