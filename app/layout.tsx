@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ProgressProvider } from '../components/ProgressProvider';
 
 export const metadata: Metadata = {
-  title: 'Nicholai Maro Madias | Endpoint Platform Engineer',
+  title: 'Nicholai Maro Madias | Senior Endpoint & Infrastructure Engineer',
   description: 'Enterprise endpoints, identity, automation, tools and educational game design.',
 };
 
@@ -29,6 +29,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   <ul>
     <li><Link href="/tools">All tools</Link></li>
     <li><Link href="/tools#nexus-assistant">Nexus Assistant preview</Link></li>
+    <li><a href="https://chrome.google.com/webstore/detail/nexus-toolbox-extension" target="_blank" rel="noopener">Chrome Extension</a></li>
   </ul>
 </details>
               </nav>

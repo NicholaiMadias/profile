@@ -1,0 +1,38 @@
+{
+  "hosting": {
+    "public": "out",
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+      { "source": "/connections", "destination": "https://voiceofjesusnet.blogspot.com/", "type": 302 },
+      { "source": "/Apps/academy", "destination": "/tools", "type": 302 },
+      { "source": "/Apps/academy/index.html", "destination": "/tools", "type": 302 },
+      { "source": "/Apps/academy/bible-study", "destination": "/arcade/bible-quiz", "type": 302 },
+      { "source": "/Apps/academy/bible-study/index.html", "destination": "/arcade/bible-quiz", "type": 302 },
+      { "source": "/Apps/academy/games/code-matrix", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/code-matrix/index.html", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/matrix-of-conscience", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/matrix-of-conscience/index.html", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/matrix-of-conscience/matrix-act-iv.html", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/powershell-defense", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/powershell-defense/index.html", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/seven-stars", "destination": "/bible-study/seven-stars", "type": 302 },
+      { "source": "/Apps/academy/games/seven-stars/index.html", "destination": "/bible-study/seven-stars", "type": 302 },
+      { "source": "/Apps/academy/games/signal-operations", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/games/signal-operations/index.html", "destination": "/arcade", "type": 302 },
+      { "source": "/Apps/academy/vim-defense", "destination": "/arcade/vim-defender", "type": 302 },
+      { "source": "/Apps/academy/vim-defense/index.html", "destination": "/arcade/vim-defender", "type": 302 }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+          { "key": "X-Frame-Options", "value": "DENY" },
+          { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        ]
+      }
+    ]
+  }
+}
