@@ -66,7 +66,6 @@ export default function BlogPage() {
       </nav>
     </header>
       <FeaturedArticles />
-      <input type="text" placeholder="Search articles…" className="blog-search" />
 
     <article className="blog-article blog-featured-card" id="antigravity-dev-stack" aria-labelledby="antigravity-feature-title">
       <header>
