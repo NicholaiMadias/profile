@@ -11,7 +11,8 @@ public/Apps/*.tar.gz
 
 # Profile repository specific ignores
 arcade/
-new‘site/
+new-site/
 profile/nicholai/*
 !profile/nicholai/*.html
 !profile/nicholai/*.css
+
