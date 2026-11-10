@@ -190,7 +190,7 @@ export default function MatrixOfConscienceApp() {
               <button className="reset-progress-button" type="button" onClick={resetProgress}>
                 Reset Level Progress
               </button>
-              <a className="arcade-hub-link" href="../">Back to Arcade Hub</a>
+              <a className="arcade-hub-link" href="/arcade">Back to Arcade Hub</a>
             </div>
           </aside>
         </div>
