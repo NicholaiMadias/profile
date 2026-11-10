@@ -12,7 +12,7 @@ const experience = [
     "company": "Amazing Grace Home Living",
     "location": "Remote",
     "role": "Senior Platform Engineer",
-    "dates": "Apr 2026 – Present",
+    "dates": "Oct 2023 – Present",
     "bullets": [
       "Administer Active Directory, Windows Server, Group Policy, and endpoint infrastructure supporting secure and compliant operations.",
       "Develop PowerShell and Python solutions that streamline provisioning, configuration management, and administrative workflows.",
@@ -22,36 +22,9 @@ const experience = [
     ]
   },
   {
-    "company": "HCLTech (Client: Verizon)",
-    "location": "",
-    "role": "EDN Technical Support Engineer II",
-    "dates": "2025 – Apr 2026",
-    "bullets": [
-      "Supported enterprise endpoint and mobility operations within an environment serving more than 70,000 users.",
-      "Utilized Omnissa Workspace ONE UEM, Microsoft Intune, and enterprise mobility solutions to support device enrollment, compliance policies, application deployment, and endpoint lifecycle management.",
-      "Supported Lookout Mobile Security administration and troubleshooting to maintain mobile endpoint security and compliance requirements.",
-      "Resolved complex endpoint, authentication, mobile device, and infrastructure issues using ServiceNow and BeyondTrust while meeting service-level objectives.",
-      "Expanded knowledge management platforms through SQL reporting, process documentation, and workflow standardization.",
-      "Analyzed KPI trends, recurring incidents, and root cause data to improve operational efficiency and reduce repeat support issues."
-    ]
-  },
-  {
-    "company": "IAGG Investments",
-    "location": "",
-    "role": "Web Developer (Freelance)",
-    "dates": "Oct 2023 – Jan 2025",
-    "bullets": [
-      "Developed web applications, workflow tools, and administrative solutions using JavaScript and PowerShell.",
-      "Built REST API integrations that automated data exchange between internal systems and third-party platforms.",
-      "Implemented webhook-based automation that reduced manual processing and improved operational efficiency.",
-      "Maintained software deployments, source control standards, and technical documentation across multiple projects.",
-      "Delivered business process improvements that increased application reliability and user productivity."
-    ]
-  },
-  {
     "company": "Tandym Group (Client: Pansophic Learning)",
     "location": "Tampa, FL",
-    "role": "Technical Support Engineer II",
+    "role": "Technical Support Engineer",
     "dates": "Aug 2022 – Oct 2023",
     "bullets": [
       "Administered Microsoft Intune, Active Directory, Microsoft Entra ID, and Group Policy environments supporting enterprise endpoint management.",
@@ -64,7 +37,7 @@ const experience = [
   {
     "company": "Infosys (Client: Google)",
     "location": "Tampa, FL",
-    "role": "Technical Support Engineer II & IAM Support Engineer",
+    "role": "Technical Support Engineer",
     "dates": "Feb 2021 – Apr 2022",
     "bullets": [
       "Supported identity and access management operations within an organization serving approximately 350,000 global users.",
@@ -90,7 +63,7 @@ const experience = [
   {
     "company": "Nielsen Media Research",
     "location": "Oldsmar, FL",
-    "role": "Network Administrator & EVS Support Specialist",
+    "role": "Systems Operations Lead / Network Administrator",
     "dates": "Mar 2011 – Oct 2016",
     "bullets": [
       "Administered Windows server infrastructure, endpoint systems, and enterprise applications supporting distributed business operations.",
