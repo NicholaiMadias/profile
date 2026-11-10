@@ -117,7 +117,7 @@ export function ProfilePage() {
 
     <section className="section" aria-labelledby="education-title"><h2 id="education-title">Education &amp; certifications</h2><h3>Bachelor of Science, Business Studies — Computer Information Technology</h3><p>Southern New Hampshire University</p><h3>Associate of Science, Computer Information Technology</h3><p>Everest University</p><p>Google Workspace Professional Administrator · CompTIA A+ · Microsoft Azure Solutions Architect Expert (In Progress)</p></section>
 
-    <section id="tools" className="section" aria-labelledby="tools-title"><h2 id="tools-title">Tools &amp; links</h2><p>Explore my projects, writing, and public code.</p><div className="actions"><Link href="/tools">All tools</Link><Link href="/nexus">Nexus Assistant</Link><Link href="/arcade/word-sprint">Word Sprint</Link><Link href="/toolbox">Amazing Grace Toolbox</Link><a href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></section>
+    <section id="tools" className="section" aria-labelledby="tools-title"><h2 id="tools-title">Tools &amp; links</h2><p>Explore my projects, writing, and public code.</p><div className="actions"><Link href="/tools">All tools</Link><Link href="/nexus">Nexus Assistant</Link><Link href="/arcade">Arcade</Link><Link href="/toolbox">Amazing Grace Toolbox</Link><a href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></section>
   </div>;
 }
 

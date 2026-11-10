@@ -27,7 +27,6 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 <details className="tools-dropdown">
   <summary>Tools</summary>
   <ul>
-    <li><Link href="/lms">LMS</Link></li>
     <li><a href="https://chrome.google.com/webstore/detail/nexus-toolbox-extension" target="_blank" rel="noopener">Chrome Extension</a></li>
   </ul>
 </details>

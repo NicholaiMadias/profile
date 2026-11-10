@@ -148,13 +148,6 @@ export default function ToolsPage() {
         <p className="quiet">For a command-line version, run <code>npm run text:stats -- path/to/file.txt</code> in the project.</p>
       </section>
 
-      <section className="tools-section" aria-labelledby="games-title">
-        <p className="eyebrow">TAKE A SHORT BREAK</p>
-        <h2 id="games-title">Word Sprint</h2>
-        <p>A private, 30-second typing challenge with an accuracy score.</p>
-        <Link className="text-link" href="/arcade/word-sprint">Play Word Sprint →</Link>
-      </section>
-
       <section className="tools-section" aria-label="More">
         <div className="actions">
           <a className="text-link" href="https://www.amazinggracehl.org/toolbox/" target="_blank" rel="noopener noreferrer">
