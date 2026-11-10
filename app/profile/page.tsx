@@ -106,6 +106,25 @@ const experience = [
   }
 ];
 
+const platformHighlights = [
+  {
+    name: "Salesforce administration",
+    detail: "Served as a Salesforce Vector subject matter expert at Infosys supporting Google's migration from Salesforce Classic, including user enablement, access management, troubleshooting, and post-migration support. Also supported Salesforce administration at Tandym Group."
+  },
+  {
+    name: "Microsoft 365",
+    detail: "Administered and supported Microsoft 365 services and user-access workflows at Tandym Group. Supported identity, authentication, endpoint management, and collaboration at HCLTech, and use Microsoft 365 for business operations and workflow automation at Amazing Grace Home Living."
+  },
+  {
+    name: "Atlassian Jira",
+    detail: "Used Jira at Infosys and HCLTech for incident management, issue tracking, project coordination, workflow reporting, and collaboration with engineering and operations teams."
+  },
+  {
+    name: "AI-assisted operations",
+    detail: "Use Claude at Amazing Grace Home Living for documentation, research, workflow design, content creation, and business-process improvement. Used Claude and AI-assisted tools at HCLTech to support troubleshooting, research, and knowledge management."
+  }
+];
+
 const skills = [
   [
     "Endpoint & Device Management",
@@ -113,7 +132,7 @@ const skills = [
   ],
   [
     "Identity, Infrastructure & Security",
-    "Active Directory · Microsoft Entra ID / Azure Active Directory · Group Policy · Windows Server · AWS · Google Cloud Platform · Cisco ISE · Network Administration · ServiceNow · BeyondTrust"
+    "Active Directory · Microsoft Entra ID / Azure Active Directory · Group Policy · Windows Server · Microsoft Azure · Google Cloud Platform · AWS · Cisco ISE · Network Administration · ServiceNow · BeyondTrust"
   ],
   [
     "Development & Automation",
@@ -121,7 +140,7 @@ const skills = [
   ],
   [
     "Platforms & Operations",
-    "Windows · Linux · UNIX · Google Workspace · Microsoft 365 · Kubernetes · Docker · ChromeOS · Chromebooks · Google Classroom · Jira"
+    "Windows · Linux · UNIX · Google Workspace · Microsoft 365 · Kubernetes · Docker · ChromeOS · Chromebooks · Google Classroom · Salesforce Administration · Atlassian Jira · Claude"
   ]
 ];
 
@@ -145,6 +164,16 @@ export function ProfilePage() {
       <section className="section" aria-labelledby="skills-title">
         <h2 id="skills-title">Technical skills</h2>
         {skills.map(([name, tools]) => <div key={name}><h3>{name}</h3><p>{tools}</p></div>)}
+      </section>
+
+      <section className="section" aria-labelledby="platforms-title">
+        <h2 id="platforms-title">Enterprise platforms &amp; operations</h2>
+        {platformHighlights.map(platform => (
+          <article key={platform.name}>
+            <h3>{platform.name}</h3>
+            <p>{platform.detail}</p>
+          </article>
+        ))}
       </section>
 
       <section id="experience" className="section" aria-labelledby="experience-title">
