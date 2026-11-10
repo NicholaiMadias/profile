@@ -1,0 +1,432 @@
+```react
+import React, { useState, useEffect, useRef } from 'react';
+
+// --- Type Definitions ---
+type Language = 'TypeScript' | 'PowerShell' | 'Python' | 'JavaScript' | 'All';
+
+interface Snippet {
+  id: string;
+  title: string;
+  description: string;
+  code: string;
+  language: Language;
+  tags: string[];
+}
+
+interface SnippetStore {
+  version: number;
+  snippets: Snippet[];
+}
+
+// --- Initial Data ---
+const INITIAL_SNIPPETS: Snippet[] = [
+  {
+    id: '1',
+    title: 'Zero Trust Network Check',
+    description: 'Verifies endpoint compliance against organizational Zero Trust policies.',
+    language: 'PowerShell',
+    tags: ['Security', 'Compliance', 'Endpoint'],
+    code: `# Check if device is compliant
+$ComplianceStatus = Get-WmiObject -Namespace "root\\ccm\\ClientSDK" -Class "CCM_ClientUtilities"
+if ($ComplianceStatus.DetermineIfClientIsCompliant().IsCompliant) {
+    Write-Host "Device meets Zero Trust baseline." -ForegroundColor Green
+} else {
+    Write-Warning "Device non-compliant. Restricting network access."
+    # Trigger Illumio micro-segmentation API isolation here
+}`
+  },
+  {
+    id: '2',
+    title: 'Express REST API Scaffold',
+    description: 'Basic boilerplate for a Node.js API with error handling.',
+    language: 'TypeScript',
+    tags: ['Backend', 'API', 'Node.js'],
+    code: `import express, { Request, Response, NextFunction } from 'express';
+
+const app = express();
+app.use(express.json());
+
+app.get('/api/health', (req: Request, res: Response) => {
+  res.status(200).json({ status: 'Healthy', timestamp: new Date().toISOString() });
+});
+
+// Global Error Handler
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));`
+  },
+  {
+    id: '3',
+    title: 'AD User Provisioning',
+    description: 'Automates Active Directory user creation with standard groups.',
+    language: 'PowerShell',
+    tags: ['Active Directory', 'IAM', 'Automation'],
+    code: `$UserParams = @{
+    SamAccountName = "jdoe"
+    UserPrincipalName = "jdoe@amazinggrace.local"
+    Name = "John Doe"
+    GivenName = "John"
+    Surname = "Doe"
+    Path = "OU=Users,DC=amazinggrace,DC=local"
+    AccountPassword = (ConvertTo-SecureString "TempPass123!" -AsPlainText -Force)
+    Enabled = $true
+}
+New-ADUser @UserParams
+Add-ADGroupMember -Identity "VPN_Access" -Members "jdoe"`
+  }
+];
+
+// --- Utility Components ---
+
+// Simple SVG Icons
+const Icons = {
+  Copy: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+  ),
+  Check: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  ),
+  Plus: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  ),
+  Search: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400">
+      <circle cx="11" cy="11" r="8"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+  ),
+  Code: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-cyan-400">
+      <polyline points="16 18 22 12 16 6"></polyline>
+      <polyline points="8 6 2 12 8 18"></polyline>
+    </svg>
+  )
+};
+
+// --- Main Application ---
+export default function App() {
+  const [snippets, setSnippets] = useState<Snippet[]>(() => {
+    try {
+      const saved = localStorage.getItem('devsnippets-data');
+      if (!saved) return INITIAL_SNIPPETS;
+      const data: SnippetStore = JSON.parse(saved);
+      return data.snippets ?? INITIAL_SNIPPETS;
+    } catch {
+      return INITIAL_SNIPPETS;
+    }
+  });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filterLang, setFilterLang] = useState<Language>('All');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        'devsnippets-data',
+        JSON.stringify({
+          version: 1,
+          snippets
+        })
+      );
+    } catch (error) {
+      console.error('Failed to save snippets:', error);
+    }
+  }, [snippets]);
+
+  const resetSnippets = () => {
+    localStorage.removeItem('devsnippets-data');
+    setSnippets(INITIAL_SNIPPETS);
+    showToast('Library reset successfully');
+  };
+
+  // Filtered Snippets
+  const filteredSnippets = snippets.filter(s => {
+    const matchesSearch = s.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          s.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          s.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    const matchesLang = filterLang === 'All' || s.language === filterLang;
+    return matchesSearch && matchesLang;
+  });
+
+  // Handle Copy to Clipboard
+  const handleCopy = (code: string) => {
+    try {
+      navigator.clipboard.writeText(code);
+      showToast('Code copied to clipboard!');
+    } catch (err) {
+      // Fallback
+      const textArea = document.createElement("textarea");
+      textArea.value = code;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      showToast('Code copied to clipboard!');
+    }
+  };
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3000);
+  };
+
+  const handleAddSnippet = (newSnippet: Snippet) => {
+    setSnippets([newSnippet, ...snippets]);
+    setIsModalOpen(false);
+    showToast('Snippet added successfully!');
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-900 selection:text-cyan-50">
+      
+      {/* Navbar */}
+      <header className="sticky top-0 z-20 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 p-4">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-slate-800 rounded-lg shadow-inner border border-slate-700">
+              <Icons.Code />
+            </div>
+            <div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                DevSnippets AI
+              </h1>
+              <p className="text-xs text-slate-400">Knowledge Base & Code Organizer</p>
+            </div>
+          </div>
+
+          <div className="flex w-full sm:w-auto items-center gap-3">
+            <div className="relative w-full sm:w-64">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Icons.Search />
+              </div>
+              <input
+                type="text"
+                className="w-full bg-slate-900 border border-slate-700 rounded-full py-2 pl-10 pr-4 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-shadow"
+                placeholder="Search snippets..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white py-2 px-4 rounded-full text-sm font-medium transition-colors shadow-lg shadow-cyan-900/50"
+            >
+              <Icons.Plus />
+              <span className="hidden sm:inline">New Snippet</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-6xl mx-auto p-4 py-8 flex flex-col md:flex-row gap-8">
+        
+        {/* Sidebar Filters */}
+        <aside className="w-full md:w-48 flex-shrink-0">
+          <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Languages</h2>
+          <div className="flex md:flex-col gap-2 overflow-x-auto pb-2 md:pb-0">
+            {['All', 'TypeScript', 'PowerShell', 'Python', 'JavaScript'].map(lang => (
+              <button
+                key={lang}
+                onClick={() => setFilterLang(lang as Language)}
+                className={`text-left px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
+                  filterLang === lang 
+                    ? 'bg-cyan-900/40 text-cyan-300 border border-cyan-800/50' 
+                    : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200 border border-transparent'
+                }`}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
+          
+          <div className="mt-8 pt-6 border-t border-slate-800/50">
+            <button
+              onClick={resetSnippets}
+              className="text-xs text-slate-500 hover:text-red-400 transition-colors flex items-center gap-2"
+              title="Reset to default snippets"
+            >
+              Reset Library
+            </button>
+          </div>
+        </aside>
+
+        {/* Snippets Grid */}
+        <div className="flex-grow grid grid-cols-1 xl:grid-cols-2 gap-6">
+          {filteredSnippets.length === 0 ? (
+            <div className="col-span-full flex flex-col items-center justify-center py-20 text-slate-500">
+              <Icons.Code />
+              <p className="mt-4 text-lg">No snippets found.</p>
+              <p className="text-sm">Try adjusting your search or filters.</p>
+            </div>
+          ) : (
+            filteredSnippets.map(snippet => (
+              <SnippetCard key={snippet.id} snippet={snippet} onCopy={handleCopy} />
+            ))
+          )}
+        </div>
+      </main>
+
+      {/* Add Snippet Modal */}
+      {isModalOpen && (
+        <AddSnippetModal 
+          onClose={() => setIsModalOpen(false)} 
+          onSave={handleAddSnippet} 
+        />
+      )}
+
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="fixed bottom-4 right-4 bg-slate-800 border border-slate-700 text-slate-200 px-4 py-3 rounded-lg shadow-2xl flex items-center gap-3 animate-bounce-in z-50">
+          <Icons.Check />
+          <span className="text-sm font-medium">{toastMessage}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// --- Sub-Components ---
+
+function SnippetCard({ snippet, onCopy }: { snippet: Snippet, onCopy: (code: string) => void }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyClick = () => {
+    onCopy(snippet.code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const langColors: Record<string, string> = {
+    TypeScript: 'text-blue-400 bg-blue-400/10 border-blue-400/20',
+    PowerShell: 'text-slate-300 bg-slate-600/20 border-slate-500/30',
+    Python: 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+    JavaScript: 'text-yellow-300 bg-yellow-300/10 border-yellow-300/20',
+  };
+
+  const colorClass = langColors[snippet.language] || 'text-slate-400 bg-slate-800 border-slate-700';
+
+  return (
+    <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg flex flex-col group hover:border-slate-700 transition-colors">
+      <div className="p-4 border-b border-slate-800/50">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="font-semibold text-lg text-slate-100">{snippet.title}</h3>
+          <span className={`text-xs px-2 py-1 rounded-md border ${colorClass}`}>
+            {snippet.language}
+          </span>
+        </div>
+        <p className="text-sm text-slate-400">{snippet.description}</p>
+        
+        {snippet.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-3">
+            {snippet.tags.map(tag => (
+              <span key={tag} className="text-xs px-2 py-0.5 bg-slate-800 text-slate-300 rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      
+      <div className="relative flex-grow bg-[#0d1117] p-4 group-hover:bg-[#11161d] transition-colors">
+        <button 
+          onClick={handleCopyClick}
+          className="absolute top-2 right-2 p-2 bg-slate-800/80 hover:bg-slate-700 text-slate-300 rounded-md backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+          title="Copy code"
+        >
+          {copied ? <Icons.Check /> : <Icons.Copy />}
+        </button>
+        <pre className="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap break-all custom-scrollbar">
+          <code>{snippet.code}</code>
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function AddSnippetModal({ onClose, onSave }: { onClose: () => void, onSave: (s: Snippet) => void }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [language, setLanguage] = useState<Language>('TypeScript');
+  const [code, setCode] = useState('');
+  const [tags, setTags] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title || !code) return;
+
+    const newSnippet: Snippet = {
+      id: Date.now().toString(),
+      title,
+      description,
+      language,
+      code,
+      tags: tags.split(',').map(t => t.trim()).filter(t => t !== '')
+    };
+    onSave(newSnippet);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
+      <div className="bg-slate-900 border border-slate-700 rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden animate-fade-in-up">
+        <div className="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-800/50">
+          <h2 className="text-lg font-bold text-slate-100">Add New Snippet</h2>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-200">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        
+        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto flex-grow flex flex-col gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-slate-300">Title <span className="text-red-400">*</span></label>
+              <input required value={title} onChange={e => setTitle(e.target.value)} type="text" className="bg-slate-950 border border-slate-700 rounded-md p-2 text-slate-200 focus:ring-2 focus:ring-cyan-500 outline-none" placeholder="e.g. JWT Auth Middleware" />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label className="text-sm font-medium text-slate-300">Language</label>
+              <select value={language} onChange={e => setLanguage(e.target.value as Language)} className="bg-slate-950 border border-slate-700 rounded-md p-2 text-slate-200 focus:ring-2 focus:ring-cyan-500 outline-none">
+                <option value="TypeScript">TypeScript</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="PowerShell">PowerShell</option>
+                <option value="Python">Python</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-slate-300">Description</label>
+            <input value={description} onChange={e => setDescription(e.target.value)} type="text" className="bg-slate-950 border border-slate-700 rounded-md p-2 text-slate-200 focus:ring-2 focus:ring-cyan-500 outline-none" placeholder="Briefly describe what this snippet does..." />
+          </div>
+
+          <div className="flex flex-col gap-1">
+            <label className="text-sm font-medium text-slate-300">Tags (comma separated)</label>
+            <input value={tags} onChange={e => setTags(e.target.value)} type="text" className="bg-slate-950 border border-slate-700 rounded-md p-2 text-slate-200 focus:ring-2 focus:ring-cyan-500 outline-none" placeholder="react, hooks, api..." />
+          </div>
+
+          <div className="flex flex-col gap-1 flex-grow">
+            <label className="text-sm font-medium text-slate-300">Code <span className="text-red-400">*</span></label>
+            <textarea required value={code} onChange={e => setCode(e.target.value)} className="bg-[#0d1117] border border-slate-700 rounded-md p-3 text-slate-300 font-mono text-sm h-48 focus:ring-2 focus:ring-cyan-500 outline-none resize-none custom-scrollbar" placeholder="Paste your code here..."></textarea>
+          </div>
+
+          <div className="flex justify-end gap-3 mt-4 pt-4 border-t border-slate-800">
+            <button type="button" onClick={onClose} className="px-4 py-2 rounded-md text-slate-300 hover:bg-slate-800 transition-colors">Cancel</button>
+            <button type="submit" className="px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-md font-medium transition-colors shadow-lg shadow-cyan-900/50">Save Snippet</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+```
