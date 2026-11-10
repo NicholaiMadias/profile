@@ -16,3 +16,15 @@ profile/nicholai/*
 !profile/nicholai/*.html
 !profile/nicholai/*.css
 
+
+# Build output / generated assets (Next.js / Firebase)
+.next/
+out/
+dist/
+build/
+
+# Generated images / assets
+generated-assets/
+
+# Logs and temporary files
+*.log
