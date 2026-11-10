@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { StudyWorkspace } from "../../components/StudyWorkspace";
+import { TextStudyTool } from "../../components/TextStudyTool";
 
 export const metadata: Metadata = {
   title: "Tools | Nicholai Maro Madias",
@@ -34,6 +35,7 @@ export default function ToolsPage() {
         <nav className="tools-jump" aria-label="On this page">
           <a href="#nexus-assistant">Nexus Assistant</a>
           <a href="#install">Install</a>
+          <a href="#ssh">SSH access</a>
           <a href="#safety">Safety</a>
           <a href="#workspace">Study workspace</a>
         </nav>
@@ -82,6 +84,21 @@ export default function ToolsPage() {
         </p>
       </section>
 
+      <section id="ssh" className="tools-section" aria-labelledby="ssh-section-title">
+        <p className="eyebrow">REMOTE ACCESS</p>
+        <h2 id="ssh-section-title">Reach your companion over SSH</h2>
+        <p>
+          The companion listens only on your computer’s loopback address. To use it from another device, connect with an SSH key and forward a local port:
+        </p>
+        <pre className="tools-code"><code>{`ssh -N -L 8787:127.0.0.1:8787 nexus-host`}</code></pre>
+        <p>
+          Then open <code>http://127.0.0.1:8787/</code> on the device you connected from and enter the token shown in the companion terminal. A tunnel never replaces that token, and the port should never be opened on your router.
+        </p>
+        <div className="actions">
+          <Link className="text-link" href="/blog/ssh-extension-access">Full SSH setup guide →</Link>
+        </div>
+      </section>
+
       <section id="safety" className="tools-section" aria-labelledby="safety-title">
         <p className="eyebrow">BEFORE YOU USE IT</p>
         <h2 id="safety-title">What to know</h2>
@@ -121,6 +138,21 @@ export default function ToolsPage() {
           Reflect, prepare for Bible study, and keep what you discover. Notes are stored only in this browser; download a copy to keep them.
         </p>
         <StudyWorkspace />
+      </section>
+
+      <section className="tools-section" aria-labelledby="text-study-title">
+        <p className="eyebrow">A SIMPLE WRITING TOOL</p>
+        <h2 id="text-study-title">Text &amp; study analyzer</h2>
+        <p>Check word and sentence counts, character length, and an estimated reading time. Analysis happens in your browser.</p>
+        <TextStudyTool />
+        <p className="quiet">For a command-line version, run <code>npm run text:stats -- path/to/file.txt</code> in the project.</p>
+      </section>
+
+      <section className="tools-section" aria-labelledby="games-title">
+        <p className="eyebrow">TAKE A SHORT BREAK</p>
+        <h2 id="games-title">Word Sprint</h2>
+        <p>A private, 30-second typing challenge with an accuracy score.</p>
+        <Link className="text-link" href="/arcade/word-sprint">Play Word Sprint →</Link>
       </section>
 
       <section className="tools-section" aria-label="More">

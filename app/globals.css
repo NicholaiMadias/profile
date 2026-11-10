@@ -599,6 +599,63 @@ progress {
   text-underline-offset: 4px;
   font-size: 0.8rem;
 }
+.text-study-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0 0;
+}
+.text-study-stats div {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #111620;
+}
+.text-study-stats dt {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.text-study-stats dd {
+  margin: 4px 0 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.word-sprint-panel {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #111620;
+}
+.word-sprint-target {
+  margin: 24px 0;
+  color: var(--gold);
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.06em;
+}
+.word-sprint-form {
+  display: grid;
+  gap: 12px;
+}
+.word-sprint-form input {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #080b12;
+  color: var(--ink);
+  font: inherit;
+}
+.word-sprint-feedback {
+  min-height: 1.6em;
+  margin: 12px 0 0;
+}
+.word-sprint-score {
+  color: var(--gold);
+  font-size: 1.2rem;
+}
 .field-label {
   display: block;
   font-weight: 600;
@@ -690,6 +747,14 @@ textarea {
   .header-inner {
     flex-wrap: wrap;
     gap: 18px;
+  }
+  @media (max-width: 600px) {
+    .text-study-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .word-sprint-panel {
+      padding: 20px;
+    }
   }
   .header-inner nav {
     order: 3;

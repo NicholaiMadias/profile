@@ -19,7 +19,8 @@ The personal site may link to the other projects, but their content and deployme
 | `/arcade` | Shared guest practice dashboard |
 | `/arcade/bible-quiz` | Ten questions with answer explanations and Scripture references |
 | `/arcade/quick-click` | Twenty-second star-catching challenge with pointer and keyboard modes |
-| `/tools` | Browser-saved study notes and text download |
+| `/arcade/word-sprint` | Thirty-second typing and accuracy challenge |
+| `/tools` | Browser-saved study notes, live text analysis, and command-line text statistics |
 | `/account` | Guest progress summary and reset |
 | Blog navigation | Links directly to https://voiceofjesusnet.blogspot.com/ |
 | `/privacy` | Storage, privacy, and external-link disclosure |
@@ -34,6 +35,14 @@ The best result in each game contributes up to 100 practice XP (200 total).
 - Updated **Next.js Turbopack configuration** to lock the workspace root (see `next.config.ts`).
 - Created `lib/firebase.ts` helper that uses `NEXT_PUBLIC_` env vars.
 
+The text analyzer keeps content in the browser. The same JavaScript analysis
+module powers the CLI:
+
+```sh
+npm run text:stats -- path/to/file.txt
+cat path/to/file.txt | npm run text:stats
+```
+
 
 The `/nexus` page offers an experimental local-first Chrome extension and
 companion. `npm run package:nexus` generates the download in `public/downloads`;
@@ -45,7 +54,8 @@ privacy details, and features not yet implemented.
 Legacy `/Apps/academy` pages that depended on missing assets redirect to current
 tools, arcade, and study routes. These destinations are alternatives, not
 equivalent versions of every retired game; legacy game progress is not migrated.
-The older `/Apps/tools/index.html` page is retained separately pending review.
+Unused standalone legacy game pages are not shipped; extension panels and
+standalone companion pages remain because their manifests and servers load them.
 
 Requires Node 22.18 or newer. CI uses Node 22.
 
