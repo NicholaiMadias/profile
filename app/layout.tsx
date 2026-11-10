@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ProgressProvider } from '../components/ProgressProvider';
 
 export const metadata: Metadata = {
-  title: 'Nicholai Maro Madias | Senior Endpoint & Infrastructure Engineer',
+  title: 'Nicholai Maro Madias | Senior Engineer & Administrator',
   description: 'Enterprise endpoints, identity, automation, tools and educational game design.',
 };
 
