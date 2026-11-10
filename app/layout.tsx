@@ -22,12 +22,14 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
                 <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
-                <Link href="/arcade">Matrix of Conscience</Link>
+                <Link href="/arcade" aria-label="Open the Nexus Arcade, including Matrix of Conscience">Arcade</Link>
+                <a href="https://github.com/NicholaiMadias/Code">Nexus Code Lab</a>
                 <Link href="/blog">Blog</Link>
                 <details className="tools-dropdown">
   <summary>Tools</summary>
   <ul>
     <li><Link href="/nexus">Nexus Assistant</Link></li>
+    <li><Link href="/tools">Nexus LMS &amp; Toolbox</Link></li>
   </ul>
 </details>
               </nav>
