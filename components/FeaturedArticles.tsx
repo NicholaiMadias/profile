@@ -16,7 +16,18 @@ export const FeaturedArticles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
 
   useEffect(() => {
+    const fallback = () =>
+      setArticles([
+        { title: 'Validated GPU Infrastructure', slug: '/blog/validated-gpu-infrastructure', date: '2024-10-01' },
+        { title: 'Matrix of Conscience', slug: '/blog/matrix-of-conscience', date: '2024-09-15' },
+        { title: 'Antigravity Dev Stack', slug: '/blog/antigravity-dev-stack', date: '2024-08-20' },
+      ]);
+
     const fetchFeatured = async () => {
+      if (!db) {
+        fallback();
+        return;
+      }
       try {
         // Grab the 3 most recent posts from Firestore collection "posts"
         const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(3));
@@ -36,11 +47,7 @@ export const FeaturedArticles = () => {
       } catch (err) {
         console.error('Failed to load featured articles', err);
         // Fallback to static list if Firestore isn’t reachable
-        setArticles([
-          { title: 'Validated GPU Infrastructure', slug: '/blog/validated-gpu-infrastructure', date: '2024-10-01' },
-          { title: 'Matrix of Conscience', slug: '/blog/matrix-of-conscience', date: '2024-09-15' },
-          { title: 'Antigravity Dev Stack', slug: '/blog/antigravity-dev-stack', date: '2024-08-20' },
-        ]);
+        fallback();
       }
     };
     fetchFeatured();

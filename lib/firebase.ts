@@ -13,9 +13,14 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialise (or reuse) the Firebase app
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()[0];
+// Without an API key (e.g. a build without the env vars) Firebase throws
+// auth/invalid-api-key at import time, so skip init and export null instead.
+const isConfigured = Boolean(firebaseConfig.apiKey);
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+const app = isConfigured
+  ? (!getApps().length ? initializeApp(firebaseConfig) : getApps()[0])
+  : null;
+
+export const auth = app ? getAuth(app) : null;
+export const db = app ? getFirestore(app) : null;
+export const storage = app ? getStorage(app) : null;
