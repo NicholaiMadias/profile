@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Nexus Assistant Preview",
-  "version": "0.1.0",
+  "name": "Nexus Assist",
+  "version": "1.0.0",
   "description": "Local-first AI profiles, coding tasks, and PDF signatures.",
   "permissions": [
     "storage",
@@ -10,10 +10,12 @@
     "sidePanel"
   ],
   "host_permissions": [
-    "http://127.0.0.1/*"
+    "http://127.0.0.1/*",
+    "https://www.googleapis.com/*",
+    "https://firestore.googleapis.com/*"
   ],
   "action": {
-    "default_title": "Nexus Assistant"
+    "default_title": "Nexus Assist"
   },
   "options_page": "panel.html",
   "side_panel": {
@@ -23,6 +25,6 @@
     "service_worker": "background.js"
   },
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'none'; connect-src http://127.0.0.1:8787"
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src http://127.0.0.1:8787 https://www.googleapis.com https://firestore.googleapis.com"
   }
 }

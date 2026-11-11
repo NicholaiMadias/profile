@@ -1,4 +1,4 @@
-# Nexus Assistant Preview
+# Nexus Assist 1.0
 
 This is a local-first, experimental Chrome extension and companion. It is not a
 hosted account service. The included PDF tool adds a visible mark locally; it
@@ -32,7 +32,7 @@ invalidated.
 
 ## Models and coding tasks
 
-Choose and confirm the provider for each chat. LM Studio and Ollama require a
+The default profile uses Qwen2.5 7B with Ollama. Run `ollama pull qwen2.5:7b` on the companion host and keep Ollama running. Confirm Ollama when sending a request. LM Studio and Ollama require a
 running local server and a model ID; OpenAI, Gemini and DeepSeek require your
 own API keys. For example, to put your own key in the local encrypted vault:
 
@@ -64,8 +64,18 @@ content can mislead a model into unintended actions, including form submissions.
 Do not use it with accounts, pages, or data where a mistake would be harmful.
 Stop cannot undo actions already performed.
 
-Public sign-in, cloud sync, signing-request links, identity verification and
-hosted account management are not implemented.
+Open a text file in the side panel and attach it to a chat request when you want
+AI assistance. Copy the answer into the editor, review it and choose Save locally
+or Download file. A local save keeps one draft in the current Chrome profile.
+Drive and Firebase are optional manual backups. Use a short-lived Google OAuth
+access token with the Drive `drive.file` scope or a Firebase Auth ID token from
+your own project. Firebase rules must permit creating documents in
+`nexusDrafts`. Backups are write-only from the sidebar. Retrieve them through
+Drive or your Firebase project.
+
+For Gemini or DeepSeek, you can also set a temporary API token in the sidebar
+after saving the provider profile. Lock clears that token. OpenAI continues to
+use the host vault or environment.
 Do not treat this experimental build as a substitute for a reviewed production
 signing or automation service.
 

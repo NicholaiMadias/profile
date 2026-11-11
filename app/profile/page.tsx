@@ -2,99 +2,135 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Nicholai Maro Madias | Senior Engineer & Administrator",
-  description: "Senior Endpoint Engineer and Systems Administrator with 15+ years of enterprise IT experience in endpoint management, identity, security, and automation.",
+  title: "Nicholai Madias | Software Engineer",
+  description: "Software engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience.",
 };
 
 // Employment, qualifications, and summary follow the owner-provided résumé.
 const experience = [
   {
     "company": "Amazing Grace Home Living",
-    "location": "Remote",
     "role": "Senior Platform Engineer",
-    "dates": "Oct 2023 – Present",
+    "dates": "Apr 2026 – Present",
     "bullets": [
-      "Administer Active Directory, Windows Server, Group Policy, and endpoint infrastructure supporting secure and compliant operations.",
-      "Develop PowerShell and Python solutions that streamline provisioning, configuration management, and administrative workflows.",
-      "Design API integrations and webhook-based processes that improve data synchronization across business systems.",
-      "Implement security baselines, access controls, and compliance standards that strengthen operational governance.",
-      "Create KPI dashboards and operational reporting that improve visibility into platform performance, endpoint health, and service delivery metrics."
+      "Develop backend automation and integration solutions utilizing Python, JavaScript, Kotlin, Golang, SQL, PowerShell, and REST APIs.",
+      "Utilize Git and GitHub for source control, code management, and collaborative development.",
+      "Design cloud-based business applications, AI-enabled solutions, and workflow automation platforms.",
+      "Build integrations between LMS platforms, databases, cloud services, and third-party APIs.",
+      "Develop KPI dashboards, analytics solutions, reporting systems, and administrative portals.",
+      "Support Linux and Windows environments for application deployment and administration.",
+      "Implement governance, security, compliance, and access-control standards."
     ]
   },
   {
-    "company": "Tandym Group (Client: Pansophic Learning)",
-    "location": "Tampa, FL",
-    "role": "Technical Support Engineer",
+    "company": "HCLTech (Verizon)",
+    "role": "EDN Technical Support Engineer II",
+    "dates": "Jan 2025 – Apr 2026",
+    "bullets": [
+      "Supported enterprise mobility, cloud, and endpoint environments serving more than 70,000 users and devices.",
+      "Administered Microsoft Intune, Workspace ONE, Entra ID, Active Directory, BeyondTrust, and enterprise security platforms.",
+      "Supported AWS, Azure, GCP, virtual machines, servers, workstations, and cloud-hosted infrastructure.",
+      "Troubleshot networking, authentication, operating systems, cloud services, and enterprise applications across Windows, Linux, macOS, and UNIX.",
+      "Created technical documentation and operational procedures improving support efficiency and service delivery."
+    ]
+  },
+  {
+    "company": "IAGG Investments",
+    "role": "Software Developer (Freelance)",
+    "dates": "Oct 2023 – Jan 2025",
+    "bullets": [
+      "Developed backend applications, workflow automation solutions, and API integrations utilizing Python, JavaScript, SQL, and REST technologies.",
+      "Designed and implemented integrations between cloud platforms, databases, and business applications.",
+      "Utilized Git for source control, testing, deployment, and release management.",
+      "Built reporting platforms, administrative portals, and learning management solutions.",
+      "Reduced manual effort through scalable business-process automation.",
+      "Collaborated with stakeholders to gather requirements and deliver software solutions."
+    ]
+  },
+  {
+    "company": "Tandym Group",
+    "role": "Technical Support Engineer II",
     "dates": "Aug 2022 – Oct 2023",
     "bullets": [
-      "Administered Microsoft Intune, Active Directory, Microsoft Entra ID, and Group Policy environments supporting enterprise endpoint management.",
-      "Managed Windows Autopilot provisioning, compliance policies, application deployment, device enrollment, and endpoint lifecycle operations.",
-      "Supported Apple Business Manager integration and mobile device management for macOS and iOS platforms.",
-      "Developed PowerShell deployment solutions that accelerated device provisioning and reduced manual configuration effort.",
-      "Improved endpoint compliance, software delivery consistency, and patch management effectiveness through standardized administration practices."
+      "Administered Microsoft Intune, Active Directory, Entra ID, Google Workspace, Windows Autopilot, and Apple Business Manager.",
+      "Managed provisioning, identity lifecycle operations, compliance, enrollment, and patching.",
+      "Developed PowerShell automation improving deployment and support processes.",
+      "Zero Trust initiatives through MFA, Conditional Access, least-privilege administration, and device compliance.",
+      "Supported enterprise Windows, macOS, iOS, and Android environments."
     ]
   },
   {
-    "company": "Infosys (Client: Google)",
-    "location": "Tampa, FL",
-    "role": "Technical Support Engineer",
+    "company": "Infosys (Google)",
+    "role": "Technical Support Engineer II",
     "dates": "Feb 2021 – Apr 2022",
     "bullets": [
-      "Supported identity and access management operations within an organization serving approximately 350,000 global users.",
-      "Managed user provisioning, authentication support, access governance, and identity lifecycle administration.",
-      "Supported enterprise migration initiatives while maintaining compliance, security, and access control requirements.",
-      "Collaborated with engineering and security teams to resolve complex authentication and authorization issues.",
-      "Improved identity management processes through workflow standardization, reporting, and operational improvements."
+      "Supported identity and access management operations for over 350,000 users globally.",
+      "Developed automation solutions utilizing Java, Python, SQL, REST APIs, and Git.",
+      "Utilized Google Cloud Platform (GCP) services to support engineering operational initiatives integrating Kubernetes, Docker, Gmail API, Google Drive API and Vector.",
+      "Supported cloud-hosted applications and services running within Google App Engine.",
+      "Served as Subject Matter Expert (SME) for Salesforce Vector during Google's enterprise migration from Salesforce Classic.",
+      "Supported migration readiness, user enablement, adoption, troubleshooting, training, and post-migration operations for a global user community exceeding 350,000 users.",
+      "Served as a migration escalation resource, partnering with engineering, operations, and business stakeholders to resolve platform issues and minimize business disruption.",
+      "Assisted with integrations between Salesforce Vector, Google Workspace, internal applications, and API-driven business processes.",
+      "Participated in troubleshooting and operational support of Docker and Kubernetes.",
+      "Performed Linux administration and command-line troubleshooting.",
+      "Supported migration initiatives impacting more than 400,000 user accounts across Google's productivity and identity platforms."
     ]
   },
   {
     "company": "Allied Universal",
-    "location": "Tampa, FL",
     "role": "Network & Security Administrator",
     "dates": "Sep 2016 – Feb 2021",
     "bullets": [
-      "Administered enterprise Windows infrastructure, Active Directory services, Group Policy, and endpoint security technologies.",
-      "Managed vulnerability remediation initiatives utilizing Qualys, Rapid7, and Tenable security platforms.",
-      "Supported SCCM/MECM software deployment, patch management, endpoint configuration, and operational maintenance activities.",
-      "Utilized Tanium to improve endpoint visibility, compliance monitoring, software deployment, and asset management.",
-      "Produced security KPI reporting that improved visibility into remediation progress, compliance status, and vulnerability trends."
+      "Administered Active Directory, MECM/SCCM, endpoint security platforms, Windows infrastructure, and vulnerability-management initiatives.",
+      "Led remediation efforts utilizing Qualys, Rapid7, Tenable, and Tanium.",
+      "Managed software deployment, patch management, compliance initiatives, and lifecycle operations.",
+      "Developed executive reporting, operational dashboards, and compliance solutions.",
+      "Improved organizational security posture and operational effectiveness."
     ]
   },
   {
     "company": "Nielsen Media Research",
-    "location": "Oldsmar, FL",
-    "role": "Systems Operations Lead / Network Administrator",
+    "role": "Network Administrator / EVS Encoder Support Specialist",
     "dates": "Mar 2011 – Oct 2016",
     "bullets": [
-      "Administered Windows server infrastructure, endpoint systems, and enterprise applications supporting distributed business operations.",
-      "Supported software deployment, infrastructure maintenance, and operational support activities across enterprise environments.",
-      "Developed scripting solutions that reduced repetitive administrative tasks and improved operational efficiency.",
-      "Troubleshot server, application, network, and infrastructure issues supporting Electronic Verification System operations.",
-      "Participated in migration projects and service improvement initiatives that enhanced platform reliability and availability."
+      "Supported Electronic Verification System (EVS) infrastructure across Windows, Linux, UNIX, networking, server, and endpoint environments.",
+      "Administered server infrastructure supporting media monitoring and validation systems.",
+      "Performed upgrades, migrations, troubleshooting, monitoring, and system optimization.",
+      "Collaborated with engineering teams to resolve complex technical issues.",
+      "Increased Customer Effort Score (CES) by 21% through operational improvements."
     ]
   }
 ];
 
 const skills = [
   [
-    "Unified Endpoint Management",
-    "Omnissa Workspace ONE UEM · Microsoft Intune · SCCM/MECM · Windows Autopilot · Apple Business Manager · Mobile Device Management (MDM) · Unified Endpoint Management (UEM) · Application Deployment · Software Packaging · Device Enrollment · Configuration Profiles · Compliance Policies · Patch Management · OS Deployment · Co-Management and Compliance"
+    "Programming Languages",
+    "Java, Python, Kotlin, Golang, JavaScript, SQL, PowerShell"
   ],
   [
-    "Identity, Security and Access Management",
-    "Active Directory · Microsoft Entra ID · Group Policy (GPO) · Conditional Access · RBAC · Identity Governance · Zero Trust · Lookout Mobile Security · Endpoint Security · Vulnerability Management · Patch Management · Compliance Enforcement · Qualys · Rapid7 · Tenable"
+    "Software Engineering",
+    "Git, GitHub, Object-Oriented Programming, Backend Development, REST APIs, API Integrations, SDLC, Agile, CI/CD, Workflow Automation, System Integration, Application Support"
+  ],
+  [
+    "Cloud & DevOps",
+    "Google Cloud Platform (GCP), Google App Engine, AWS, Azure, Docker, Kubernetes, Cloud Infrastructure, Virtual Machines"
+  ],
+  [
+    "Operating Systems",
+    "Linux, UNIX, Windows Server, Windows 11, macOS"
+  ],
+  [
+    "Enterprise Platforms",
+    "Salesforce Vector, Salesforce Classic, Google Workspace, Microsoft 365, Microsoft Intune, Workspace ONE UEM, MECM/SCCM"
+  ],
+  [
+    "Identity & Security",
+    "Active Directory, Microsoft Entra ID, IAM, RBAC, MFA, SSO, Conditional Access, Zero Trust"
   ],
   [
     "Automation & Reporting",
-    "PowerShell · Python · Bash · REST APIs · SQL · KPI Dashboards · Firebase · Provisioning"
-  ],
-  [
-    "Service Management",
-    "ServiceNow · BeyondTrust · Jira · Agile/Scrum · Root Cause Analysis · Change Management"
-  ],
-  [
-    "Platforms",
-    "Linux · Windows 10/11 · Windows Server · Microsoft 365 · Apple · macOS · iOS · Android · UNIX · GCP"
+    "Python, PowerShell, SQL, Dashboard Development, KPI Reporting, Process Automation"
   ]
 ];
 
@@ -102,7 +138,7 @@ export function ProfilePage() {
   return (
     <div className="container page narrow professional-profile">
       <h1>Nicholai Maro Madias</h1>
-      <p className="lede">Senior Engineer | Administrator</p>
+      <p className="lede">Software Engineer</p>
       <p>Palm Harbor, FL 34683 · <a href="tel:+17276213516">(727) 621-3516</a> · <a href="mailto:nicholaimadias@gmail.com">nicholaimadias@gmail.com</a></p>
       <div className="actions">
         <a href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
@@ -111,8 +147,8 @@ export function ProfilePage() {
 
       <section className="section" aria-labelledby="summary-title">
         <h2 id="summary-title">Professional summary</h2>
-        <p>Senior Endpoint Engineer and Systems Administrator with 15+ years of enterprise IT experience supporting endpoint management, unified endpoint management (UEM), identity services, endpoint security, and infrastructure operations. Expertise in Omnissa Workspace ONE UEM, Microsoft Intune, SCCM/MECM, Active Directory, Microsoft Entra ID, PowerShell automation, SQL reporting, and mobile device management.</p>
-        <p>Proven success supporting enterprise environments ranging from departmental organizations to global enterprises serving more than 350,000 users. Experienced driving endpoint compliance, device lifecycle management, platform migrations, mobile security, KPI reporting, process automation, and continuous improvement initiatives across Windows, macOS, and iOS environments.</p>
+        <p>Software Engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience. Developed backend applications, workflow automation, API integrations, and cloud-hosted services for enterprise environments supporting more than 350,000 users.</p>
+        <p>Experienced with Java, Python, Kotlin, Go, Linux, Google Cloud Platform, App Engine, Docker, Kubernetes, REST APIs, Salesforce, SQL, and enterprise identity platforms.</p>
       </section>
 
       <section className="section" aria-labelledby="skills-title">
@@ -120,12 +156,13 @@ export function ProfilePage() {
         {skills.map(([name, tools]) => <div key={name}><h3>{name}</h3><p>{tools}</p></div>)}
       </section>
 
+
       <section id="experience" className="section" aria-labelledby="experience-title">
         <h2 id="experience-title">Professional experience</h2>
         {experience.map(job => (
           <article className="feature-card" key={`${job.company}-${job.dates}`}>
             <h3>{job.role}</h3>
-            <p><strong>{job.company}</strong>{job.location && ` · ${job.location}`} · {job.dates}</p>
+            <p><strong>{job.company}</strong> · {job.dates}</p>
             <ul>{job.bullets.map(item => <li key={item}>{item}</li>)}</ul>
           </article>
         ))}
@@ -136,15 +173,15 @@ export function ProfilePage() {
         <h3>Bachelor of Science, Business Studies — Computer Information Technology</h3>
         <p>Southern New Hampshire University · 2014</p>
         <h3>Associate of Science, Computer Information Technology</h3>
-        <p>Everest University · 2008</p>
+        <p>Everest University · 2009</p>
       </section>
 
       <section className="section" aria-labelledby="certifications-title">
         <h2 id="certifications-title">Certifications</h2>
         <ul>
-          <li>CompTIA A+</li>
-          <li>Google Workspace Professional Administrator</li>
           <li>Microsoft Azure Solutions Architect Expert</li>
+          <li>Google Workspace Professional Administrator</li>
+          <li>CompTIA A+</li>
         </ul>
       </section>
 

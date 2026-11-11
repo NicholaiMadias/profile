@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ProgressProvider } from '../components/ProgressProvider';
 
 export const metadata: Metadata = {
-  title: 'Nicholai Maro Madias | Senior Engineer & Administrator',
+  title: 'Nicholai Maro Madias | Software Engineer',
   description: 'Enterprise endpoints, identity, automation, tools and educational game design.',
 };
 
@@ -22,16 +22,15 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
                 <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
-                <Link href="/arcade">Matrix of Conscience</Link>
+                <Link href="/arcade" aria-label="Open the Nexus Arcade, including Matrix of Conscience">Arcade</Link>
                 <Link href="/blog">Blog</Link>
                 <details className="tools-dropdown">
-  <summary>Tools</summary>
-  <ul>
-    <li><Link href="/tools">All tools</Link></li>
-    <li><Link href="/tools#nexus-assistant">Nexus Assistant preview</Link></li>
-    <li><a href="https://chrome.google.com/webstore/detail/nexus-toolbox-extension" target="_blank" rel="noopener">Chrome Extension</a></li>
-  </ul>
-</details>
+                  <summary>Tools</summary>
+                  <ul>
+                    <li><Link href="/tools">All tools</Link></li>
+                    <li><Link href="/tools#nexus-assistant">Nexus Assistant Chrome preview</Link></li>
+                  </ul>
+                </details>
               </nav>
             </div>
           </header>

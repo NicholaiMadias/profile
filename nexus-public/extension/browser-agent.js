@@ -73,7 +73,7 @@ export function pageOperation(operation) {
   return { ok: true };
 }
 
-export async function runBrowserAgent({ tabId, profile, task, token, extensionId, signal, log }) {
+export async function runBrowserAgent({ tabId, profile, task, token, apiKey, extensionId, signal, log }) {
   let initialOrigin;
   const history = [];
   for (let step = 0; step < 8; step++) {
@@ -90,7 +90,7 @@ export async function runBrowserAgent({ tabId, profile, task, token, extensionId
     const response = await fetch('http://127.0.0.1:8787/api/profile/browser-step', {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'X-Grace-Extension-Id': extensionId, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ profile, prompt }),
+      body: JSON.stringify({ profile, prompt, apiKey }),
       signal: AbortSignal.any([signal, AbortSignal.timeout(125000)])
     });
     const resultBody = await response.json();

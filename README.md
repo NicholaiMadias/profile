@@ -8,6 +8,9 @@ Personal site and experimental portfolio for [nicholai.online](https://nicholai.
 - `Amazing-Grace-Home-Living/website` — housing and Amazing Grace Home Living.
 - `Voice-of-Jesus-Ministry/website` — nonprofit Bible study and ministry resources.
 - `Gamified-Learning-Matrix/Nexus` — reusable educational-gaming platform and community work.
+- `NicholaiMadias/Code` — language-neutral Nexus Toolbox and Arcade examples in Python, JavaScript, PowerShell, Ruby, and Go.
+
+The shared public domains are `nicholai.online` (profile and Nexus tools), `amazinggracehl.org` (Home Living), and `voiceofjesusministry.net` (ministry). The current hosting state and Firebase migration prerequisites are recorded in [the three-domain map](docs/three-domain-map.md).
 
 The personal site may link to the other projects, but their content and deployment ownership remain separate.
 

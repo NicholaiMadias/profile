@@ -1,4 +1,5 @@
 import { PROVIDERS, newProfile, validateProfile } from './profiles.js';
+import { setupWorkspace } from './workspace.js';
 import { runBrowserAgent } from './browser-agent.js';
 
 const $ = id => document.getElementById(id);
@@ -12,6 +13,7 @@ let pendingRequest = null;
 let clineTimer;
 let clineGeneration = 0;
 let browserController;
+
 
 for (const [value, provider] of Object.entries(PROVIDERS)) {
   $('provider').add(new Option(provider.label, value));
@@ -60,6 +62,10 @@ async function persist() {
 async function bridge(path, body) {
   const { bridgeToken } = await chrome.storage.session.get('bridgeToken');
   if (!bridgeToken) throw new Error('Connect the bridge first.');
+  if (path === '/chat') {
+    const { nexusProviderKeys = {} } = await chrome.storage.session.get('nexusProviderKeys');
+    body = { ...body, apiKey: nexusProviderKeys[body.profile.provider] };
+  }
   const response = await fetch(`http://127.0.0.1:8787/api/profile${path}`, {
     method: body ? 'POST' : 'GET',
     headers: { Authorization: `Bearer ${bridgeToken}`, 'X-Grace-Extension-Id': chrome.runtime.id, 'Content-Type': 'application/json' },
@@ -82,10 +88,29 @@ $('connect').addEventListener('click', async () => {
   } catch (error) { $('connection').textContent = error.message; }
 });
 
+$('provider-key-form').addEventListener('submit', async event => {
+  event.preventDefault();
+  const token = $('provider-key').value.trim();
+  $('provider-key').value = '';
+  const provider = selected()?.provider;
+  if (!token || !['gemini', 'deepseek'].includes(provider)) {
+    $('connection').textContent = 'Save a Gemini or DeepSeek profile, then enter its API token.';
+    return;
+  }
+  try {
+    const { nexusProviderKeys = {} } = await chrome.storage.session.get('nexusProviderKeys');
+    await chrome.storage.session.set({ nexusProviderKeys: { ...nexusProviderKeys, [provider]: token } });
+    $('connection').textContent = `Temporary token set for ${PROVIDERS[provider].label}.`;
+  } catch {
+    $('connection').textContent = 'The temporary API token could not be stored.';
+  }
+});
+
 $('lock').addEventListener('click', async () => {
   pendingRequest?.abort();
   browserController?.abort();
-  await chrome.storage.session.remove('bridgeToken');
+  await chrome.storage.session.remove(['bridgeToken', 'nexusProviderKeys']);
+  for (const id of ['provider-key', 'backup-token']) $(id).value = '';
   $('token').value = '';
   $('answer').textContent = '';
   $('browser-log').textContent = '';
@@ -209,7 +234,8 @@ $('browser-form').addEventListener('submit', async event => {
     controller.signal.throwIfAborted();
     $('browser-log').textContent = '';
     $('browser-status').textContent = 'Running. Actions may change the page.';
-    await runBrowserAgent({ tabId: tab.id, profile, task: $('browser-task').value, token: bridgeToken,
+    const { nexusProviderKeys = {} } = await chrome.storage.session.get('nexusProviderKeys');
+    await runBrowserAgent({ apiKey: nexusProviderKeys[profile.provider], tabId: tab.id, profile, task: $('browser-task').value, token: bridgeToken,
       extensionId: chrome.runtime.id, signal: controller.signal,
       log: message => { $('browser-log').textContent += `${message}\n`; } });
     $('browser-status').textContent = 'Task finished. Review the page.';
@@ -241,6 +267,7 @@ $('chat-form').addEventListener('submit', async event => {
 
 try {
   await chrome.storage.local.setAccessLevel({ accessLevel: 'TRUSTED_CONTEXTS' });
+  await setupWorkspace();
   const saved = await chrome.storage.local.get(['profiles', 'selectedId']);
   profiles = saved.profiles?.length ? saved.profiles : [{
     ...newProfile(), name: 'Nexus Local'

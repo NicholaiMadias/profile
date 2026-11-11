@@ -3,7 +3,7 @@ export const PROVIDERS = {
   openai: { label: 'OpenAI · cloud', baseURL: 'https://api.openai.com/v1', model: '', credential: 'OPENAI_API_KEY on bridge' },
   deepseek: { label: 'DeepSeek · cloud', baseURL: 'https://api.deepseek.com/v1', model: 'deepseek-chat', credential: 'DEEPSEEK_API_KEY on bridge' },
   gemini: { label: 'Gemini · cloud', baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai', model: '', credential: 'GEMINI_API_KEY on bridge' },
-  ollama: { label: 'Ollama · local or cloud model', baseURL: 'http://127.0.0.1:11434/v1', model: '', credential: 'Ollama host authentication' }
+  ollama: { label: 'Ollama · local or cloud model', baseURL: 'http://127.0.0.1:11434/v1', model: 'qwen2.5:7b', credential: 'Run ollama pull qwen2.5:7b on the companion computer' }
 };
 
 const PROJECT_TYPES = new Set(['personal', 'ministry', 'rental', 'nexus-lms']);
@@ -15,7 +15,7 @@ function normalizedText(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
-export function newProfile(provider = 'lmstudio') {
+export function newProfile(provider = 'ollama') {
   return {
     id: crypto.randomUUID(), name: 'New profile', provider,
     baseURL: PROVIDERS[provider].baseURL, model: PROVIDERS[provider].model,
