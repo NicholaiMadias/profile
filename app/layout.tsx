@@ -17,13 +17,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <ProgressProvider>
           <header className="site-header">
             <div className="header-inner">
-              <Link className="nav-brand" href="/">Nicholai Maro Madias</Link>
+              <Link className="nav-brand" href="/">Home</Link>
               <nav className="nav-links" aria-label="Main navigation">
 
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
                 <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
                 <Link href="/arcade" aria-label="Open the Nexus Arcade, including Matrix of Conscience">Arcade</Link>
-                <Link href="/blog">Blog</Link>
                 <details className="tools-dropdown">
                   <summary>Tools</summary>
                   <ul>
