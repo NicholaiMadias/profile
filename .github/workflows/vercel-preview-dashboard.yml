@@ -15,12 +15,29 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       preview-url: ${{ steps.deploy.outputs.preview-url }}
+      vercel-configured: ${{ steps.vercel-config.outputs.configured }}
     steps:
+      - name: Check Vercel configuration
+        id: vercel-config
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -n "$VERCEL_TOKEN" ] && [ -n "$VERCEL_ORG_ID" ] && [ -n "$VERCEL_PROJECT_ID" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "Vercel preview skipped: configure VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID repository secrets to enable deployment and Playwright tests."
+          fi
+
       - name: Checkout Source Code
+        if: steps.vercel-config.outputs.configured == 'true'
         uses: actions/checkout@v7
 
       - name: Deploy Preview to Vercel
         id: deploy
+        if: steps.vercel-config.outputs.configured == 'true'
         uses: amondnet/vercel-action@v42
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -31,6 +48,7 @@ jobs:
 
   playwright-e2e:
     needs: deploy-preview
+    if: needs.deploy-preview.outputs.vercel-configured == 'true' && needs.deploy-preview.outputs.preview-url != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
