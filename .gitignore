@@ -27,3 +27,6 @@ generated-assets/
 
 # Logs and temporary files
 *.log
+public/downloads/nexus-os-preview.zip
+public/tools/nexus-os.html
+public/tools/nexus-os-assets/

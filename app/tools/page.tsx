@@ -34,6 +34,7 @@ export default function ToolsPage() {
         </p>
         <nav className="tools-jump" aria-label="On this page">
           <a href="#nexus-assistant">Nexus Assist 1.0</a>
+          <a href="/tools/nexus-os.html">Nexus OS Preview</a>
           <a href="#install">Install</a>
           <a href="#ssh">SSH access</a>
           <a href="#safety">Safety</a>
