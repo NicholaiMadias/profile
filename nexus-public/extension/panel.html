@@ -3,16 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nexus Assistant</title>
+  <title>Nexus Assist 1.0</title>
   <link rel="stylesheet" href="panel.css">
 </head>
 <body>
-  <header><span class="eyebrow">NEXUS / PRIVATE WORKSPACE</span><h1>Your projects. Your models.</h1></header>
+  <header><span class="eyebrow">NEXUS / PRIVATE WORKSPACE</span><h1>Nexus Assist 1.0</h1></header>
   <main>
     <section aria-labelledby="connection-title">
       <h2 id="connection-title">Connect your computer</h2><p>Extension ID <code id="extension-id"></code></p><p><a href="host-panel.html">Open Codex, model discovery &amp; PowerShell controls →</a></p><p><a href="signature.html" target="_blank">Sign a PDF locally →</a></p>
+      <p><a href="https://nicholai.online/blog/nexus-assist-deployment" target="_blank" rel="noopener noreferrer">Deployment and token setup</a></p>
       <label>Bridge token<input id="token" type="password" autocomplete="off" placeholder="From your running companion"></label>
       <button id="connect" type="button">Connect bridge</button><button id="lock" type="button">Lock</button>
+      <form id="provider-key-form">
+        <label>Temporary API token for Gemini or DeepSeek<input id="provider-key" type="password" autocomplete="off" maxlength="4096" required></label>
+        <p class="hint">Choose Gemini or DeepSeek in Project profiles and save it. Chrome keeps the token in extension session memory and sends it through your local companion to the selected provider. Lock clears it. Ollama needs no token.</p>
+        <button type="submit">Set API token for saved provider</button>
+      </form>
       <p id="connection" role="status">Start the companion on port 8787 with this extension ID.</p>
     </section>
     <section aria-labelledby="profiles-title">
@@ -39,6 +45,27 @@
         <p id="model-help" class="hint">Use the exact model ID available to this provider account or local server. Context capacity is saved as model metadata; it does not reserve tokens.</p>
         <button type="submit">Save profile</button>
       </form>
+    </section>
+    <section aria-labelledby="workspace-title">
+      <h2 id="workspace-title">Read, edit and save</h2>
+      <label>Open a text file<input id="draft-file" type="file" accept="text/*,.md,.json,.js,.ts,.csv,.xml,.yaml,.yml"></label>
+      <label>Draft name<input id="draft-name" maxlength="100" value="nexus-draft.txt"></label>
+      <label>Draft<textarea id="draft-text" rows="9" maxlength="100000"></textarea></label>
+      <button type="button" id="attach-draft">Add draft to chat request</button>
+      <button type="button" id="use-answer">Copy AI answer into draft</button>
+      <button type="button" id="save-draft">Save locally</button>
+      <button type="button" id="download-draft">Download file</button>
+      <details>
+        <summary>Back up to Drive or Firebase</summary>
+        <form id="backup-form">
+          <label>Destination<select id="backup-provider"><option value="drive">Google Drive</option><option value="firebase">Firebase Firestore</option></select></label>
+          <label id="backup-project-label" hidden>Firebase project ID<input id="backup-project" maxlength="64"></label>
+          <label>Short-lived access token<input id="backup-token" type="password" autocomplete="off" required></label>
+          <p class="hint">Use a Drive OAuth access token with drive.file scope or a Firebase Auth ID token for your project. The backup includes the draft name and text.</p>
+          <button type="submit">Create cloud backup</button>
+        </form>
+      </details>
+      <p id="draft-status" role="status"></p>
     </section>
     <section aria-labelledby="cline-title">
       <h2 id="cline-title">Cline coding task</h2>

@@ -91,11 +91,24 @@ export async function createBridge({cwd,port=8787,token=randomBytes(32).toString
     if(req.method==='GET'&&path==='/api/profile/health'){
      json({status:'ready',configured:{openai:!!(integrationEnv.OPENAI_API_KEY||process.env.OPENAI_API_KEY),gemini:!!(integrationEnv.GEMINI_API_KEY||process.env.GEMINI_API_KEY),deepseek:!!(integrationEnv.DEEPSEEK_API_KEY||process.env.DEEPSEEK_API_KEY)}});return;
     }
-    if(req.method==='POST'&&path==='/api/profile/chat'){
-     json(await complete({...body,browserAgent:false},{fetchImpl:profileFetch,env:{...process.env,...integrationEnv}}));return;
-    }
-    if(req.method==='POST'&&path==='/api/profile/browser-step'){
-     json(await complete({...body,browserAgent:true},{fetchImpl:profileFetch,env:{...process.env,...integrationEnv}}));return;
+    if (req.method === 'POST' && ['/api/profile/chat', '/api/profile/browser-step'].includes(path)) {
+     const env = { ...process.env, ...integrationEnv };
+     const browserAgent = path.endsWith('/browser-step');
+     const { apiKey, ...request } = body;
+     if (apiKey !== undefined) {
+      const provider = request.profile?.provider;
+      const keyVariable = { gemini: 'GEMINI_API_KEY', deepseek: 'DEEPSEEK_API_KEY' }[provider];
+      if (!trustedExtension || !['gemini', 'deepseek'].includes(provider)
+        || typeof apiKey !== 'string' || !/^[!-~]{8,4096}$/.test(apiKey)) {
+       json({ error: 'Invalid temporary provider token.' }, 400);
+       return;
+      }
+      env[keyVariable] = apiKey;
+     }
+     const result = await complete({ ...request, browserAgent }, { fetchImpl: profileFetch, env });
+     if (apiKey) result.text = result.text.replaceAll(apiKey, '[REDACTED]');
+     json(result);
+     return;
     }
     if(req.method==='GET'&&path==='/api/profile/cline'){json(cline.status());return;}
     if(req.method==='POST'&&path==='/api/profile/cline/run'){json(cline.run(body));return;}

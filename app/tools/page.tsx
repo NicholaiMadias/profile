@@ -6,7 +6,7 @@ import { TextStudyTool } from "../../components/TextStudyTool";
 export const metadata: Metadata = {
   title: "Tools | Nicholai Maro Madias",
   description:
-    "Nexus Assistant, a local-first Chrome side panel for AI chat, coding tasks, and PDF marks, plus a private study workspace.",
+    "Nexus Assist 1.0, a local-first Chrome side panel for AI chat, coding tasks, and PDF marks, plus a private study workspace.",
 };
 
 const capabilities = [
@@ -30,10 +30,10 @@ export default function ToolsPage() {
         <p className="eyebrow">TOOLS / LOCAL-FIRST</p>
         <h1>Tools that stay on your machine.</h1>
         <p className="lede">
-          A Chrome side panel for your own AI models, coding agents, and PDFs, and a private place to keep study notes. No hosted accounts and no cloud sync.
+          A Chrome side panel for your own AI models, coding agents, and PDFs, and a private place to keep study notes. Save drafts locally or back them up to Drive or Firebase.
         </p>
         <nav className="tools-jump" aria-label="On this page">
-          <a href="#nexus-assistant">Nexus Assistant</a>
+          <a href="#nexus-assistant">Nexus Assist 1.0</a>
           <a href="#install">Install</a>
           <a href="#ssh">SSH access</a>
           <a href="#safety">Safety</a>
@@ -43,17 +43,17 @@ export default function ToolsPage() {
 
       <section id="nexus-assistant" className="tools-feature" aria-labelledby="nexus-title">
         <div>
-          <p className="eyebrow">CHROME EXTENSION / EARLY PREVIEW v0.1.0</p>
-          <h2 id="nexus-title">Nexus Assistant</h2>
+          <p className="eyebrow">CHROME EXTENSION / VERSION 1.0</p>
+          <h2 id="nexus-title">Nexus Assist 1.0</h2>
           <p>
-            Bring your own accounts and API keys. The companion runs on your computer, and cloud providers may charge for their own services.
+            Start with Qwen2.5 7B in Ollama. Read the active tab or open a text file, review an AI draft, and save it from the Chrome side panel.
           </p>
           <div className="tools-actions">
             <a className="tools-button" href="/downloads/nexus-assistant-preview.zip" download>
-              Download preview (.zip)
+              Download Nexus Assist 1.0 (.zip)
             </a>
-            <Link className="tools-button secondary" href="/nexus">
-              Read the overview
+            <Link className="tools-button secondary" href="/blog/nexus-assist-deployment">
+              Deploy the agent
             </Link>
           </div>
           <p className="tools-fineprint">Requires Chrome and Node.js 22.9+. Not a Chrome Web Store release.</p>
@@ -70,7 +70,7 @@ export default function ToolsPage() {
 
       <section id="install" className="tools-section" aria-labelledby="install-title">
         <p className="eyebrow">SET UP IN FOUR STEPS</p>
-        <h2 id="install-title">Install the preview</h2>
+        <h2 id="install-title">Install Nexus Assist</h2>
         <ol className="tools-steps">
           {steps.map(([title, text]) => (
             <li key={title}>
@@ -122,8 +122,8 @@ export default function ToolsPage() {
             </p>
           </div>
           <div className="feature-card">
-            <h3>Not included</h3>
-            <p>Sign-in, cloud sync, signing requests, rotated or cropped PDF pages, and hosted account management.</p>
+            <h3>Optional backups</h3>
+            <p>Drive and Firebase backups are sent only when you choose a backup destination and submit the draft.</p>
           </div>
         </div>
         <p className="tools-fineprint">
@@ -153,6 +153,8 @@ export default function ToolsPage() {
           <a className="text-link" href="https://www.amazinggracehl.org/toolbox/" target="_blank" rel="noopener noreferrer">
             Amazing Grace Toolbox ↗
           </a>
+          <a className="text-link" href="https://github.com/NicholaiMadias/Code">Nexus Code Lab</a>
+          <Link className="text-link" href="/nexus">Nexus Assistant overview</Link>
           <Link className="text-link" href="/blog">Blog</Link>
           <Link className="text-link" href="/bible-study">Bible study</Link>
         </div>
