@@ -56,6 +56,37 @@ async function addDirectoryRecursive(zipEntries, sourceDir, zipPrefix) {
   }
 }
 
+async function packageNexusOs() {
+  const source = path.join(projectRoot, 'nexus-os');
+  const entries = {};
+  const files = [
+    'README.md',
+    'backend/agent_server.py', 'backend/Dockerfile',
+    'extension/manifest.json', 'extension/content.js',
+    'extension/index.html', 'extension/client.js', 'extension/style.css',
+  ];
+  for (const file of files) {
+    await addFile(entries, path.join(source, file), file);
+  }
+  await fs.writeFile(
+    path.join(path.dirname(outputZip), 'nexus-os-preview.zip'),
+    Buffer.from(zipSync(entries, { level: 9 }))
+  );
+
+  const publicTools = path.join(projectRoot, 'public', 'tools');
+  const assets = path.join(publicTools, 'nexus-os-assets');
+  await fs.mkdir(assets, { recursive: true });
+  const html = await fs.readFile(path.join(source, 'extension', 'index.html'), 'utf8');
+  await fs.writeFile(
+    path.join(publicTools, 'nexus-os.html'),
+    html.replace('href="style.css"', 'href="/tools/nexus-os-assets/style.css"')
+      .replace('src="client.js"', 'src="/tools/nexus-os-assets/client.js"')
+  );
+  for (const file of ['style.css', 'client.js']) {
+    await fs.copyFile(path.join(source, 'extension', file), path.join(assets, file));
+  }
+}
+
 async function run() {
   const zipEntries = {};
 
@@ -72,7 +103,8 @@ async function run() {
   const zipped = zipSync(zipEntries, { level: 9 });
   await fs.mkdir(path.dirname(outputZip), { recursive: true });
   await fs.writeFile(outputZip, Buffer.from(zipped));
-  console.log(`Created ${outputZip}`);
+  await packageNexusOs();
+  console.log(`Created ${outputZip} and Nexus OS preview`);
 }
 
 run().catch((error) => {
