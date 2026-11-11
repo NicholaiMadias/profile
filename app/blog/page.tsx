@@ -67,7 +67,6 @@ export default function BlogPage() {
       </nav>
     </header>
       <FeaturedArticles />
-      <input type="text" placeholder="Search articles…" className="blog-search" />
 
     <article className="blog-article blog-featured-card" id="antigravity-dev-stack" aria-labelledby="antigravity-feature-title">
       <header>
@@ -75,8 +74,6 @@ export default function BlogPage() {
         <h2 id="antigravity-feature-title">The Antigravity Dev Stack: Customizing Terminal AI Agents</h2>
         <p className="blog-deck">Achieve escape velocity from manual configurations using agentic coding frameworks (Codex CLI, Antigravity/Gemini CLI), local LM Studio engines, Model Context Protocol (MCP), and cross-platform terminal orchestration.</p>
       </header>
-      <FeaturedArticles />
-      <input type="text" placeholder="Search articles…" className="blog-search" />
       <p>Explore an in-depth blueprint covering cloud-native terminal agents, local LLM sovereignty via encrypted SSH tunnels, MCP filesystem integration, and robust CI/CD pipelines.</p>
       <p><Link className="button-link" href="/blog/antigravity-dev-stack">Read the Architecture Guide &rarr;</Link></p>
     </article>
@@ -87,8 +84,6 @@ export default function BlogPage() {
         <h2 id="story-feature-title">Matrix of Conscience</h2>
         <p className="blog-deck">Nexus Prime, 2087 — &ldquo;In the space between signal and noise, we find what makes us human.&rdquo;</p>
       </header>
-      <FeaturedArticles />
-      <input type="text" placeholder="Search articles…" className="blog-search" />
       <p>A full 7-chapter cyberpunk novelette exploring neural architects, synthetic conscience modules, state-level empathy harvesting, and the courage required to choose feeling over managed compliance.</p>
       <p><Link className="button-link" href="/blog/matrix-of-conscience">Read the Full Novelette (Chapters 1–7 + Epilogue) &rarr;</Link></p>
     </article>
@@ -98,8 +93,6 @@ export default function BlogPage() {
         <h2 id="article-title">Why I Replaced Chrome and Edge in My Daily Workflow</h2>
         <p className="blog-deck">A developer’s perspective on AI, privacy, performance, and choosing tools by the work they actually help complete.</p>
       </header>
-      <FeaturedArticles />
-      <input type="text" placeholder="Search articles…" className="blog-search" />
       <p>For years, I kept both Google Chrome and Microsoft Edge in my workflow. Chrome fit naturally with my Google services, while Edge offered Microsoft integrations. Over time, the benefits I actually used stopped justifying the complexity of keeping both as daily browsers.</p>
       <p>This is a personal workflow decision, not a benchmark or a claim that either browser is bad. Both remain useful products. My priorities have shifted toward predictable tools, fewer distractions, and an environment I can understand and maintain.</p>
 
