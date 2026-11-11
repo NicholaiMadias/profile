@@ -57,9 +57,13 @@ class Handler(BaseHTTPRequestHandler):
     def allowed_origin(self):
         origin = self.headers.get("Origin")
         allowed = os.environ.get("NEXUS_ALLOWED_ORIGINS", "https://nicholai.online")
-        if origin and origin in {entry.strip() for entry in allowed.split(",")}:
-            return origin
-        return None
+        allowed_origins = {entry.strip() for entry in allowed.split(",")}
+        if not origin or origin not in allowed_origins:
+            return None
+        # Prevent HTTP response splitting: reject CR/LF and other control chars.
+        if any(ord(ch) < 0x20 or ord(ch) == 0x7F for ch in origin):
+            return None
+        return origin
 
     def reply(self, code, payload=None):
         data = json.dumps(payload).encode() if payload is not None else b""
