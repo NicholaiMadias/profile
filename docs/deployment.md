@@ -1,6 +1,6 @@
 # Deploying the curated ministry application
 
-This repository is a runnable Next.js application. GitHub is source control; it is not itself a production deployment. No payments, auth service, database, or external provider credentials are needed for the guest release.
+This repository is a runnable Next.js application. GitHub is source control and runs quality checks; production deployment is managed by Vercel rather than GitHub Actions. No payments, auth service, database, or external provider credentials are needed for the guest release.
 
 ## Local verification
 
