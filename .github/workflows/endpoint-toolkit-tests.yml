@@ -1,0 +1,45 @@
+name: Endpoint toolkit tests
+
+on:
+  push:
+    paths:
+      - "enterprise-endpoint-toolkit/**"
+      - ".github/workflows/endpoint-toolkit-tests.yml"
+  pull_request:
+    paths:
+      - "enterprise-endpoint-toolkit/**"
+      - ".github/workflows/endpoint-toolkit-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: python -m pip install requests
+      - name: Run Graph client unit tests
+        env:
+          PYTHONPATH: enterprise-endpoint-toolkit/python
+        run: python -m unittest discover -s enterprise-endpoint-toolkit/python/tests -v
+
+  powershell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Parse PowerShell modules
+        shell: pwsh
+        run: |
+          $errorsFound = @()
+          Get-ChildItem enterprise-endpoint-toolkit/modules -Recurse -Filter *.psm1 | ForEach-Object {
+            $tokens = $null
+            $parseErrors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$parseErrors) | Out-Null
+            $errorsFound += $parseErrors
+          }
+          if ($errorsFound.Count -gt 0) { $errorsFound | Out-String | Write-Error; exit 1 }
