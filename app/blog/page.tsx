@@ -68,6 +68,15 @@ export default function BlogPage() {
     </header>
       <FeaturedArticles />
 
+    <article className="blog-article blog-featured-card" aria-labelledby="hybrid-endpoints-title">
+      <header>
+        <p className="blog-meta"><time dateTime="2026-11-11">November 11, 2026</time> · Endpoint Engineering</p>
+        <h2 id="hybrid-endpoints-title">10 Practical AI Prompts, PowerShell Scripts, and Python Workflows for Hybrid Endpoints</h2>
+        <p className="blog-deck">Ten scripts and ten AI prompts for Workspace ONE, Intune, Entra ID, and Active Directory.</p>
+      </header>
+      <p><Link className="button-link" href="/blog/hybrid-endpoint-automation">Read the endpoint automation guide &rarr;</Link></p>
+    </article>
+
     <article className="blog-article blog-featured-card" id="antigravity-dev-stack" aria-labelledby="antigravity-feature-title">
       <header>
         <p className="blog-meta"><time dateTime="2026-11-04">November 4, 2026</time> · Tooling &amp; Architecture</p>
