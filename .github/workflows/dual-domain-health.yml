@@ -1,0 +1,69 @@
+name: Nexus OS - Dual-Domain Health & Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nexus-domain-health-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  verify-build:
+    name: Verify Next.js static export
+    if: github.event_name == 'push' || github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Validate project
+        run: |
+          npm run typecheck
+          npm test
+          npm run build
+      - name: Verify static export output
+        run: test -s out/index.html
+
+  health-check:
+    name: Check independent production domains
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify each domain with TLS and an HTTP 200 response
+        shell: bash
+        run: |
+          set -euo pipefail
+          failed=0
+          for domain in nicholai.online voiceofjesusministry.net; do
+            echo "::group::Checking $domain"
+            if response=$(curl --location --max-redirs 3 --fail --silent --show-error --max-time 20 --retry 2 --retry-delay 2 --output /dev/null --write-out '%{http_code}' "https://$domain/"); then
+              if [[ "$response" == "200" ]]; then
+                echo "HEALTHY: $domain returned HTTP 200"
+              else
+                echo "::error::UNHEALTHY: $domain returned HTTP $response"
+                failed=1
+              fi
+            else
+              echo "::error::UNHEALTHY: $domain did not complete an HTTPS request"
+              failed=1
+            fi
+            echo "::endgroup::"
+          done
+          exit "$failed"
+
+# This workflow deliberately does not deploy either domain or send governance
+# documents/tokens to an unverified external endpoint. Existing deployment
+# workflows remain the sole publisher until ownership and DNS are verified.
