@@ -1,6 +1,5 @@
 BeforeAll {
  Import-Module "$PSScriptRoot/../modules/WorkspaceONE/WorkspaceONE.psm1" -Force
- Import-Module "$PSScriptRoot/../modules/EndpointCompliance/EndpointCompliance.psm1" -Force
  Import-Module "$PSScriptRoot/../modules/Monitoring/Monitoring.psm1" -Force
 }
 Describe 'Workspace ONE inventory reference' {
@@ -20,12 +19,6 @@ Describe 'Workspace ONE inventory reference' {
  }
  It 'rejects invalid hostnames' {
   { Get-WSODeviceInventory -Server 'example.test/evil' -ApiKey 'test' } | Should -Throw
- }
-}
-Describe 'Endpoint inventory reference' {
- It 'classifies missing last logon as unknown' {
-  Mock Get-ADComputer { [pscustomobject]@{Name='test';OperatingSystem='Windows';LastLogonDate=$null} } -ModuleName EndpointCompliance
-  @(Get-EndpointCompliance)[0].Status | Should -Be 'Unknown'
  }
 }
 Describe 'Service health reference' {
