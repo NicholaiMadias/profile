@@ -1,0 +1,5 @@
+# Ignore generated and external files
+.next/
+node_modules/
+public/
+functions/node_modules/
