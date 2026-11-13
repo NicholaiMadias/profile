@@ -23,7 +23,7 @@ export default function EnterpriseEndpointPage() {
         <h1>Enterprise Endpoint Automation Toolkit</h1>
         <p className="lede">Reusable PowerShell and Python examples for endpoint inventory, reporting, monitoring, and engineering workflows.</p>
         <div className="actions">
-          <a className="text-link" href="https://github.com/NicholaiMadias/profile/tree/feature/enterprise-endpoint-toolkit/enterprise-endpoint-toolkit">Explore source and examples</a>
+          <a className="text-link" href="https://github.com/NicholaiMadias/profile/tree/main/enterprise-endpoint-toolkit">Explore source and examples</a>
           <Link className="text-link" href="/blog/enterprise-endpoint-toolkit">Read the engineering case study</Link>
         </div>
       </header>
