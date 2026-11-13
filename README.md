@@ -82,7 +82,17 @@ See [deployment instructions](docs/deployment.md). This branch is ready for a Ne
 
 No environment variables, paid API services, auth backend, or payment provider are needed for this guest release. Before enabling real integrations, add authenticated server endpoints, encrypted token storage, revocable authorization, provider allowlists, usage controls, and server-owned scores/rewards. Never collect provider keys in browser storage.
 
-## Audit and next steps
+## Changes
+
+- Deleted obsolete `new-site` folder.
+- Fixed all import paths from `../lib/` to `../../lib/` where needed.
+- Added `global.d.ts` for CSS module declarations.
+- Created `functions/package.json` to support Firebase Functions.
+- Updated Firestore fetch logic and added fallback data.
+- Adjusted `ProgressProvider` and other components to correct import depth.
+- Ensured TypeScript typecheck passes with no errors.
+- Successfully built the project and generated the Nexus OS preview package.
+
 
 - [Migration decision and source findings](docs/migration-audit.md)
 - [Source file and exact-duplicate inventory](docs/source-inventory.json)

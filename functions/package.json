@@ -1,0 +1,9 @@
+{
+  "name": "functions",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "firebase-functions": "^4.9.0",
+    "firebase-admin": "^12.7.0"
+  }
+}

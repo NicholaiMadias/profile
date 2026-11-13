@@ -1,32 +1,9 @@
+# Secrets – never commit
+backend/service_account.json
+.env
+.env.local
+.next/
 node_modules/
-.next/
-out/
-.env*
-!.env.example
-*.tsbuildinfo
-playwright-report/
-test-results/
-public/Apps/*.tar.gz
-
-# Profile repository specific ignores
-arcade/
-new-site/
-profile/nicholai/*
-!profile/nicholai/*.html
-!profile/nicholai/*.css
-
-
-# Build output / generated assets (Next.js / Firebase)
-.next/
-out/
-dist/
-build/
-
-# Generated images / assets
-generated-assets/
-
-# Logs and temporary files
-*.log
-public/downloads/nexus-os-preview.zip
-public/tools/nexus-os.html
-public/tools/nexus-os-assets/
+replace-imports.cjs
+replace-imports.js
+tsconfig.tsbuildinfo

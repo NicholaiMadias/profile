@@ -1,0 +1,14 @@
+:root { color-scheme: dark; font: 16px/1.5 system-ui, sans-serif; background: #0d1220; color: #f2f5fc; }
+body { margin: 0; }
+body.extension { width: 380px; max-width: 100%; }
+main { box-sizing: border-box; max-width: 640px; margin: auto; padding: 24px; }
+h1 { margin: 0; color: #91e9cf; }
+form { display: grid; gap: 8px; }
+label { margin-top: 8px; }
+input, textarea, button, pre { box-sizing: border-box; border: 1px solid #596781; border-radius: 6px; padding: 9px; font: inherit; }
+input, textarea, pre { background: #192237; color: inherit; }
+textarea { resize: vertical; }
+button { justify-self: start; cursor: pointer; background: #91e9cf; color: #0d1220; }
+button:disabled { opacity: .6; cursor: wait; }
+a { color: #91e9cf; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; }

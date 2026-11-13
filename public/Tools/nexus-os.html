@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://*.run.app http://127.0.0.1:*; base-uri 'none'; form-action 'none'">
+  <title>Nexus OS Preview</title>
+  <link rel="stylesheet" href="/tools/nexus-os-assets/style.css">
+  <script src="/tools/nexus-os-assets/client.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Nexus OS</h1>
+    <p>Send a prompt to your Gemini backend. Review any selected text before sending.</p>
+    <p id="web-links"><a href="/downloads/nexus-os-preview.zip" download>Download extension and backend</a> · <a href="/nexus-os">Explore Nexus OS</a></p>
+    <form>
+      <label for="backend">Backend URL</label>
+      <input id="backend" type="url" required placeholder="https://your-service.run.app">
+      <label for="token">Nexus access token</label>
+      <input id="token" type="password" required autocomplete="off">
+      <label for="prompt">Prompt</label>
+      <textarea id="prompt" required maxlength="4000" rows="4"></textarea>
+      <button id="capture" type="button" hidden>Read selected text</button>
+      <label for="selection">Context to send (optional)</label>
+      <textarea id="selection" maxlength="8000" rows="3"></textarea>
+      <button id="send" type="submit">Send to Gemini</button>
+    </form>
+    <p id="status" role="status"></p>
+    <pre id="answer" aria-label="Gemini response" hidden></pre>
+  </main>
+</body>
+</html>
