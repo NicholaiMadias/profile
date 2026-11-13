@@ -27,6 +27,16 @@ export default function EnterpriseEndpointPage() {
           <Link className="text-link" href="/blog/enterprise-endpoint-toolkit">Read the engineering case study</Link>
         </div>
       </header>
+      <section className="tools-section" aria-labelledby="command-center-title">
+        <h2 id="command-center-title">Endpoint Toolkit Command Center</h2>
+        <p>Track reusable scripts and prompts, GitHub Actions runs, test results, blockers, and release checks in the private workspace.</p>
+        <div className="actions">
+          <a className="text-link" href="https://endpoint-toolkit-command-center.gulfnexus.chatgpt.site">
+            Open the command center
+          </a>
+        </div>
+        <p className="tools-fineprint">An authorized ChatGPT account is required.</p>
+      </section>
       <section className="tools-section">
         <h2>What is included</h2>
         <div className="card-grid two">
