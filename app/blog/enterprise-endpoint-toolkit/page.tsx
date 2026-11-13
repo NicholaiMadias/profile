@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Building an Enterprise Endpoint Automation Toolkit | Nicholai Madias",
   description: "Architecture and lessons from a reusable endpoint engineering portfolio project.",
+  robots: { index: false, follow: false },
 };
 
 export default function ToolkitArticle() {
