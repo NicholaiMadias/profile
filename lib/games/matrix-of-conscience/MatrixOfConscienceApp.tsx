@@ -6,6 +6,7 @@ import UniverseMap, { SECTORS } from './UniverseMap';
 import SectorCampaignMission from './SectorCampaignMission';
 import { isCampaignMissionLevel } from './campaignMissionData';
 import { BibleQuizOverlay } from './BibleQuizOverlay';
+import { CertQuizOverlay } from './CertQuizOverlay';
 import { useConscience } from './ConscienceProvider';
 import { parseMatrixProgress, serializeMatrixProgress } from './progress';
 import './cosmic-strategy.css';
@@ -16,6 +17,7 @@ export default function MatrixOfConscienceApp() {
   const { userLevel, setUserLevel, cosmicLogs, sectorControl, factions } = useConscience();
   const [level, setLevel] = useState<number>(0);
   const [quizPendingNextLevel, setQuizPendingNextLevel] = useState<number | null>(null);
+  const [activeCertQuiz, setActiveCertQuiz] = useState<boolean>(false);
   const [selectedSector, setSelectedSector] = useState<number>(1);
   const [unlockedLevel, setUnlockedLevel] = useState<number>(1);
   const selectedSectorData = SECTORS.find((sector) => sector.id === selectedSector) ?? SECTORS[0];
@@ -84,11 +86,33 @@ export default function MatrixOfConscienceApp() {
   };
 
   if (quizPendingNextLevel !== null) {
+    // Alternate between Bible knowledge transmissions and CompTIA Cyber/Network telemetry challenges
+    if (quizPendingNextLevel % 2 === 0) {
+      return (
+        <CertQuizOverlay
+          initialCategory={quizPendingNextLevel === 2 ? 'network-plus' : 'security-plus'}
+          onComplete={() => {
+            const next = quizPendingNextLevel;
+            setQuizPendingNextLevel(null);
+            completeLevel(next, false);
+          }}
+        />
+      );
+    }
     return <BibleQuizOverlay onComplete={() => {
       const next = quizPendingNextLevel;
       setQuizPendingNextLevel(null);
       completeLevel(next, false);
     }} />
+  }
+
+  if (activeCertQuiz) {
+    return (
+      <CertQuizOverlay
+        initialCategory="all"
+        onComplete={() => setActiveCertQuiz(false)}
+      />
+    );
   }
 
   // Level selector / Galaxy Map UI
@@ -187,6 +211,19 @@ export default function MatrixOfConscienceApp() {
             </div>
 
             <div className="map-actions">
+              <button
+                className="mission-deploy-button"
+                type="button"
+                onClick={() => setActiveCertQuiz(true)}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0, 242, 255, 0.2), rgba(121, 40, 202, 0.3))',
+                  border: '1px solid #00f2ff',
+                  marginBottom: '0.75rem',
+                  fontSize: '0.85rem'
+                }}
+              >
+                Launch CompTIA Tech Diagnostic (A+, Net+, Sec+)
+              </button>
               <button className="reset-progress-button" type="button" onClick={resetProgress}>
                 Reset Level Progress
               </button>
