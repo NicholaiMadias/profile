@@ -12,6 +12,8 @@ const outputZip = path.join(
 
 const INCLUDE_FILES = [
   ['nexus-public/README.md', 'README.md'],
+  ['nexus-public/REVIEW-STUDIO.md', 'REVIEW-STUDIO.md'],
+  ['nexus-public/review-studio.mjs', 'review-studio.mjs'],
   ['LICENSE', 'LICENSE'],
   ['node_modules/pdf-lib/dist/pdf-lib.min.js', 'extension/vendor/pdf-lib.min.js'],
   ['node_modules/pdf-lib/LICENSE.md', 'extension/vendor/pdf-lib.LICENSE.md'],
