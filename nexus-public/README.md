@@ -82,3 +82,12 @@ signing or automation service.
 The package license is included in `LICENSE`. The companion includes
 BSD-3-Clause-licensed source; see `companion/LICENSE`. The PDF library's license
 is included in `extension/vendor`.
+
+## Markdown Review Studio
+
+The ZIP also includes `review-studio.mjs` and `REVIEW-STUDIO.md`.
+Use `node review-studio.mjs open plan.md feedback.md` to annotate a Markdown
+plan in a local browser, then `node review-studio.mjs summarize feedback.md
+summary.md` to preserve and organize exported feedback. Review Studio runs
+with the unmaintained third-party `markdown-review@0.0.9` package, fetched by
+npm on first use. This review workflow never automatically applies code changes.
