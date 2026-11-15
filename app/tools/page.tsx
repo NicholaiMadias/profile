@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 const capabilities = [
   ["Chat with your own models", "LM Studio, Ollama, OpenAI, Gemini, or DeepSeek, routed through a companion on your computer."],
   ["Coding tasks", "Use your installed Codex, or opt in to Cline. PowerShell stays off unless you start the companion with --terminal."],
+  ["Markdown Review Studio", "Open Markdown plans for inline annotation and export feedback summaries with a pinned local review tool."],
   ["PDF marks", "Draw or type a visible mark and place it on a page. Works without the companion; the file never leaves your device."],
   ["Experimental browser agent", "Clicks and types in the active tab after you start a task, up to eight actions, stopping on cross-origin navigation."],
 ];
@@ -36,6 +37,7 @@ export default function ToolsPage() {
           <a href="#nexus-assistant">Nexus Assist 1.0</a>
           <Link href="/tools/enterprise-endpoint">Endpoint Automation Toolkit</Link>
           <a href="/tools/nexus-os.html">Nexus OS Preview</a>
+          <a href="#review-studio">Review Studio</a>
           <a href="#install">Install</a>
           <a href="#ssh">SSH access</a>
           <a href="#safety">Safety</a>
@@ -68,6 +70,15 @@ export default function ToolsPage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section id="review-studio" className="tools-section" aria-labelledby="review-studio-title">
+        <p className="eyebrow">NEW / REVIEW AND APPROVAL</p>
+        <h2 id="review-studio-title">Nexus Review Studio</h2>
+        <p>Review Markdown specifications, add inline comments, answer embedded questions, and export structured feedback. The ZIP includes a local launcher and feedback summarizer. Review Studio does not automatically modify code or deploy changes.</p>
+        <pre className="tools-code"><code>{`node review-studio.mjs open plan.md feedback.md\nnode review-studio.mjs summarize feedback.md summary.md`}</code></pre>
+        <p className="tools-fineprint">Requires Node.js and npm. Uses the archived, MIT-licensed markdown-review@0.0.9 package downloaded on first use. Review sensitive documents carefully.</p>
+        <a className="tools-button" href="/downloads/nexus-assistant-preview.zip" download>Download Nexus Assist + Review Studio (.zip)</a>
       </section>
 
       <section id="install" className="tools-section" aria-labelledby="install-title">
