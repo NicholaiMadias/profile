@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPA router test bench</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;padding:24px;background:#101923;color:#e6eef5;font:16px/1.6 system-ui,sans-serif}h1{font-size:1.5rem;margin:0 0 8px}h2{font-size:1.1rem}p{margin:8px 0 16px;color:#c0d0df}button,a{font:inherit}button{padding:10px 14px;border:1px solid #66879f;border-radius:8px;background:#20384b;color:#eff8ff;cursor:pointer;min-height:44px}button:hover{background:#2e4e67}button:focus-visible,a:focus-visible{outline:3px solid #a4def8;outline-offset:3px}button:disabled{opacity:.5;cursor:wait}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.primary{background:#a6def5;color:#102231;font-weight:700}code{overflow-wrap:anywhere}#status{font-weight:700}#result{padding:12px;border-left:3px solid #a6def5;background:#192c3d}#log{max-height:260px;overflow:auto;padding:12px 12px 12px 32px;background:#080e16;border:1px solid #3a5062;border-radius:8px;font:13px/1.7 ui-monospace,monospace;overflow-wrap:anywhere}a{color:#a6def5}ul.files{padding-left:22px}small{color:#bbcad8} @media(max-width:480px){body{padding:16px}.controls button{flex:1 1 130px}}
+</style>
+<script>
+// Browser-only adapter. This does not provide access to Chrome extension APIs.
+const listeners = new Set();
+const nativeReplace = history.replaceState.bind(history);
+window.chrome = { runtime: { onMessage: { addListener(fn) { listeners.add(fn); }, removeListener(fn) { listeners.delete(fn); } } } };
+</script>
+<script src="content-main.js"></script><script src="spa-router.js"></script>
+<script src="test-bench.js" defer></script>
+</head>
+<body>
+<h1>SPA router test bench</h1>
+<p>Test navigation detection and stale-event handling. Background messages and persisted pageshow events are simulated here. MAIN/ISOLATED world separation and real bfcache restoration require Chrome extension testing.</p>
+<p>Router: <span id="status">Starting</span> · Current route: <code id="route"></code></p>
+<div class="controls">
+<button id="start">Start</button><button id="stop">Stop</button><button id="push">Push route</button><button id="replace">Replace route</button><button id="same">Same-URL replace × 10</button><button id="background">Delayed stale background</button><button id="pageshow">Simulate bfcache signal</button>
+</div>
+<button id="regression" class="primary">Run regression checks</button>
+<p id="result" role="status">Ready. Initialization should appear once below.</p>
+<h2>Emitted events</h2><button id="clear">Clear log</button><ol id="log" aria-label="Navigation events"></ol>
+<h2>Extension test files</h2>
+<p>Download these five files into one folder and load that folder using Chrome’s “Load unpacked” extension control. Open Drive or Docs and inspect the content script console.</p>
+<ul class="files"><li><a href="manifest.json" download>manifest.json</a></li><li><a href="background.js" download>background.js</a></li><li><a href="content-main.js" download>content-main.js</a></li><li><a href="spa-router.js" download>spa-router.js</a></li><li><a href="example.js" download>example.js</a></li></ul>
+</body></html>
