@@ -22,14 +22,15 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
                 <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
-                <Link href="/agent">Agent Nexus</Link>
-                <Link href="/academy">Certifications</Link>
                 <Link href="/arcade" aria-label="Open the Nexus Arcade, including Matrix of Conscience">Arcade</Link>
                 <details className="tools-dropdown">
                   <summary>Tools</summary>
                   <ul>
                     <li><Link href="/tools">All tools</Link></li>
-                    <li><Link href="/tools#nexus-assistant">Nexus Assistant Chrome preview</Link></li>
+                    <li><Link href="/agent">Agent Nexus</Link></li>
+                    <li><Link href="/tools#nexus-assistant">Nexus Assistant</Link></li>
+                    <li><Link href="/tools/enterprise-endpoint">Endpoint Automation Toolkit</Link></li>
+                    <li><Link href="/academy">Certification Academy</Link></li>
                   </ul>
                 </details>
               </nav>
