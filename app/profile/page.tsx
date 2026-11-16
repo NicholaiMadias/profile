@@ -136,65 +136,82 @@ const skills = [
 
 export function ProfilePage() {
   return (
-    <div className="container page narrow professional-profile">
-      <h1>Nicholai Maro Madias</h1>
-      <p className="lede">Senior Platform Engineer</p>
-      <p>Palm Harbor, FL 34683 · <a href="tel:+17276213516">(727) 621-3516</a> · <a href="mailto:nicholaimadias@gmail.com">nicholaimadias@gmail.com</a></p>
-      <div className="actions">
-        <a href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-        <a href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      </div>
-
-      <section className="section" aria-labelledby="summary-title">
-        <h2 id="summary-title">Professional summary</h2>
-        <p>Senior Platform Engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience. Developed backend applications, workflow automation, API integrations, and cloud-hosted services for enterprise environments supporting more than 350,000 users.</p>
-        <p>Experienced with Java, Python, Kotlin, Go, Linux, Google Cloud Platform, App Engine, Docker, Kubernetes, REST APIs, Salesforce, SQL, and enterprise identity platforms.</p>
-      </section>
-
-      <section className="section" aria-labelledby="skills-title">
-        <h2 id="skills-title">Technical skills</h2>
-        {skills.map(([name, tools]) => <div key={name}><h3>{name}</h3><p>{tools}</p></div>)}
-      </section>
-
-
-      <section id="experience" className="section" aria-labelledby="experience-title">
-        <h2 id="experience-title">Professional experience</h2>
-        {experience.map(job => (
-          <article className="feature-card" key={`${job.company}-${job.dates}`}>
-            <h3>{job.role}</h3>
-            <p><strong>{job.company}</strong> · {job.dates}</p>
-            <ul>{job.bullets.map(item => <li key={item}>{item}</li>)}</ul>
-          </article>
-        ))}
-      </section>
-
-      <section className="section" aria-labelledby="education-title">
-        <h2 id="education-title">Education</h2>
-        <h3>Bachelor of Science, Business Studies — Computer Information Technology</h3>
-        <p>Southern New Hampshire University · 2014</p>
-        <h3>Associate of Science, Computer Information Technology</h3>
-        <p>Everest University · 2009</p>
-      </section>
-
-      <section className="section" aria-labelledby="certifications-title">
-        <h2 id="certifications-title">Certifications</h2>
-        <ul>
-          <li>Microsoft Azure Solutions Architect Expert</li>
-          <li>Google Workspace Professional Administrator</li>
-          <li>CompTIA A+</li>
-        </ul>
-      </section>
-
-      <section id="tools" className="section" aria-labelledby="tools-title">
-        <h2 id="tools-title">Tools &amp; links</h2>
-        <p>Explore my projects, writing, and public code.</p>
-        <div className="actions">
-          <Link href="/tools">All tools</Link>
-          <Link href="/nexus">Nexus Assistant</Link>
-          <Link href="/arcade">Arcade</Link>
-          <Link href="/toolbox">Amazing Grace Toolbox</Link>
+    <div className="container page professional-profile">
+      <section className="profile-hero" aria-labelledby="profile-name">
+        <div className="profile-intro">
+          <h1 id="profile-name">Nicholai Maro Madias</h1>
+          <p className="lede">Senior Platform Engineer</p>
+          <ul className="profile-contact" aria-label="Contact details">
+            <li>Palm Harbor, FL 34683</li>
+            <li><a href="tel:+17276213516">(727) 621-3516</a></li>
+            <li><a href="mailto:nicholaimadias@gmail.com">nicholaimadias@gmail.com</a></li>
+          </ul>
+          <div className="actions profile-actions">
+            <a className="profile-primary" href="#experience">View experience</a>
+            <a href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/NicholaiMadias" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
         </div>
+        <dl className="profile-metrics">
+          <div><dt>Enterprise technology</dt><dd>15+ years</dd></div>
+          <div><dt>Software and automation</dt><dd>5+ years</dd></div>
+          <div><dt>Users supported by enterprise services</dt><dd>350,000+</dd></div>
+        </dl>
       </section>
+
+      <div className="profile-columns">
+        <div className="profile-main">
+          <section className="section" aria-labelledby="summary-title">
+            <h2 id="summary-title">Professional summary</h2>
+            <p>Senior Platform Engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience. Developed backend applications, workflow automation, API integrations, and cloud-hosted services for enterprise environments supporting more than 350,000 users.</p>
+            <p>Experienced with Java, Python, Kotlin, Go, Linux, Google Cloud Platform, App Engine, Docker, Kubernetes, REST APIs, Salesforce, SQL, and enterprise identity platforms.</p>
+          </section>
+          <section id="experience" className="section" aria-labelledby="experience-title">
+            <h2 id="experience-title">Professional experience</h2>
+            {experience.map(job => (
+              <article className="feature-card" key={`${job.company}-${job.dates}`}>
+                <h3>{job.role}</h3>
+                <p><strong>{job.company}</strong> · {job.dates}</p>
+                <ul>{job.bullets.map(item => <li key={item}>{item}</li>)}</ul>
+              </article>
+            ))}
+          </section>
+
+        </div>
+        <aside className="profile-sidebar" aria-label="Skills and credentials">
+          <section className="section" aria-labelledby="skills-title">
+            <h2 id="skills-title">Technical skills</h2>
+            {skills.map(([name, tools]) => <div className="profile-skill" key={name}><h3>{name}</h3><p>{tools}</p></div>)}
+          </section>
+          <section className="section" aria-labelledby="education-title">
+            <h2 id="education-title">Education</h2>
+            <h3>Bachelor of Science, Business Studies — Computer Information Technology</h3>
+            <p>Southern New Hampshire University · 2014</p>
+            <h3>Associate of Science, Computer Information Technology</h3>
+            <p>Everest University · 2009</p>
+          </section>
+
+          <section className="section" aria-labelledby="certifications-title">
+            <h2 id="certifications-title">Certifications</h2>
+            <ul>
+              <li>Microsoft Azure Solutions Architect Expert</li>
+              <li>Google Workspace Professional Administrator</li>
+              <li>CompTIA A+</li>
+            </ul>
+          </section>
+
+          <section id="tools" className="section" aria-labelledby="tools-title">
+            <h2 id="tools-title">Tools &amp; links</h2>
+            <p>Explore my projects, writing, and public code.</p>
+            <div className="actions">
+              <Link href="/tools">All tools</Link>
+              <Link href="/nexus">Nexus Assistant</Link>
+              <Link href="/arcade">Arcade</Link>
+              <Link href="/toolbox">Amazing Grace Toolbox</Link>
+            </div>
+          </section>
+        </aside>
+      </div>
     </div>
   );
 }
