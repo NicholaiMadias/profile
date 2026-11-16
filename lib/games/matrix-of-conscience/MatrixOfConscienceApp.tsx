@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MatrixSoundtrack from './MatrixSoundtrack';
 import Level1NexusDefense from './Level1NexusDefense';
 import Level2SyndicateSiege from './Level2SyndicateSiege';
 import Level3SovereignConscience from './Level3SovereignConscience';
@@ -14,8 +15,17 @@ import './cosmic-strategy.css';
 const CAMPAIGN_ACTS = SECTORS.map((sector) => sector.name);
 
 export default function MatrixOfConscienceApp() {
+  const [level, setLevel] = useState(0);
+  return (
+    <>
+      <CampaignScreen level={level} setLevel={setLevel} />
+      <MatrixSoundtrack level={level} />
+    </>
+  );
+}
+
+function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: number) => void }) {
   const { userLevel, setUserLevel, cosmicLogs, sectorControl, factions } = useConscience();
-  const [level, setLevel] = useState<number>(0);
   const [quizPendingNextLevel, setQuizPendingNextLevel] = useState<number | null>(null);
   const [activeCertQuiz, setActiveCertQuiz] = useState<boolean>(false);
   const [selectedSector, setSelectedSector] = useState<number>(1);
