@@ -921,24 +921,57 @@ textarea {
   }
 }
 
-/* Resume layout: restrained typography, readable measure, and clear hierarchy. */
-.professional-profile { max-width: 1040px; padding-top: 56px; padding-bottom: 80px; }
-.professional-profile h1 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(1.65rem, 3.2vw, 2.55rem); line-height: 1.2; letter-spacing: -.035em; max-width: 28ch; margin: 0 0 24px; }
-.professional-profile h2 { font-family: Arial, Helvetica, sans-serif; font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.35; letter-spacing: -.02em; margin: 0 0 14px; }
-.professional-profile h3 { font-size: 1rem; line-height: 1.5; margin: 22px 0 8px; }
-.professional-profile p, .professional-profile li { font-size: 1rem; line-height: 1.8; color: #c3ccd3; }
-.professional-profile .lede { font-size: 1.12rem; line-height: 1.8; max-width: 74ch; }
-.professional-profile .section { margin-top: 44px; padding-top: 30px; border-top: 1px solid #27372f; }
-.professional-profile .feature-card { border: 0; border-bottom: 1px solid #27372f; border-radius: 0; padding: 26px 0; box-shadow: none; transform: none; }
-.professional-profile .feature-card:last-child { border-bottom: 0; }
-.professional-profile .feature-card strong { color: #edf3f7; }
-.professional-profile ul { padding-left: 22px; margin: 14px 0 0; }
-.professional-profile li { padding-left: 5px; margin-bottom: 9px; }
-.professional-profile li::marker { color: var(--accent); }
-.professional-profile .actions { gap: 26px; margin: 24px 0 0; }
-.professional-profile .eyebrow { font-size: .72rem; letter-spacing: .16em; }
-.professional-profile .card-grid { gap: 24px; }
-@media(max-width:620px) { .professional-profile { padding-top: 32px; } .professional-profile .section { margin-top: 32px; padding-top: 24px; } }
+/* Professional profile */
+.professional-profile { max-width: 1180px; padding-top: 48px; }
+.profile-hero {
+  display: grid;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(22px, 4vw, 52px);
+  border: 1px solid #28513e;
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse at top right, #163a2b, transparent 72%), #0a120e;
+}
+.profile-intro, .profile-main, .profile-sidebar { min-width: 0; }
+.professional-profile h1, .professional-profile h2 { font-family: inherit; font-weight: 700; }
+.professional-profile h1 { font-size: clamp(2.05rem, 4.4vw, 4.25rem); line-height: 1.06; margin: 0 0 12px; }
+.professional-profile h2 { font-size: clamp(1.25rem, 2vw, 1.55rem); line-height: 1.25; margin: 0 0 16px; }
+.professional-profile h3 { font-size: 1rem; line-height: 1.45; margin: 0 0 5px; }
+.professional-profile p, .professional-profile li { color: #c3ccd3; line-height: 1.7; }
+.professional-profile .lede { color: var(--accent); font-size: clamp(1.15rem, 2vw, 1.55rem); margin: 0 0 18px; }
+.profile-contact { display: flex; flex-wrap: wrap; gap: 4px 18px; list-style: none; padding: 0; margin: 0; }
+.profile-contact li { overflow-wrap: anywhere; font-size: .9rem; }
+.professional-profile .actions { gap: 12px 20px; margin: 20px 0 0; }
+.profile-actions a { display: inline-flex; align-items: center; min-height: 44px; }
+.profile-actions .profile-primary {
+  padding: 0 16px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #04160e !important;
+  font-weight: 700;
+}
+.profile-actions .profile-primary:hover { background: var(--accent-hover); }
+.profile-metrics { display: grid; gap: 12px; margin: 0; }
+.profile-metrics div { display: flex; flex-direction: column-reverse; padding: 10px 14px; border-left: 2px solid #3b765b; }
+.profile-metrics dt { color: var(--muted); font-size: .82rem; }
+.profile-metrics dd { margin: 0; color: var(--ink); font-size: 1.35rem; line-height: 1.35; font-weight: 700; }
+.profile-columns { display: grid; gap: 28px; margin-top: 28px; align-items: start; }
+.profile-columns .section { margin: 0 0 20px; padding: clamp(18px, 2.5vw, 30px); border: 1px solid var(--line); border-radius: var(--radius); background: #0b120e; }
+.profile-columns .section:last-child { margin-bottom: 0; }
+.profile-columns p:last-child { margin-bottom: 0; }
+.profile-columns #experience { scroll-margin-top: 24px; }
+.profile-columns .feature-card { border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 18px 0; box-shadow: none; transform: none; background: transparent !important; }
+.profile-columns .feature-card:last-child { padding-bottom: 0; }
+.profile-columns .feature-card strong { color: var(--ink); }
+.profile-columns ul { padding-left: 20px; margin: 10px 0 0; }
+.profile-columns li { margin-bottom: 6px; }
+.profile-columns li::marker { color: var(--accent); }
+.profile-skill + .profile-skill { margin-top: 14px; }
+.profile-sidebar p, .profile-sidebar li { font-size: .92rem; }
+@media (min-width: 940px) {
+  .profile-hero { grid-template-columns: minmax(0, 1fr) minmax(230px, .38fr); align-items: center; }
+  .profile-columns { grid-template-columns: minmax(0, 2fr) minmax(265px, 1fr); }
+}
+@media (max-width: 620px) { .professional-profile { padding-top: 24px; } }
 /* Keep every primary destination in one row, with touch scrolling on narrow screens. */
 .site-header { overflow: hidden; }
 .site-header .header-inner { max-width: none; min-height: 76px; padding: 14px 32px; gap: clamp(18px, 2vw, 32px); flex-wrap: nowrap; overflow: hidden; }
@@ -1228,3 +1261,25 @@ a.tools-button.secondary {
 
 .site-header .nav-brand { display: inline-flex; align-items: center; min-height: 44px; }
 .site-header .nav-brand img { display: block; width: clamp(128px, 21vw, 218px); height: auto; }
+
+@media (min-width: 901px) {
+  .site-header, .site-header .header-inner, .site-header .nav-links { overflow: visible; }
+  .site-header .header-inner { max-width: 1244px; }
+  .site-header .tools-dropdown { position: relative; }
+  .site-header .tools-dropdown summary { cursor: pointer; color: var(--accent); }
+  .site-header .tools-dropdown ul {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 14px);
+    right: 0;
+    width: max-content;
+    margin: 0;
+    padding: 8px;
+    list-style: none;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: #101914;
+    box-shadow: 0 12px 32px #0009;
+  }
+  .site-header .tools-dropdown a { display: block; padding: 8px 12px; }
+}
