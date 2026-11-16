@@ -1223,3 +1223,6 @@ a.tools-button.secondary {
     grid-template-columns: 1fr;
   }
 }
+
+.site-header .nav-brand { display: inline-flex; align-items: center; min-height: 44px; }
+.site-header .nav-brand img { display: block; width: clamp(128px, 21vw, 218px); height: auto; }
