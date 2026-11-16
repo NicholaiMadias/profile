@@ -15,12 +15,13 @@ export function WordSprint() {
   const [remaining, setRemaining] = useState(ROUND_SECONDS);
   const [feedback, setFeedback] = useState("");
   const endTime = useRef(0);
+  const inputRef = useRef<HTMLInputElement>(null);
   const resultHeading = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     if (status !== "playing") return;
     const timer = window.setInterval(() => {
-      const seconds = Math.max(0, Math.ceil((endTime.current - Date.now()) / 1000));
+      const seconds = Math.max(0, Math.ceil((endTime.current - performance.now()) / 1000));
       setRemaining(seconds);
       if (seconds === 0) setStatus("ended");
     }, 100);
@@ -32,7 +33,7 @@ export function WordSprint() {
   }, [status]);
 
   function startRound() {
-    endTime.current = Date.now() + ROUND_SECONDS * 1000;
+    endTime.current = performance.now() + ROUND_SECONDS * 1000;
     setTarget(nextWord(""));
     setEntry("");
     setCorrect(0);
@@ -40,11 +41,17 @@ export function WordSprint() {
     setRemaining(ROUND_SECONDS);
     setFeedback("");
     setStatus("playing");
+    requestAnimationFrame(() => inputRef.current?.focus());
   }
 
   function submitWord(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status !== "playing" || !entry.trim()) return;
+    if (performance.now() >= endTime.current) {
+      setRemaining(0);
+      setStatus("ended");
+      return;
+    }
 
     const isCorrect = entry.trim().toLocaleLowerCase() === target;
     setAttempted((count) => count + 1);
@@ -84,7 +91,7 @@ export function WordSprint() {
             <label className="field-label" htmlFor="word-sprint-entry">Type the word above</label>
             <input
               id="word-sprint-entry"
-              autoFocus
+              ref={inputRef}
               autoComplete="off"
               autoCapitalize="none"
               spellCheck={false}
@@ -93,7 +100,7 @@ export function WordSprint() {
             />
             <button className="button" type="submit">Submit word</button>
           </form>
-          <p className="word-sprint-feedback" aria-live="polite">{feedback || " "}</p>
+          <p className="word-sprint-feedback" role="status" aria-live="polite">{feedback || " "}</p>
         </>
       )}
     </section>
