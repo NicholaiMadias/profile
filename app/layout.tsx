@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { ProgressProvider } from '../components/ProgressProvider';
 
 export const metadata: Metadata = {
-  title: 'Nicholai Maro Madias | Software Engineer',
+  title: 'Nicholai Maro Madias | Senior Platform Engineer',
   description: 'Enterprise endpoints, identity, automation, tools and educational game design.',
 };
 
