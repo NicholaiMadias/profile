@@ -13,6 +13,7 @@ export default function Page() {
     <div className="container page">
       <p className="eyebrow">NEXUS CERTIFICATION ACADEMY</p>
       <h1>Learn by role. Practice by mission.</h1>
+      <RoleQuest missions={certificationMissions} storageId="nicholai-cert-quests-v1" />
       <p>
         Start with quick lessons for A+, Network+, and Security+. Answer scenario-based
         questions, read explanations, and replay to improve your score. These are
@@ -31,7 +32,6 @@ export default function Page() {
         and{" "}
         <a href="https://www.comptia.org/en-us/certifications/security/">Security+</a>.
       </p>
-      <RoleQuest missions={certificationMissions} storageId="nicholai-cert-quests-v1" />
     </div>
   );
 }

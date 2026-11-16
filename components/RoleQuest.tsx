@@ -90,58 +90,10 @@ export default function RoleQuest({
   }
   return (
     <section aria-label="Guided learning missions">
-      <div className="card-grid two section">
-        {missions.map((item) => {
-          const isSelected = item.id === mission.id;
-          const best = bests[item.id];
-          const action =
-            isSelected && finished
-              ? "View result"
-              : isSelected && (step > 0 || choice !== null)
-                ? "Continue quiz"
-                : "Start quiz";
-          return (
-            <a
-              key={item.id}
-              href={`#quiz-${item.id}`}
-              onClick={(event) => {
-                if (window.location.hash === event.currentTarget.hash)
-                  focusQuiz();
-              }}
-              aria-current={isSelected ? "location" : undefined}
-              style={{
-                display: "block",
-                textAlign: "left",
-                padding: 20,
-                border: "1px solid currentColor",
-                borderRadius: 12,
-                background: "transparent",
-                color: "inherit",
-                cursor: "pointer",
-              }}
-            >
-              <strong>
-                {item.role} — {item.title}
-              </strong>
-              <span style={{ display: "block", marginBottom: 12 }}>
-                {item.lesson}
-              </span>
-              <span style={{ display: "block", color: "var(--accent)" }}>
-                {action} →
-              </span>
-              <small>
-                {best === undefined
-                  ? `${item.questions.length} questions`
-                  : `Best score: ${best} / ${item.questions.length}`}
-              </small>
-            </a>
-          );
-        })}
-      </div>
       <div
         id={`quiz-${mission.id}`}
         className="feature-card"
-        style={{ marginTop: 24, padding: 24 }}
+        style={{ padding: 24 }}
       >
         <p className="eyebrow">
           {mission.role} ·{" "}
@@ -212,6 +164,54 @@ export default function RoleQuest({
             )}
           </>
         )}
+      </div>
+      <div className="card-grid two section">
+        {missions.map((item) => {
+          const isSelected = item.id === mission.id;
+          const best = bests[item.id];
+          const action =
+            isSelected && finished
+              ? "View result"
+              : isSelected && (step > 0 || choice !== null)
+                ? "Continue quiz"
+                : "Start quiz";
+          return (
+            <a
+              key={item.id}
+              href={`#quiz-${item.id}`}
+              onClick={(event) => {
+                if (window.location.hash === event.currentTarget.hash)
+                  focusQuiz();
+              }}
+              aria-current={isSelected ? "location" : undefined}
+              style={{
+                display: "block",
+                textAlign: "left",
+                padding: 20,
+                border: "1px solid currentColor",
+                borderRadius: 12,
+                background: "transparent",
+                color: "inherit",
+                cursor: "pointer",
+              }}
+            >
+              <strong>
+                {item.role} — {item.title}
+              </strong>
+              <span style={{ display: "block", marginBottom: 12 }}>
+                {item.lesson}
+              </span>
+              <span style={{ display: "block", color: "var(--accent)" }}>
+                {action} →
+              </span>
+              <small>
+                {best === undefined
+                  ? `${item.questions.length} questions`
+                  : `Best score: ${best} / ${item.questions.length}`}
+              </small>
+            </a>
+          );
+        })}
       </div>
     </section>
   );
