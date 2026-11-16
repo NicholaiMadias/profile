@@ -1,4 +1,4 @@
-export const GAME_IDS = ["bible-quiz", "quick-click"] as const;
+export const GAME_IDS = ["bible-quiz", "quick-click", "cert-quiz"] as const;
 export type GameId = (typeof GAME_IDS)[number];
 export type Progress = {
   version: 1;

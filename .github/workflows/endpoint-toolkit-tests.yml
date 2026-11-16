@@ -5,6 +5,8 @@ on:
     paths:
       - "enterprise-endpoint-toolkit/**"
       - ".github/workflows/endpoint-toolkit-tests.yml"
+      - "app/**"
+      - "package*.json"
   pull_request:
     paths:
       - "enterprise-endpoint-toolkit/**"
@@ -32,6 +34,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Install Pester
+        shell: pwsh
+        run: Install-Module Pester -MinimumVersion 5.5 -Force -Scope CurrentUser -SkipPublisherCheck
+      - name: Run PowerShell unit tests
+        shell: pwsh
+        run: Invoke-Pester -Path enterprise-endpoint-toolkit/tests -CI
       - name: Parse PowerShell modules
         shell: pwsh
         run: |
@@ -43,3 +51,31 @@ jobs:
             $errorsFound += $parseErrors
           }
           if ($errorsFound.Count -gt 0) { $errorsFound | Out-String | Write-Error; exit 1 }
+
+  website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm audit --audit-level=high --omit=dev
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pip-audit
+      - run: python -m pip install -e enterprise-endpoint-toolkit/python
+      - run: python -m pip_audit

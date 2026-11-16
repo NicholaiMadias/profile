@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Enterprise Endpoint Automation Toolkit | Nicholai Madias",
-  description: "Reference PowerShell, Python, and AI automation examples for endpoint engineering.",
+  description: "Reference PowerShell, Python, and AI automation examples for endpoint engineering."
 };
 
 const modules = [
@@ -12,7 +12,7 @@ const modules = [
   ["Entra ID", "Microsoft Graph user reporting with delegated permissions."],
   ["Monitoring", "Windows service status inspection."],
   ["Reporting", "CSV status summaries and Python dashboard examples."],
-  ["AI prompt library", "Workspace ONE sensor and Intune migration planning templates."],
+  ["AI prompt library", "Workspace ONE sensor and Intune migration planning templates."]
 ];
 
 export default function EnterpriseEndpointPage() {
@@ -31,9 +31,7 @@ export default function EnterpriseEndpointPage() {
         <h2 id="command-center-title">Endpoint Toolkit Command Center</h2>
         <p>Track reusable scripts and prompts, GitHub Actions runs, test results, blockers, and release checks in the private workspace.</p>
         <div className="actions">
-          <a className="text-link" href="https://endpoint-toolkit-command-center.gulfnexus.chatgpt.site">
-            Open the command center
-          </a>
+          <a className="text-link" href="https://endpoint-toolkit-command-center.gulfnexus.chatgpt.site">Open the command center</a>
         </div>
         <p className="tools-fineprint">An authorized ChatGPT account is required.</p>
       </section>
@@ -41,7 +39,10 @@ export default function EnterpriseEndpointPage() {
         <h2>What is included</h2>
         <div className="card-grid two">
           {modules.map(([title, description]) => (
-            <article className="feature-card" key={title}><h3>{title}</h3><p>{description}</p></article>
+            <article className="feature-card" key={title}>
+              <h3>{title}</h3>
+              <p>{description}</p>
+            </article>
           ))}
         </div>
       </section>
