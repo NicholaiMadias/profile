@@ -8,7 +8,7 @@ export default function NexusAssistantPage() {
       <nav aria-label="Nexus navigation"><Link href="/">About Nicholai</Link><Link href="/tools">Tools and profiles</Link></nav>
       <p>Try a free, local-first Chrome sidebar for your own models, coding tools, and PDF signatures. Bring your own accounts and API keys; the companion runs on your computer. Cloud model providers may charge for their services.</p>
       <p><a className="button" href="/downloads/nexus-assistant-preview.zip" download>Download Nexus Assist 1.0 (.zip)</a></p>
-      <h2>What works today</h2>
+      <p><Link href="/agent">Explore public roles and learning paths →</Link> · <Link href="/academy">A+ / Network+ / Security+ lessons →</Link></p><h2>What works today</h2>
       <ul>
         <li>Chat using LM Studio, Ollama, OpenAI, Gemini, or DeepSeek through your own companion.</li>
         <li>Use your installed Codex or opt into Cline tasks. An experimental agent can click and type on the active site after you start a task.</li>

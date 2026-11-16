@@ -1,0 +1,195 @@
+version: "1.0"
+
+guardian:
+  name: "Modern Web Guardian"
+  mode: "continuous"
+  timezone: "America/New_York"
+
+repositories:
+  - name: "profile"
+    site: "nicholai.online"
+    branch: "main"
+
+  - name: "voice-of-jesus-ministry"
+    site: "voiceofjesusministry.net"
+    branch: "main"
+
+  - name: "amazing-grace-home-living"
+    site: "amazinggracehl.org"
+    branch: "main"
+
+scan:
+  enabled: true
+  schedule: "0 */6 * * *"
+
+  languages:
+    - javascript
+    - typescript
+    - html
+    - css
+    - json
+
+  checks:
+    accessibility: true
+    performance: true
+    security: true
+    seo: true
+    standards: true
+    dependencies: true
+
+modernization:
+  enabled: true
+
+  detect:
+    - jquery
+    - xmlhttp_request
+    - document_write
+    - sync_xhr
+    - legacy_event_handlers
+    - css_framework_overrides
+    - momentjs
+    - custom_dialogs
+    - custom_popovers
+    - localstorage_secrets
+
+  recommend:
+    jquery: "Native DOM APIs"
+    xmlhttp_request: "Fetch API"
+    sync_xhr: "Async Fetch"
+    momentjs: "Intl and Temporal"
+    custom_dialogs: "Dialog API"
+    custom_popovers: "Popover API"
+    media_queries: "Container Queries"
+    page_transitions: "View Transitions API"
+
+agents:
+
+  electra:
+    role: "Architecture"
+    enabled: true
+    weight: 1
+
+  guardian:
+    role: "Modern Web Standards"
+    enabled: true
+    weight: 1
+
+  ella:
+    role: "Accessibility and UX"
+    enabled: true
+    weight: 1
+
+  sentinel:
+    role: "Security"
+    enabled: true
+    weight: 1
+
+  velocity:
+    role: "Performance"
+    enabled: true
+    weight: 1
+
+voting:
+
+  enabled: true
+
+  user:
+    weight: 4
+
+  approval:
+    minimum_votes: 2
+    required_score: 60
+
+  timeout_minutes: 2
+
+pull_requests:
+
+  enabled: true
+
+  auto_create: true
+
+  labels:
+    - modernization
+    - accessibility
+    - security
+    - performance
+
+  summary:
+    include_findings: true
+    include_fixes: true
+    include_scores: true
+
+automation:
+
+  create_branch: true
+  apply_fixes: true
+  run_tests: true
+
+  commit:
+    enabled: true
+    message: "Guardian: automated modernization improvements"
+
+  push:
+    enabled: true
+
+  auto_merge:
+    enabled: true
+    require_votes: true
+
+github:
+
+  actions:
+
+    audit:
+      enabled: true
+
+    review:
+      enabled: true
+
+    modernization:
+      enabled: true
+
+scores:
+
+  weights:
+    architecture: 20
+    accessibility: 20
+    security: 20
+    performance: 20
+    standards: 20
+
+  passing_score: 80
+
+reporting:
+
+  dashboard: true
+  generate_html: true
+  generate_markdown: true
+
+  publish:
+    github_pages: true
+
+notifications:
+
+  github_pr_comment: true
+  github_summary: true
+
+safety:
+
+  production:
+    auto_merge: false
+    require_user_override: true
+
+  protected_branches:
+    - main
+    - production
+
+audit:
+
+  retain_reports_days: 90
+
+  exports:
+    - json
+    - markdown
+    - html
+    - csv
