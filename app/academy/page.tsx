@@ -5,21 +5,27 @@ import { certificationMissions } from "../../lib/certification-quests";
 
 export const metadata: Metadata = {
   title: "A+ Network+ Security+ Practice | Nicholai",
-  description: "Original CompTIA-aligned foundation lessons and knowledge checks.",
+  description:
+    "Play six A+, Network+, and Security+ practice games with troubleshooting scenarios and answer review.",
 };
 
 export default function Page() {
   return (
     <div className="container page">
-      <h1 className="eyebrow" style={{ fontFamily: "inherit", fontSize: "0.68rem" }}>
+      <h1
+        className="eyebrow"
+        style={{ fontFamily: "inherit", fontSize: "0.68rem" }}
+      >
         NEXUS CERTIFICATION ACADEMY
       </h1>
-      <RoleQuest missions={certificationMissions} storageId="nicholai-cert-quests-v1" />
+      <RoleQuest
+        missions={certificationMissions}
+        storageId="nicholai-cert-quests-v2"
+      />
       <p>
-        Start with quick lessons for A+, Network+, and Security+. Answer scenario-based
-        questions, read explanations, and replay to improve your score. These are
-        original, unofficial practice questions—not CompTIA exam content or a
-        certification guarantee.
+        These original, unofficial practice questions cover selected
+        certification topics. Use the official CompTIA objectives to plan your
+        full exam preparation.
       </p>
       <p>
         <Link href="/agent">Public Agent Nexus</Link> ·{" "}
@@ -29,9 +35,14 @@ export default function Page() {
         See current exam versions, objectives, and policies on the official
         CompTIA pages for{" "}
         <a href="https://www.comptia.org/en-us/certifications/a/">A+</a>,{" "}
-        <a href="https://www.comptia.org/en-us/certifications/network/">Network+</a>,
-        and{" "}
-        <a href="https://www.comptia.org/en-us/certifications/security/">Security+</a>.
+        <a href="https://www.comptia.org/en-us/certifications/network/">
+          Network+
+        </a>
+        , and{" "}
+        <a href="https://www.comptia.org/en-us/certifications/security/">
+          Security+
+        </a>
+        .
       </p>
     </div>
   );
