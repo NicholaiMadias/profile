@@ -2,6 +2,7 @@ import { SiteAnalytics } from "../components/SiteAnalytics";
 import type { Metadata } from 'next';
 import './globals.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ProgressProvider } from '../components/ProgressProvider';
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <ProgressProvider>
           <header className="site-header">
             <div className="header-inner">
-              <Link className="nav-brand" href="/">Home</Link>
+              <Link className="nav-brand" href="/" aria-label="Nicholai.Online home">
+                <Image src="/nicholai-online-logo.webp" alt="" width={560} height={76} loading="eager" unoptimized />
+              </Link>
               <nav className="nav-links" aria-label="Main navigation">
 
                 <a href="https://amazinggracehl.org">Amazing Grace</a>
