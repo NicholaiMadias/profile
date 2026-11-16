@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Nicholai Madias | Software Engineer",
-  description: "Software engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience.",
+  title: "Nicholai Madias | Senior Platform Engineer",
+  description: "Senior Platform Engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience.",
 };
 
 // Employment, qualifications, and summary follow the owner-provided résumé.
@@ -138,7 +138,7 @@ export function ProfilePage() {
   return (
     <div className="container page narrow professional-profile">
       <h1>Nicholai Maro Madias</h1>
-      <p className="lede">Software Engineer</p>
+      <p className="lede">Senior Platform Engineer</p>
       <p>Palm Harbor, FL 34683 · <a href="tel:+17276213516">(727) 621-3516</a> · <a href="mailto:nicholaimadias@gmail.com">nicholaimadias@gmail.com</a></p>
       <div className="actions">
         <a href="https://www.linkedin.com/in/nicholaimadias/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
@@ -147,7 +147,7 @@ export function ProfilePage() {
 
       <section className="section" aria-labelledby="summary-title">
         <h2 id="summary-title">Professional summary</h2>
-        <p>Software Engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience. Developed backend applications, workflow automation, API integrations, and cloud-hosted services for enterprise environments supporting more than 350,000 users.</p>
+        <p>Senior Platform Engineer with 15+ years of enterprise technology experience and 5+ years of software development, automation, cloud platform, and systems integration experience. Developed backend applications, workflow automation, API integrations, and cloud-hosted services for enterprise environments supporting more than 350,000 users.</p>
         <p>Experienced with Java, Python, Kotlin, Go, Linux, Google Cloud Platform, App Engine, Docker, Kubernetes, REST APIs, Salesforce, SQL, and enterprise identity platforms.</p>
       </section>
 
