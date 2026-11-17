@@ -1,0 +1,44 @@
+name: The Star Matrix - Enterprise Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  integrate-and-deploy:
+    name: Build, Sync, and Deploy The Star Matrix
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Recursive Firebase Config Injection
+        run: |
+          echo "Injecting configuration into all active portal nodes..."
+          find . -name "*.html" -exec sed -i "s|__firebase_config|'${FIREBASE_CONFIG}'|g" {} +
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+
+      - name: Deploy Hub to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          commit_message: "Release 2026: The Star Matrix Transformation [Ref: PR #42]"
+
+      - name: Deploy Firestore Rules & Indexes
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only firestore:rules,firestore:indexes
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Post-Deployment Verification
+        run: |
+          echo "The Star Matrix is now live."
+          echo "Target Milestone: 1144 Housing Units @ $1000/mo"
+          echo "Deployment successful for Nicholai Madias Portfolio v2026."

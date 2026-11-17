@@ -1,9 +1,4 @@
-# Secrets – never commit
-backend/service_account.json
-.env
-.env.local
-.next/
-node_modules/
-replace-imports.cjs
-replace-imports.js
-tsconfig.tsbuildinfo
+# Large binary assets (managed via LFS or external storage)
+Amazing Grace/tor-browser-windows-x86_64-portable-15.0.20.exe
+Amazing Grace/OpenHuman_0.57.5_x64-setup.exe
+

@@ -277,7 +277,7 @@ export function selectCertQuestions(
   limit: number = 5,
   random: () => number = Math.random
 ): CertQuestion[] {
-  let pool = category === 'all'
+  const pool = category === 'all'
     ? [...certQuestions]
     : certQuestions.filter(q => q.category === category);
 

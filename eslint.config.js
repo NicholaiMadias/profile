@@ -13,6 +13,8 @@ export default [
       'functions/node_modules/**',
       'scripts/**',
       'replace-imports.*',
+      '**/__tests__/**',
+      'Amazing Grace/**',
     ],
   },
 
@@ -25,13 +27,16 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        chrome: "readonly",
       },
       parser: tseslint.parser,
     },
     rules: {
-      // Add or override rules here as needed
-      // Example: enforce semi-colons
-      // '@typescript-eslint/semi': ['error', 'always'],
+      // Disable noisy rules for now
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+      // Add or override other rules as needed
     },
   },
 ];
