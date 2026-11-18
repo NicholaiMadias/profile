@@ -96,7 +96,7 @@ const HexGrid = React.memo(function HexGrid({ segments, onSelect }) {
       })}
     </div>
   );
-}
+});
 
 /* -----------------------------
    Calibration Minigame
