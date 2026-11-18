@@ -1,4 +1,4 @@
-export const GAME_IDS = ["bible-quiz", "quick-click"] as const;
+export const GAME_IDS = ["bible-quiz", "quick-click", "cert-quiz"] as const;
 export type GameId = (typeof GAME_IDS)[number];
 export type Progress = {
   version: 1;
@@ -8,7 +8,7 @@ export type Progress = {
 export const PROGRESS_KEY = "voj-practice-v1";
 export const emptyProgress = (): Progress => ({
   version: 1,
-  best: { "bible-quiz": 0, "quick-click": 0 },
+  best: { "bible-quiz": 0, "quick-click": 0, "cert-quiz": 0 },
   recentAttempts: [],
 });
 
@@ -25,6 +25,7 @@ export function parseProgress(raw: string | null): Progress {
       return emptyProgress();
     const result = emptyProgress();
     for (const id of GAME_IDS) {
+      if (id === "cert-quiz" && !Object.hasOwn(value.best, id)) continue;
       const score = value.best[id];
       if (!Number.isInteger(score) || score < 0 || score > 100)
         return emptyProgress();

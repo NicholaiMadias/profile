@@ -26,7 +26,7 @@ export function BibleQuiz() {
     setCorrect(0);
     setAnswer(null);
     setDone(false);
-    setRound(shuffled);
+    setRound(shuffled.slice(0, 10));
     requestAnimationFrame(() => heading.current?.focus());
   };
   const choose = (choice: number) => {
@@ -38,7 +38,7 @@ export function BibleQuiz() {
   const next = () => {
     if (answer === null) return;
     if (index === round.length - 1) {
-      complete("bible-quiz", correct, attemptId.current);
+      complete("bible-quiz", Math.round((correct / round.length) * 10), attemptId.current);
       setDone(true);
     } else {
       setIndex((n) => n + 1);
@@ -73,7 +73,7 @@ export function BibleQuiz() {
             <small> / {round.length} correct</small>
           </div>
           <p>
-            You scored {correct * 10}/100. Your best quiz result contributes to
+            You scored {Math.round((correct / round.length) * 100)}/100. Your best quiz result contributes to
             your practice XP.
           </p>
           <div className="actions">

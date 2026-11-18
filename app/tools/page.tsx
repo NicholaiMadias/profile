@@ -37,7 +37,6 @@ export default function ToolsPage() {
           <Link href="/agent">Agent Nexus</Link>
           <Link href="/academy">Certification Academy</Link>
           <a href="#nexus-assistant">Nexus Assist 1.0</a>
-          <Link href="/tools/enterprise-endpoint">Endpoint Automation Toolkit</Link>
           <a href="/tools/nexus-os.html">Nexus OS Preview</a>
           <a href="#review-studio">Review Studio</a>
           <a href="#install">Install</a>
