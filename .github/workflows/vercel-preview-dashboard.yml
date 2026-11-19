@@ -57,14 +57,14 @@ jobs:
       - name: Setup Node.js Runtime
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps
 
       - name: Run Playwright Tests Against Vercel Staging
         env:
