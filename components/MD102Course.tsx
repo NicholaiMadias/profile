@@ -120,7 +120,7 @@ export default function MD102Course() {
   async function recordResult() {
     if (choice === null || !checked) return;
     const next = mergeMd102Progress(current.current, {
-      version: 1, completed: [lesson.id], best: { [lesson.id]: correct ? 1 : 0 }
+      version: 1, completed: correct ? [lesson.id] : [], best: { [lesson.id]: correct ? 1 : 0 }
     });
     await save(next);
   }
