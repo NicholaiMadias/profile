@@ -18,7 +18,8 @@ export default function Page() {
       >
         NEXUS CERTIFICATION ACADEMY
       </h1>
-      <p><Link href="/academy/md-102"><strong>NEW: Microsoft MD-102 Endpoint Administrator</strong> — free lessons, knowledge checks, and optional account progress saving →</Link></p>\n      <RoleQuest
+      <p><Link href="/academy/md-102"><strong>NEW: Microsoft MD-102 Endpoint Administrator</strong> — free lessons, knowledge checks, and optional account progress saving →</Link></p>
+      <RoleQuest
         missions={certificationMissions}
         storageId="nicholai-cert-quests-v2"
       />
