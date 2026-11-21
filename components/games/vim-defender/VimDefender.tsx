@@ -206,7 +206,7 @@ export function VimDefender() {
   const startQuiz = () => {
     setGameState('quiz');
     const q = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-    quizLocked.current = false;
+    quizLocked.current = true;
     const shuffledOptions = [...q.options];
     for (let i = shuffledOptions.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -214,6 +214,10 @@ export function VimDefender() {
     }
     setCurrentQuiz({ ...q, options: shuffledOptions });
   };
+
+  useEffect(() => {
+    if (gameState === 'quiz' && currentQuiz) quizLocked.current = false;
+  }, [gameState, currentQuiz]);
 
   const handleQuizAnswer = (answer: string) => {
     if (!currentQuiz || quizLocked.current) return;
@@ -228,7 +232,7 @@ export function VimDefender() {
     comboRef.current = next.combo;
     setCombo(next.combo);
     setDrones(next.drones);
-    setScore(next.score);
+    setScore(previous => previous + next.score - score);
     if (next.continueQuiz) {
       startQuiz();
     } else {
