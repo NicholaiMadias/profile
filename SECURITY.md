@@ -1,25 +1,15 @@
-# Security Policy
+# Security policy
 
-## Supported Versions
+## Supported source
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+The actively maintained `main` branch of the Nicholai.online portfolio is the supported development line. Historical snapshots, forks, and experimental demos are not promised ongoing security support.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 1.0.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+## Report a vulnerability
 
-## Reporting a Vulnerability
+Please use GitHub's **Security → Report a vulnerability** feature when available, or contact the project maintainer privately through the contact information on [nicholai.online](https://nicholai.online). Do not post passwords, tokens, private keys, or exploit details in public issues or pull requests.
 
-If you discover a security issue, please email **info@amazinggracehl.org**. We aim to acknowledge receipt within 48 hours and provide a full response within 72 hours.
+When reporting, include the affected route/file, reproduction steps using synthetic data, expected behavior, actual behavior, and any known impact. No guaranteed response time or bounty is offered.
 
+## Boundaries
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+This repository includes browser games, local-first prototypes, and engineering demos. Do not supply real enterprise tenant tokens, live device inventories, or private customer data to demonstrations. Authentication and server-issued permissions must be verified by a trusted backend before production use.
