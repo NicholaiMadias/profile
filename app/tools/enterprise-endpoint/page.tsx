@@ -46,6 +46,13 @@ export default function EnterpriseEndpointPage() {
           ))}
         </div>
       </section>
+      <section className="tools-section" aria-labelledby="intune-training-title">
+        <p className="eyebrow">LEARNING / MICROSOFT INTUNE</p>
+        <h2 id="intune-training-title">Endpoint administration training</h2>
+        <p>Pair the toolkit's reporting, Microsoft Graph and monitoring examples with an intermediate Microsoft Learn pathway covering Intune report exports, scoped administration, and tenant readiness.</p>
+        <a className="text-link" href="https://www.amazinggracehl.org/lms/microsoft-intune/" target="_blank" rel="noopener noreferrer">Study the Intune pathway on Amazing Grace LMS ↗</a>
+        <p className="tools-fineprint">Practice in an authorized test tenant. The linked quiz and checklist are not Microsoft credentials.</p>
+      </section>
       <section className="tools-section">
         <h2>Validation and safety</h2>
         <p>These are portfolio reference implementations, not certified production integrations. Test against synthetic data and authorized environments before use. Never commit tokens, tenant secrets, device identifiers, or exported user data.</p>
