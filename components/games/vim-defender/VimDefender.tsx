@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { resolveShots, quizResult } from '../../../lib/games/vim-defender.mjs';
 
 export function VimDefender() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -30,9 +31,15 @@ export function VimDefender() {
   
   const [currentQuiz, setCurrentQuiz] = useState<any>(null);
   const [combo, setCombo] = useState(0);
+  const comboRef = useRef(0);
+  const quizLocked = useRef(false);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (gameState !== 'playing' || paused) return;
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (e.target as HTMLElement | null)?.isContentEditable) return;
       engineRef.current.keys[e.key] = true;
       // Prevent default scrolling for space and arrows
       if ([' ', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
@@ -60,10 +67,16 @@ export function VimDefender() {
       window.removeEventListener('keyup', handleKeyUp);
       if (engineRef.current.animationId) cancelAnimationFrame(engineRef.current.animationId);
     };
-  }, [gameState]);
+  }, [gameState, paused]);
 
   const startGame = () => {
     engineRef.current.player.x = 420;
+    engineRef.current.keys = {};
+    engineRef.current.droneFireTimer = 0;
+    comboRef.current = 0;
+    quizLocked.current = false;
+    setCombo(0);
+    setPaused(false);
     engineRef.current.bullets = [];
     setScore(0);
     setDrones(0);
@@ -90,7 +103,7 @@ export function VimDefender() {
   };
 
   useEffect(() => {
-    if (gameState === 'playing' && canvasRef.current) {
+    if (gameState === 'playing' && !paused && canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
@@ -106,7 +119,7 @@ export function VimDefender() {
     return () => {
       if (engineRef.current.animationId) cancelAnimationFrame(engineRef.current.animationId);
     };
-  }, [gameState]);
+  }, [gameState, paused]);
 
   const update = () => {
     const engine = engineRef.current;
@@ -138,26 +151,11 @@ export function VimDefender() {
     engine.bullets.forEach((b: any) => { b.y -= b.speed; });
     engine.bullets = engine.bullets.filter((b: any) => b.y > 0);
 
-    // Collision detection
-    let scored = 0;
-    engine.bullets.forEach((bullet: any, bi: number) => {
-      engine.enemies.forEach((enemy: any, ei: number) => {
-        if (
-          bullet.x < enemy.x + enemy.width &&
-          bullet.x + bullet.width > enemy.x &&
-          bullet.y < enemy.y + enemy.height &&
-          bullet.y + bullet.height > enemy.y
-        ) {
-          engine.enemies.splice(ei, 1);
-          engine.bullets.splice(bi, 1);
-          scored += 10;
-        }
-      });
-    });
-
-    if (scored > 0) {
-      setScore(s => s + scored);
-    }
+    // Resolve collisions without mutating arrays during forward iteration.
+    const collisions = resolveShots(engine.bullets, engine.enemies);
+    engine.bullets = collisions.bullets;
+    engine.enemies = collisions.enemies;
+    if (collisions.score) setScore(previous => previous + collisions.score);
 
     if (engine.enemies.length === 0) {
        cancelAnimationFrame(engine.animationId);
@@ -197,28 +195,38 @@ export function VimDefender() {
   const startQuiz = () => {
     setGameState('quiz');
     const q = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-    const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+    quizLocked.current = false;
+    const shuffledOptions = [...q.options];
+    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+    }
     setCurrentQuiz({ ...q, options: shuffledOptions });
   };
 
   const handleQuizAnswer = (answer: string) => {
-      if (answer === currentQuiz.a) {
-          const newCombo = combo + 1;
-          setCombo(newCombo);
-          setDrones(d => d + 1);
-          setScore(s => s + 50 * newCombo);
-          // Ask next question immediately if correct
-          const q = quizQuestions[Math.floor(Math.random() * quizQuestions.length)];
-          const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-          setCurrentQuiz({ ...q, options: shuffledOptions });
-      } else {
-          // Wrong answer ends combo and starts next wave
-          setCombo(0);
-          setWave(w => w + 1);
-          spawnWave(wave + 1);
-          setGameState('playing');
-      }
+    if (!currentQuiz || quizLocked.current) return;
+    quizLocked.current = true;
+    const next = quizResult({
+      correct: answer === currentQuiz.a,
+      combo: comboRef.current,
+      drones,
+      score,
+      wave
+    });
+    comboRef.current = next.combo;
+    setCombo(next.combo);
+    setDrones(next.drones);
+    setScore(next.score);
+    if (next.continueQuiz) {
+      startQuiz();
+    } else {
+      setWave(next.wave === wave ? wave + 1 : next.wave);
+      spawnWave(next.wave === wave ? wave + 1 : next.wave);
+      setGameState('playing');
+    }
   };
+
 
   return (
     <div style={{ background: '#000', minHeight: '100vh', color: '#00ff66', fontFamily: 'monospace', padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -265,12 +273,17 @@ export function VimDefender() {
       )}
 
       {gameState === 'playing' && (
+          <div style={{ width: '100%', maxWidth: '900px' }}>
+          <button type="button" onClick={() => { engineRef.current.keys = {}; setPaused(value => !value); }} aria-pressed={paused} style={{ padding: '8px 18px', marginBottom: '10px' }}>{paused ? 'Resume game' : 'Pause game'}</button>
+          {paused && <p role="status">Paused. Resume to continue.</p>}
           <canvas 
             ref={canvasRef} 
             width={900} 
             height={500} 
-            style={{ border: '1px solid #00ccff', background: '#050610', display: 'block' }}
+            aria-label="Vim Defender gameplay: press H or Left Arrow to move left, L or Right Arrow to move right, Space to fire"
+            style={{ border: '1px solid #00ccff', background: '#050610', display: 'block', width: '100%', height: 'auto' }}
           />
+          </div>
       )}
 
       {gameState === 'quiz' && currentQuiz && (
