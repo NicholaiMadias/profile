@@ -1,0 +1,24 @@
+.root { margin: 1.5rem 0 2.5rem; }
+.toolbar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:1rem; padding:1rem; border:1px solid #52665a; border-radius:12px; background:#17251e; }
+.toolbar p, .account { font-size:.88rem; color:#d6dcd7; }
+.toolbar button, .actions button { padding:.6rem .9rem; border:1px solid #98d8ad; border-radius:8px; background:#1e3929; color:#f6fff8; cursor:pointer; }
+.toolbar button:focus-visible, .actions button:focus-visible, .modules button:focus-visible { outline:3px solid #96d8ae; outline-offset:3px; }
+.progress { width:100%; margin:1rem 0; accent-color:#91d7a4; }
+.layout { display:grid; grid-template-columns:minmax(220px, 300px) minmax(0,1fr); gap:1rem; align-items:start; }
+.modules { display:grid; gap:.6rem; }
+.modules button { display:grid; text-align:left; gap:.35rem; border:1px solid #476456; border-radius:10px; padding:1rem; color:#f4fbf5; background:#16231b; cursor:pointer; }
+.modules button[aria-current="step"] { border-color:#a5e5b5; background:#21392b; }
+.modules span, .modules small { color:#c5d4c9; }
+.lesson { min-width:0; border:1px solid #476456; border-radius:12px; padding:clamp(1rem,3vw,1.8rem); background:#14201a; }
+.lesson h2, .lesson h3 { margin-top:.8rem; }
+.lesson li { margin-bottom:.5rem; }
+.reading { margin:1.4rem 0; padding:.8rem 1rem; background:#1e3025; border-radius:8px; }
+.reading a { color:#b0f8cb; text-decoration:underline; }
+.choices { display:grid; gap:.6rem; border:0; padding:0; margin:1rem 0; }
+.choices label { display:flex; gap:.6rem; padding:.7rem; min-height:44px; border:1px solid #4c6e59; border-radius:8px; background:#213329; cursor:pointer; }
+.feedback { border-left:4px solid #9bdab4; padding:.8rem; background:#1c3526; }
+.actions { display:flex; gap:.5rem; flex-wrap:wrap; }
+.actions button:disabled { opacity:.5; cursor:not-allowed; }
+.disclaimer { font-size:.8rem; color:#c3cdc6; margin-top:1.5rem; }
+.srOnly { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+@media(max-width:700px){ .layout{grid-template-columns:1fr;} }
