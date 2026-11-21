@@ -45,14 +45,12 @@ export function VimDefender() {
       if ([' ', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
         e.preventDefault();
       }
-      if (gameState === 'playing') {
-        if (e.key === ' ' || e.key === 'Enter') {
+      if (e.key === ' ' || e.key === 'Enter') {
           engineRef.current.bullets.push({
             x: engineRef.current.player.x + 18,
             y: engineRef.current.player.y,
             width: 4, height: 10, color: '#00ccff', speed: 8
           });
-        }
       }
     };
     
@@ -67,7 +65,20 @@ export function VimDefender() {
       window.removeEventListener('keyup', handleKeyUp);
       if (engineRef.current.animationId) cancelAnimationFrame(engineRef.current.animationId);
     };
+    // Prevent stuck movement after the browser loses focus.
   }, [gameState, paused]);
+
+  useEffect(() => {
+    if (gameState !== 'playing') return;
+    const onBlur = () => { engineRef.current.keys = {}; setPaused(true); };
+    const onVisibility = () => { if (document.hidden) onBlur(); };
+    window.addEventListener('blur', onBlur);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      window.removeEventListener('blur', onBlur);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [gameState]);
 
   const startGame = () => {
     engineRef.current.player.x = 420;
@@ -276,6 +287,24 @@ export function VimDefender() {
           <div style={{ width: '100%', maxWidth: '900px' }}>
           <button type="button" onClick={() => { engineRef.current.keys = {}; setPaused(value => !value); }} aria-pressed={paused} style={{ padding: '8px 18px', marginBottom: '10px' }}>{paused ? 'Resume game' : 'Pause game'}</button>
           {paused && <p role="status">Paused. Resume to continue.</p>}
+          <div aria-label="Touch and pointer controls" style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+            <button type="button" aria-label="Move left" disabled={paused}
+              onPointerDown={() => { engineRef.current.keys.ArrowLeft = true; }}
+              onPointerUp={() => { engineRef.current.keys.ArrowLeft = false; }}
+              onPointerCancel={() => { engineRef.current.keys.ArrowLeft = false; }}
+              onPointerLeave={() => { engineRef.current.keys.ArrowLeft = false; }}>← Move</button>
+            <button type="button" aria-label="Fire" disabled={paused}
+              onClick={() => engineRef.current.bullets.push({
+                x: engineRef.current.player.x + 18, y: engineRef.current.player.y,
+                width: 4, height: 10, color: '#00ccff', speed: 8
+              })}>Fire</button>
+            <button type="button" aria-label="Move right" disabled={paused}
+              onPointerDown={() => { engineRef.current.keys.ArrowRight = true; }}
+              onPointerUp={() => { engineRef.current.keys.ArrowRight = false; }}
+              onPointerCancel={() => { engineRef.current.keys.ArrowRight = false; }}
+              onPointerLeave={() => { engineRef.current.keys.ArrowRight = false; }}>Move →</button>
+            <button type="button" onClick={() => { engineRef.current.keys = {}; setGameState('menu'); }}>End run</button>
+          </div>
           <canvas 
             ref={canvasRef} 
             width={900} 
