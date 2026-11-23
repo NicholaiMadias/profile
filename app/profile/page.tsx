@@ -23,7 +23,7 @@ const experience = [
     summary: "Supported enterprise endpoint and mobility operations, including workstation and mobile-device provisioning. Administered Microsoft Intune, Workspace ONE UEM, Entra ID, Active Directory, and BeyondTrust; troubleshot networking, authentication, cloud services, and enterprise applications.",
   },
   {
-    company: "IAGG Investments",
+    company: "Amazing Grace Home Living",
     role: "Software Developer · Freelance",
     dates: "Nov 2023 – Jan 2025",
     summary: "Developed applications, reporting tools, and business workflows with Python, JavaScript, SQL, and REST APIs. Connected cloud platforms, databases, and business applications, using Git for source control and release management.",
