@@ -5,7 +5,7 @@ const title = 'Protecting Patient Data Before LLM API Calls: A Python PHI Redact
 const description = 'Build a practical Presidio + regex PHI tokenization proxy, with local-only re-identification, overlap handling, and HIPAA Safe Harbor limitations.';
 export const metadata: Metadata = { title, description };
 
-const quickExample = String.raw\`# Synthetic data only; detection is NOT proof of de-identification.
+const quickExample = String.raw`# Synthetic data only; detection is NOT proof of de-identification.
 from phi_proxy import LocalPHIProxy
 
 proxy = LocalPHIProxy()
@@ -17,7 +17,7 @@ result = proxy.scrub(
 safe_text = result.text
 # Re-identify ONLY inside the authorized environment:
 restored = proxy.rehydrate_locally(safe_text, result.vault)
-result.vault.clear()\`;
+result.vault.clear()`;
 
 export default function PHIRedactionArticle() {
   return (
