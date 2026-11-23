@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 // Employment chronology updated from owner-confirmed dates in November 2026.
-// Allied Universal's final departure month remains to be verified.
+// Allied Universal ended Jan 2019; subsequent Network Administrator employer is unverified.
 const experience = [
   {
     company: "Amazing Grace Home Living · Freelance",
@@ -41,16 +41,10 @@ const experience = [
     summary: "Supported identity and access operations and enterprise platform migrations in an environment serving 350,000 users. Worked with Google Workspace, GCP, Salesforce Vector, Python, SQL, and REST APIs; supported migration readiness, troubleshooting, user enablement, and technical runbooks.",
   },
   {
-    company: "Allied Universal · Tampa, FL",
-    role: "Network Administrator",
-    dates: "Jan 2019 – 2021",
-    summary: "Promoted from Security Professional to Network Administrator in January 2019. Supported network and Windows infrastructure, endpoint security, and enterprise troubleshooting. Contributed to Cisco Unified Communications Manager (CUCM) modernization and access-control improvements using Cisco ISE and Azure Active Directory.",
-  },
-  {
     company: "Allied Universal",
     role: "Security Professional",
-    dates: "Oct 2018 – Dec 2018",
-    summary: "Continued security operations following Allied Universal's October 26, 2018 acquisition of U.S. Security Associates.",
+    dates: "Oct 2018 – Jan 2019",
+    summary: "Continued as a Security Professional following Allied Universal's October 26, 2018 acquisition of U.S. Security Associates. Employment with Allied Universal ended in January 2019.",
   },
   {
     company: "U.S. Security Associates",
