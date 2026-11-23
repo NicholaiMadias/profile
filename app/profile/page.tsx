@@ -3,16 +3,16 @@ import Link from "next/link";
 import styles from "./profile.module.css";
 
 export const metadata: Metadata = {
-  title: "Nicholai Madias | Senior Platform Engineer",
+  title: "Nicholai Maro Madias | Senior Platform Engineer",
   description: "Nicholai Maro Madias is a Senior Platform Engineer focused on Microsoft Intune, Workspace ONE UEM, Entra ID, enterprise endpoint security, and PowerShell/Python automation.",
 };
 
-// Employment follows the owner-provided résumé, with HCLTech dates and
-// employer-specific scale confirmed against Indeed by the owner.
+// Employment dates, client labels, and credential claims require owner verification
+// against the master resume before final publication.
 const experience = [
   {
     company: "Amazing Grace Home Living",
-    role: "Senior Platform Engineer",
+    role: "Platform Engineer",
     dates: "Apr 2026 – Present",
     summary: "Build cloud applications, workflow automation, API integrations, reporting dashboards, and administrative tools. Support Windows and Linux environments with attention to access controls, governance, and maintainability.",
   },
@@ -20,7 +20,7 @@ const experience = [
     company: "HCLTech · Client: Verizon",
     role: "EDN Technical Support Engineer II",
     dates: "Jan 2025 – Apr 2026",
-    summary: "Supported endpoint and mobility operations in an environment serving 70,000 employees and users. Administered Microsoft Intune, Workspace ONE UEM, Entra ID, Active Directory, and BeyondTrust; troubleshot networking, authentication, cloud services, and enterprise applications.",
+    summary: "Supported enterprise endpoint and mobility operations. Administered Microsoft Intune, Workspace ONE UEM, Entra ID, Active Directory, and BeyondTrust; troubleshot networking, authentication, cloud services, and enterprise applications.",
   },
   {
     company: "IAGG Investments",
@@ -42,13 +42,13 @@ const experience = [
   },
   {
     company: "Allied Universal · Tampa, FL",
-    role: "Network & Security Administrator",
+    role: "Network Administrator",
     dates: "Sep 2016 – Feb 2021",
-    summary: "Administered Windows infrastructure, Active Directory, MECM/SCCM, software deployment, and endpoint security. Coordinated vulnerability remediation with Qualys, Rapid7, Tenable, and Tanium, supported by operational dashboards and compliance reporting.",
+    summary: "Supported network and Windows infrastructure, endpoint security, and enterprise troubleshooting. Contributed to Cisco Unified Communications Manager (CUCM) modernization and access-control improvements using Cisco ISE and Azure Active Directory.",
   },
   {
     company: "Nielsen Media Research · Oldsmar, FL",
-    role: "Network Administrator / EVS Encoder Support Specialist",
+    role: "EVS Encoder Support Specialist",
     dates: "Mar 2011 – Oct 2016",
     summary: "Supported Electronic Verification System infrastructure across Windows, Linux, UNIX, networking, servers, and endpoints. Performed upgrades, migrations, monitoring, and troubleshooting, working with engineering teams to resolve complex technical issues.",
   },
@@ -99,7 +99,7 @@ export function ProfilePage() {
       <div className={styles.strip}>
         <dl className={`${styles.wrap} ${styles.metrics}`}>
           <div><dt>Experience</dt><dd>15+ years in enterprise IT</dd></div>
-          <div><dt>HCLTech · Verizon</dt><dd>70,000-user environment</dd></div>
+          <div><dt>HCLTech · Verizon</dt><dd>Enterprise endpoint operations</dd></div>
           <div><dt>Infosys · Google</dt><dd>350,000-user environment</dd></div>
           <div><dt>Automation</dt><dd>PowerShell · Python · APIs</dd></div>
         </dl>
@@ -126,7 +126,7 @@ export function ProfilePage() {
 
       <section className={`${styles.wrap} ${styles.credentials}`} aria-label="Education, certifications, and projects">
         <div><p className={styles.eyebrow}>Education</p><h3>B.S. Business Studies · Computer Information Technology</h3><p>Southern New Hampshire University · 2014</p><h3>A.S. Computer Information Technology</h3><p>Everest University</p></div>
-        <div><p className={styles.eyebrow}>Certifications</p><ul><li>Microsoft Azure Solutions Architect Expert</li><li>Google Workspace Professional Administrator</li><li>CompTIA A+</li></ul></div>
+        <div><p className={styles.eyebrow}>Selected professional learning</p><ul><li>Artificial Intelligence Foundations: Machine Learning (LinkedIn Learning)</li><li>Cloud Computing Career Paths and Certifications: First Steps (LinkedIn Learning)</li><li>Learning SSL/TLS (LinkedIn Learning)</li></ul></div>
         <div><p className={styles.eyebrow}>Selected engineering work</p><p>Inspect read-only endpoint automation examples, testable privacy engineering prototypes, and written security guidance. Portfolio reference projects are not claims of production deployment or compliance certification.</p><div className={styles.projectLinks}><Link href="/tools/enterprise-endpoint">Endpoint automation toolkit ↗</Link><Link href="/blog/windows-11-intune-cis-powershell-hardening">Windows 11 hardening guide ↗</Link><Link href="/blog/phi-redaction-proxy">PHI redaction reference ↗</Link><Link href="/blog/enterprise-endpoint-toolkit">Toolkit architecture case study ↗</Link></div></div>
       </section>
 
