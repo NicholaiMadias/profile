@@ -55,7 +55,7 @@ export default function BlogPage() {
     <header className="blog-intro">
       <p className="eyebrow">NOTES FROM THE WORKBENCH</p>
       <h1>Nicholai’s Blog</h1>
-      <p>Technology, practical engineering, fiction lore, and tools that earn their place.</p>
+      <p>Endpoint engineering, identity, infrastructure security, automation, and the developer tools behind the work.</p>
       <nav aria-label="Blog navigation">
         <Link href="/">About Nicholai</Link>
         <Link href="#antigravity-dev-stack">Antigravity Dev Stack</Link>
@@ -84,6 +84,15 @@ export default function BlogPage() {
         <p className="blog-deck">An audit-first approach to security baselines, PowerShell validation, configuration drift, and safe rollback.</p>
       </header>
       <p><Link className="button-link" href="/blog/windows-11-intune-cis-powershell-hardening">Read the endpoint security guide &rarr;</Link></p>
+    </article>
+
+    <article className="blog-article blog-featured-card" aria-labelledby="endpoint-toolkit-article-title">
+      <header>
+        <p className="blog-meta">Engineering Case Study · PowerShell · Python</p>
+        <h2 id="endpoint-toolkit-article-title">Building a Reusable Enterprise Endpoint Automation Toolkit</h2>
+        <p className="blog-deck">Architecture, safe inventory collection, Microsoft Graph pagination, Workspace ONE examples, and testing boundaries.</p>
+      </header>
+      <p><Link className="button-link" href="/blog/enterprise-endpoint-toolkit">Explore the toolkit case study &rarr;</Link></p>
     </article>
 
     <article className="blog-article blog-featured-card" aria-labelledby="hybrid-endpoints-title">

@@ -4,7 +4,7 @@ import styles from "./profile.module.css";
 
 export const metadata: Metadata = {
   title: "Nicholai Madias | Senior Platform Engineer",
-  description: "Senior Platform Engineer with 15+ years in enterprise IT, endpoint platforms, identity, cloud operations, security, and automation. Based in Palm Harbor, Florida.",
+  description: "Nicholai Maro Madias is a Senior Platform Engineer focused on Microsoft Intune, Workspace ONE UEM, Entra ID, enterprise endpoint security, and PowerShell/Python automation.",
 };
 
 // Employment follows the owner-provided résumé, with HCLTech dates and
@@ -81,6 +81,7 @@ export function ProfilePage() {
           <div className={styles.actions}>
             <a className={styles.primary} href="#experience">Explore my work <span aria-hidden="true">↓</span></a>
             <a className={styles.secondary} href="https://github.com/NicholaiMadias" target="_blank" rel="noreferrer">GitHub profile <span aria-hidden="true">↗</span></a>
+            <Link className={styles.secondary} href="/tools/enterprise-endpoint">Endpoint toolkit <span aria-hidden="true">↗</span></Link>
           </div>
           <p className={styles.availability}><span aria-hidden="true" />Palm Harbor, Florida · Open to opportunities</p>
           <nav className={styles.sectionNav} aria-label="Profile sections">
@@ -126,7 +127,7 @@ export function ProfilePage() {
       <section className={`${styles.wrap} ${styles.credentials}`} aria-label="Education, certifications, and projects">
         <div><p className={styles.eyebrow}>Education</p><h3>B.S. Business Studies · Computer Information Technology</h3><p>Southern New Hampshire University · 2014</p><h3>A.S. Computer Information Technology</h3><p>Everest University</p></div>
         <div><p className={styles.eyebrow}>Certifications</p><ul><li>Microsoft Azure Solutions Architect Expert</li><li>Google Workspace Professional Administrator</li><li>CompTIA A+</li></ul></div>
-        <div><p className={styles.eyebrow}>Projects & tools</p><p>Explore the applications, automation, and learning tools I build.</p><div className={styles.projectLinks}><Link href="/tools">All tools ↗</Link><Link href="/nexus">Nexus Assistant ↗</Link><Link href="/arcade">Arcade ↗</Link><Link href="/toolbox">Amazing Grace Toolbox ↗</Link></div></div>
+        <div><p className={styles.eyebrow}>Selected engineering work</p><p>Inspect read-only endpoint automation examples, testable privacy engineering prototypes, and written security guidance. Portfolio reference projects are not claims of production deployment or compliance certification.</p><div className={styles.projectLinks}><Link href="/tools/enterprise-endpoint">Endpoint automation toolkit ↗</Link><Link href="/blog/windows-11-intune-cis-powershell-hardening">Windows 11 hardening guide ↗</Link><Link href="/blog/phi-redaction-proxy">PHI redaction reference ↗</Link><Link href="/blog/enterprise-endpoint-toolkit">Toolkit architecture case study ↗</Link></div></div>
       </section>
 
       <section className={styles.contact} id="contact" aria-labelledby="contact-heading">
