@@ -68,6 +68,15 @@ export default function BlogPage() {
     </header>
       <FeaturedArticles />
 
+    <article className="blog-article blog-featured-card" aria-labelledby="windows-hardening-title">
+      <header>
+        <p className="blog-meta"><time dateTime="2026-11-22">November 22, 2026</time> · Endpoint Security</p>
+        <h2 id="windows-hardening-title">From Manual Hardening to Automated Security: Windows 11, Intune, CIS &amp; PowerShell</h2>
+        <p className="blog-deck">An audit-first approach to security baselines, PowerShell validation, configuration drift, and safe rollback.</p>
+      </header>
+      <p><Link className="button-link" href="/blog/windows-11-intune-cis-powershell-hardening">Read the endpoint security guide &rarr;</Link></p>
+    </article>
+
     <article className="blog-article blog-featured-card" aria-labelledby="hybrid-endpoints-title">
       <header>
         <p className="blog-meta"><time dateTime="2026-11-11">November 11, 2026</time> · Endpoint Engineering</p>
