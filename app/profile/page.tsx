@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 // employer-specific scale confirmed against Indeed by the owner.
 const experience = [
   {
-    company: "Amazing Grace Home Living",
+    company: "Amazing Grace Home Living · Freelance",
     role: "Senior Platform Engineer",
     dates: "Apr 2026 – Present",
     summary: "Build cloud applications, workflow automation, API integrations, reporting dashboards, and administrative tools. Support Windows and Linux environments with attention to access controls, governance, and maintainability.",
@@ -25,7 +25,7 @@ const experience = [
   {
     company: "IAGG Investments",
     role: "Software Developer · Freelance",
-    dates: "Oct 2023 – Jan 2025",
+    dates: "Nov 2023 – Jan 2025",
     summary: "Developed applications, reporting tools, and business workflows with Python, JavaScript, SQL, and REST APIs. Connected cloud platforms, databases, and business applications, using Git for source control and release management.",
   },
   {
@@ -125,7 +125,7 @@ export function ProfilePage() {
       </section>
 
       <section className={`${styles.wrap} ${styles.credentials}`} aria-label="Education, certifications, and projects">
-        <div><p className={styles.eyebrow}>Education</p><h3>B.S. Business Studies · Computer Information Technology</h3><p>Southern New Hampshire University · 2014</p><h3>A.S. Computer Information Technology</h3><p>Everest University</p></div>
+        <div><p className={styles.eyebrow}>Education</p><h3>B.S. Business Studies · Computer Information Technology</h3><p>Southern New Hampshire University · 2014</p><h3>A.S. Computer Information Technology</h3><p>Everest University · 2008</p></div>
         <div><p className={styles.eyebrow}>Certifications</p><ul><li>Microsoft Azure Solutions Architect Expert</li><li>Google Workspace Professional Administrator</li><li>CompTIA A+</li></ul></div>
         <div><p className={styles.eyebrow}>Selected engineering work</p><p>Inspect read-only endpoint automation examples, testable privacy engineering prototypes, and written security guidance. Portfolio reference projects are not claims of production deployment or compliance certification.</p><div className={styles.projectLinks}><Link href="/tools/enterprise-endpoint">Endpoint automation toolkit ↗</Link><Link href="/blog/windows-11-intune-cis-powershell-hardening">Windows 11 hardening guide ↗</Link><Link href="/blog/phi-redaction-proxy">PHI redaction reference ↗</Link><Link href="/blog/enterprise-endpoint-toolkit">Toolkit architecture case study ↗</Link></div></div>
       </section>
