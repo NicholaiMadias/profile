@@ -7,7 +7,15 @@ import { ProgressProvider } from '../components/ProgressProvider';
 
 export const metadata: Metadata = {
   title: 'Nicholai Maro Madias | Senior Platform Engineer',
-  description: 'Enterprise endpoints, identity, automation, tools and educational game design.',
+  description: 'Senior Platform Engineer specializing in enterprise endpoint management, Microsoft Intune, Workspace ONE UEM, Entra ID, PowerShell automation, and secure infrastructure.',
+  metadataBase: new URL('https://nicholai.online'),
+  openGraph: {
+    type: 'website',
+    url: 'https://nicholai.online',
+    siteName: 'Nicholai.online',
+    title: 'Nicholai Maro Madias | Senior Platform Engineer',
+    description: 'Enterprise endpoint management, identity, security operations, and practical automation.',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
