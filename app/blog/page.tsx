@@ -68,6 +68,15 @@ export default function BlogPage() {
     </header>
       <FeaturedArticles />
 
+    <article className="blog-article blog-featured-card" aria-labelledby="phi-redaction-title">
+      <header>
+        <p className="blog-meta"><time dateTime="2026-11-23">November 23, 2026</time> · Healthcare Security · Python</p>
+        <h2 id="phi-redaction-title">Protecting Patient Data Before LLM API Calls: A Python PHI Redaction Proxy</h2>
+        <p className="blog-deck">Two-layer Presidio + regex detection, safe token replacement, and local-only restoration—with clear HIPAA limitations.</p>
+      </header>
+      <p><Link className="button-link" href="/blog/phi-redaction-proxy">Read the privacy engineering guide &rarr;</Link></p>
+    </article>
+
     <article className="blog-article blog-featured-card" aria-labelledby="windows-hardening-title">
       <header>
         <p className="blog-meta"><time dateTime="2026-11-22">November 22, 2026</time> · Endpoint Security</p>
