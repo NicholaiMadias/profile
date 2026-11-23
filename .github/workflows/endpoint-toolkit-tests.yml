@@ -4,12 +4,14 @@ on:
   push:
     paths:
       - "enterprise-endpoint-toolkit/**"
+      - "examples/phi-redaction-proxy/**"
       - ".github/workflows/endpoint-toolkit-tests.yml"
       - "app/**"
       - "package*.json"
   pull_request:
     paths:
       - "enterprise-endpoint-toolkit/**"
+      - "examples/phi-redaction-proxy/**"
       - ".github/workflows/endpoint-toolkit-tests.yml"
 
 permissions:
@@ -29,6 +31,8 @@ jobs:
         env:
           PYTHONPATH: enterprise-endpoint-toolkit/python
         run: python -m unittest discover -s enterprise-endpoint-toolkit/python/tests -v
+      - name: Run PHI redaction proxy synthetic tests
+        run: python -m unittest discover -s examples/phi-redaction-proxy -p 'test_*.py' -v
 
   powershell:
     runs-on: windows-latest
