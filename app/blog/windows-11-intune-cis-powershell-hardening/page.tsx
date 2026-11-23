@@ -5,7 +5,7 @@ const title = 'From Manual Hardening to Automated Security: Windows 11, Intune, 
 const description = 'A practical, audit-first approach to Windows 11 endpoint hardening with Microsoft Intune, CIS Benchmarks, NIST RMF, PowerShell validation, drift detection and rollback.';
 export const metadata: Metadata = { title, description };
 
-const sections = [
+const sections: [string, string[]][] = [
   [
     "Why traditional hardening stops scaling",
     [
