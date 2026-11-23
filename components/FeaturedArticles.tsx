@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, limit, where } from 'firebase/firestore';
 import type { QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
@@ -30,7 +30,7 @@ export const FeaturedArticles = () => {
       }
       try {
         // Grab the 3 most recent posts from Firestore collection "posts"
-        const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(3));
+        const q = query(collection(db, 'posts'), where('published', '==', true), orderBy('createdAt', 'desc'), limit(3));
         const snapshot = await getDocs(q);
         const fetched: Article[] = snapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => {
           const data = doc.data();

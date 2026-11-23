@@ -1,9 +1,36 @@
-# Secrets – never commit
-backend/service_account.json
+# Local credentials and provider tokens (including subprojects)
 .env
-.env.local
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+**/service_account.json
+**/*service-account*.json
+**/*credentials*.json
+*.pem
+*.p12
+*.pfx
+*.key
+
+# Generated builds, test artifacts, and local state
 .next/
+out/
+dist/
 node_modules/
+**/node_modules/
+.venv/
+**/__pycache__/
+*.pyc
+*.log
+.firebase/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+*.sqlite
+*.sqlite3
+lms_arcade.db
+tsconfig.tsbuildinfo
 replace-imports.cjs
 replace-imports.js
-tsconfig.tsbuildinfo
