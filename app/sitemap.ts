@@ -1,5 +1,8 @@
 import type { MetadataRoute } from 'next';
 
+// Required for Next.js static HTML export.
+export const dynamic = 'force-static';
+
 const baseUrl = 'https://nicholai.online';
 
 const publicRoutes = [
