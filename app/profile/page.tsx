@@ -7,68 +7,48 @@ export const metadata: Metadata = {
   description: "Nicholai Maro Madias is a Senior Platform Engineer focused on Microsoft Intune, Workspace ONE UEM, Entra ID, enterprise endpoint security, and PowerShell/Python automation.",
 };
 
-// Employment chronology updated from owner-confirmed dates in November 2026.
-// Allied Universal ended Jan 2019; subsequent Network Administrator employer is unverified.
 const experience = [
   {
-    company: "Amazing Grace Home Living · Freelance",
-    role: "Senior Platform Engineer",
+    company: "Amazing Grace Home Living",
+    role: "Registered Agent and System Administrator",
     dates: "Apr 2026 – Present",
-    summary: "Build cloud applications, workflow automation, API integrations, reporting dashboards, and administrative tools. Support Windows and Linux environments with attention to access controls, governance, and maintainability.",
+    summary: "Administer Active Directory, Windows Server, Group Policy, Google Workspace, Firebase, and Google Cloud. Lead RMF hardening and build Copilot workflows and administrative tools with PowerShell, Python, JavaScript, and REST APIs.",
   },
   {
     company: "HCLTech · Client: Verizon",
     role: "EDN Technical Support Engineer II",
     dates: "Jan 2025 – Apr 2026",
-    summary: "Supported enterprise endpoint and mobility operations, including workstation and mobile-device provisioning. Administered Microsoft Intune, Workspace ONE UEM, Entra ID, Active Directory, and BeyondTrust; troubleshot networking, authentication, cloud services, and enterprise applications.",
+    summary: "Supported endpoint and identity platforms across 70,000+ users and devices with Intune, Workspace ONE UEM, and Entra ID. Integrated Copilot APIs into remote support workflows to automate diagnostics.",
   },
   {
     company: "Amazing Grace Home Living",
-    role: "Software Developer · Freelance",
-    dates: "Nov 2023 – Jan 2025",
-    summary: "Developed applications, reporting tools, and business workflows with Python, JavaScript, SQL, and REST APIs. Connected cloud platforms, databases, and business applications, using Git for source control and release management.",
+    role: "Registered Agent and System Administrator",
+    dates: "Aug 2023 – Jan 2025",
+    summary: "Started part-time in August 2023 and moved to full-time work in October. Managed Windows Server and Google Workspace and automated recurring administration with PowerShell and Python.",
   },
   {
-    company: "Tandym Group",
-    role: "Technical Support Engineer II",
+    company: "Tandym Group LLC · Client: Pansophic Learning",
+    role: "Technical Support Engineer",
     dates: "Aug 2022 – Oct 2023",
-    summary: "Supported Intune, Active Directory, Entra ID, Google Workspace, Windows Autopilot, and Apple Business Manager. Automated provisioning and deployment with PowerShell, supporting device compliance, patching, MFA, and Conditional Access.",
+    summary: "Managed zero-touch provisioning with Windows Autopilot and Apple Business Manager. Automated repetitive tasks with PowerShell, reducing downtime by 42% and increasing productivity by 15%.",
   },
   {
-    company: "Infosys · Client: Google",
-    role: "Technical Support Engineer II",
-    dates: "Feb 2021 – Apr 2022",
-    summary: "Supported identity and access operations and enterprise platform migrations in an environment serving 350,000 users. Worked with Google Workspace, GCP, Salesforce Vector, Python, SQL, and REST APIs; supported migration readiness, troubleshooting, user enablement, and technical runbooks.",
+    company: "Infosys Limited · Client: Google",
+    role: "Technology Analyst",
+    dates: "Feb 2021 – Jun 2022",
+    summary: "Supported Google Workspace identity and access for over 350,000 users. Migrated more than 400,000 accounts from Microsoft 365 to Google Workspace and built a training portal that helped reduce the engineering backlog by 85%.",
   },
   {
     company: "Allied Universal",
-    role: "Security Professional",
-    dates: "Oct 2018 – Jan 2019",
-    summary: "Continued as a Security Professional following Allied Universal's October 26, 2018 acquisition of U.S. Security Associates. Employment with Allied Universal ended in January 2019.",
-  },
-  {
-    company: "U.S. Security Associates",
-    role: "Security Professional",
-    dates: "Mar 2016 – Oct 2018",
-    summary: "Continued security services following U.S. Security Associates' March 14, 2016 acquisition of McRoberts Protective Agency; transitioned to Allied Universal in October 2018.",
-  },
-  {
-    company: "McRoberts Protective Agency",
-    role: "Security Professional",
-    dates: "Apr 2014 – Mar 2016",
-    summary: "Began a security operations career in April 2014; the assignment later continued under U.S. Security Associates and Allied Universal following corporate acquisitions.",
+    role: "Security Professional – Unarmed",
+    dates: "Oct 2016 – Dec 2021",
+    summary: "Managed Milestone CCTV and access control integrations, documented operating procedures, and supported identity administration, vulnerability monitoring, and endpoint remediation.",
   },
   {
     company: "Nielsen Media Research · Oldsmar, FL",
-    role: "EVS Encoder Support Specialist · Direct employee",
-    dates: "Jul 2011 – Mar 2014",
-    summary: "Supported Electronic Verification System infrastructure across Windows, Linux, UNIX, networking, servers, and endpoints. Performed upgrades, migrations, monitoring, and troubleshooting, working with engineering teams to resolve complex technical issues.",
-  },
-  {
-    company: "Insight Global · Assignment: Nielsen Media Research",
-    role: "EVS Encoder Support Specialist · Contractor",
-    dates: "Mar 2011 – Jul 2011",
-    summary: "Provided contract EVS support at Nielsen Media Research before transitioning to direct Nielsen employment in July 2011.",
+    role: "EVS Encoder Support Specialist",
+    dates: "Mar 2011 – Oct 2016",
+    summary: "Supported EVS infrastructure on Windows Server, Linux, UNIX, and VMware. Monitored network health and server availability with SolarWinds and documented troubleshooting procedures in BMC Remedy.",
   },
 ];
 
@@ -95,7 +75,7 @@ export function ProfilePage() {
         <div>
           <p className={styles.eyebrow}>Senior Platform Engineer</p>
           <h1 id="profile-heading">Make complex systems <em>work better.</em></h1>
-          <p className={styles.intro}>I’m <strong>Nicholai Maro Madias</strong>, a platform engineer with 15+ years across enterprise endpoints, identity, cloud infrastructure, security, and systems operations. I turn complicated technical environments into systems teams can support with confidence.</p>
+          <p className={styles.intro}>I’m <strong>Nicholai Maro Madias</strong>, a platform engineer with 15+ years across enterprise endpoints, identity, cloud infrastructure, security, and systems operations. I build endpoint automation and lead Microsoft 365 migrations to Google Workspace.</p>
           <div className={styles.actions}>
             <a className={styles.primary} href="#experience">Explore my work <span aria-hidden="true">↓</span></a>
             <a className={styles.secondary} href="https://github.com/NicholaiMadias" target="_blank" rel="noreferrer">GitHub profile <span aria-hidden="true">↗</span></a>
@@ -117,8 +97,8 @@ export function ProfilePage() {
       <div className={styles.strip}>
         <dl className={`${styles.wrap} ${styles.metrics}`}>
           <div><dt>Experience</dt><dd>15+ years in enterprise IT</dd></div>
-          <div><dt>HCLTech · Verizon</dt><dd>70,000-user environment</dd></div>
-          <div><dt>Infosys · Google</dt><dd>350,000-user environment</dd></div>
+          <div><dt>HCLTech · Verizon</dt><dd>70,000+ users and devices</dd></div>
+          <div><dt>Infosys · Google</dt><dd>350,000+ users supported</dd></div>
           <div><dt>Automation</dt><dd>PowerShell · Python · APIs</dd></div>
         </dl>
       </div>
@@ -138,12 +118,12 @@ export function ProfilePage() {
       </section>
 
       <section className={`${styles.wrap} ${styles.section} ${styles.career}`} id="experience" aria-labelledby="experience-heading">
-        <div><p className={styles.eyebrow}>03 / Experience</p><h2 id="experience-heading">Built across the stack.</h2><p className={styles.careerIntro}>A career spanning platform operations, enterprise support, software development, network administration, and security.</p></div>
-        <div className={styles.timeline}>{experience.map(job => <article className={styles.role} key={job.company}><p className={styles.dates}>{job.dates}</p><div><h3>{job.role}</h3><p className={styles.organization}>{job.company}</p><p>{job.summary}</p></div></article>)}</div>
+        <div><p className={styles.eyebrow}>03 / Experience</p><h2 id="experience-heading">Professional experience</h2><p className={styles.careerIntro}>A career spanning platform operations, enterprise support, software development, network administration, and security.</p></div>
+        <div className={styles.timeline}>{experience.map(job => <article className={styles.role} key={job.company + job.dates}><p className={styles.dates}>{job.dates}</p><div><h3>{job.role}</h3><p className={styles.organization}>{job.company}</p><p>{job.summary}</p></div></article>)}</div>
       </section>
 
       <section className={`${styles.wrap} ${styles.credentials}`} aria-label="Education, engineering focus, and projects">
-        <div><p className={styles.eyebrow}>Education</p><h3>B.S. Business Studies · Computer Information Technology</h3><p>Southern New Hampshire University · 2014</p><h3>A.S. Computer Information Technology</h3><p>Everest University · 2008</p></div>
+        <div><p className={styles.eyebrow}>Education</p><h3>B.S. Business Studies · Computer Information Technology</h3><p>Southern New Hampshire University · Aug 2011 – Dec 2013 · Degree conferred Jan 2014</p><h3>A.S. Computer Information Sciences and Support Services</h3><p>Everest University · Apr 2006 – Apr 2008</p></div>
         <div><p className={styles.eyebrow}>Engineering focus</p><ul><li>Enterprise endpoint engineering</li><li>Identity and access management</li><li>PowerShell and Python automation</li></ul></div>
         <div><p className={styles.eyebrow}>Selected engineering work</p><p>Inspect read-only endpoint automation examples, testable privacy engineering prototypes, and written security guidance. Portfolio reference projects are not claims of production deployment or compliance certification.</p><div className={styles.projectLinks}><Link href="/tools/enterprise-endpoint">Endpoint automation toolkit ↗</Link><Link href="/blog/windows-11-intune-cis-powershell-hardening">Windows 11 hardening guide ↗</Link><Link href="/blog/phi-redaction-proxy">PHI redaction reference ↗</Link><Link href="/blog/enterprise-endpoint-toolkit">Toolkit architecture case study ↗</Link></div></div>
       </section>

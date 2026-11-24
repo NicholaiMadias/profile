@@ -2,7 +2,9 @@
 
 [Live portfolio](https://nicholai.online) · [GitHub profile](https://github.com/NicholaiMadias) · [Security policy](SECURITY.md)
 
-This repository powers the **Nicholai.online** engineering portfolio. It demonstrates enterprise endpoint automation, developer tooling, public learning activities, and a local-first Nexus browser companion. The site is actively deployed; it is not the Voice of Jesus Ministry or Amazing Grace housing site's source repository.
+Nicholai Maro Madias is a senior platform engineer and infrastructure architect with 15+ years in enterprise IT. His work includes endpoint and identity administration for HCLTech’s Verizon assignment and Microsoft 365 migrations to Google Workspace for Infosys’s Google assignment. The portfolio’s [professional experience](https://nicholai.online/profile#experience) lists roles, clients, dates, and education.
+
+This repository powers the portfolio, endpoint automation tools, public learning activities, and local-first Nexus browser companion.
 
 ## Explore the project
 
