@@ -40,7 +40,7 @@ const experience = [
   },
   {
     company: "Allied Universal",
-    role: "Security Professional – Unarmed",
+    role: "Security Professional",
     dates: "Oct 2016 – Dec 2021",
     summary: "Managed Milestone CCTV and access control integrations, documented operating procedures, and supported identity administration, vulnerability monitoring, and endpoint remediation.",
   },
