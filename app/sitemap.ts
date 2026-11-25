@@ -7,7 +7,7 @@ const baseUrl = 'https://nicholai.online';
 
 const publicRoutes = [
   '/',
-  '/profile',
+  '/tools',
   '/tools/enterprise-endpoint',
   '/blog',
   '/blog/enterprise-endpoint-toolkit',
@@ -15,6 +15,10 @@ const publicRoutes = [
   '/blog/phi-redaction-proxy',
   '/blog/hybrid-endpoint-automation',
   '/academy',
+  '/academy/md-102',
+  '/agent',
+  '/arcade',
+  '/privacy',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
