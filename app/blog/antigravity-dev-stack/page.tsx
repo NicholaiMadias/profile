@@ -186,7 +186,7 @@ export default function AntigravityDevStackArticle() {
         <p className="blog-deck">Achieving escape velocity from manual configurations using agentic coding frameworks, MCP file protocols, local LLM sovereignty, and cross-platform terminal orchestration.</p>
         <nav aria-label="Blog navigation">
           <Link href="/blog">&larr; Back to all articles</Link>
-          <Link href="/#tools">Tools and profiles</Link>
+          <Link href="/tools">Tools</Link>
         </nav>
       </header>
 
@@ -277,7 +277,7 @@ export default function AntigravityDevStackArticle() {
 
         <footer className="story-footer">
           <Link href="/blog" className="back-link">&larr; Return to Nicholai&rsquo;s Blog</Link>
-          <Link href="/#tools" className="arcade-link">Explore Tools &amp; Profiles &rarr;</Link>
+          <Link href="/tools" className="arcade-link">Explore tools</Link>
         </footer>
       </article>
     </div>

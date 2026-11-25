@@ -30,29 +30,35 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
                 <Image src="/nicholai-online-logo.webp" alt="" width={560} height={76} loading="eager" unoptimized />
               </Link>
               <nav className="nav-links" aria-label="Main navigation">
-
-                <a href="https://amazinggracehl.org">Amazing Grace</a>
-                <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
-                <Link href="/arcade" aria-label="Open the Nexus Arcade, including Matrix of Conscience">Arcade</Link>
+                <Link href="/#work">Work</Link>
+                <Link href="/#experience">Experience</Link>
+                <Link href="/blog" prefetch={false}>Writing</Link>
+                <Link href="/arcade" prefetch={false}>Arcade</Link>
                 <details className="tools-dropdown">
                   <summary>Tools</summary>
                   <ul>
-                    <li><Link href="/tools">All tools</Link></li>
-                    <li><Link href="/agent">Agent Nexus</Link></li>
-                    <li><Link href="/tools#nexus-assistant">Nexus Assistant</Link></li>
-                    <li><Link href="/tools/enterprise-endpoint">Endpoint Automation Toolkit</Link></li>
-                    <li><Link href="/academy">Certification Academy</Link></li>
+                    <li><Link prefetch={false} href="/tools">All tools</Link></li>
+                    <li><Link prefetch={false} href="/agent">Agent Nexus</Link></li>
+                    <li><Link prefetch={false} href="/tools#nexus-assistant">Nexus Assistant</Link></li>
+                    <li><Link prefetch={false} href="/tools/enterprise-endpoint">Endpoint Automation Toolkit</Link></li>
+                    <li><Link prefetch={false} href="/academy">Certification Academy</Link></li>
                   </ul>
                 </details>
               </nav>
             </div>
           </header>
-          <main id="main">{children}</main>
+          <main id="main" tabIndex={-1}>{children}</main>
           <footer className="site-footer">
             <span>Nicholai Maro Madias</span>
             <div>
-              <a href="https://amazinggracehl.org">Amazing Grace</a>
-              <a href="https://voiceofjesusministry.net">Voice of Jesus Ministry</a>
+              <a href="https://amazinggracehl.org">
+                <Image src="/amazing-grace-mark.webp" alt="" width={32} height={32} unoptimized />
+                Amazing Grace Home Living
+              </a>
+              <a href="https://voiceofjesusministry.net">
+                <Image src="/voice-of-jesus-mark.webp" alt="" width={32} height={32} unoptimized />
+                Voice of Jesus Ministry
+              </a>
               <a href="https://limitlessnexus.com">Limitless Nexus</a>
               <Link href="/privacy">Privacy</Link>
             </div>

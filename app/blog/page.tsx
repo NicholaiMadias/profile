@@ -63,7 +63,7 @@ export default function BlogPage() {
         <Link href="#why-i-replaced-chrome-and-edge">Workflow Notes</Link>
         <Link href="/blog/nexus-assist-deployment">Nexus Assist Deployment</Link>
         <Link href="/blog/ssh-extension-access">SSH Access Guide</Link>
-        <Link href="/#tools">Tools and profiles</Link>
+        <Link href="/tools">Tools</Link>
       </nav>
     </header>
       <FeaturedArticles />
