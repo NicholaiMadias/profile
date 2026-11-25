@@ -68,6 +68,15 @@ export default function BlogPage() {
     </header>
       <FeaturedArticles />
 
+    <article className="blog-article blog-featured-card" aria-labelledby="noopept-title">
+      <header>
+        <p className="blog-meta"><time dateTime="2026-11-24">November 24, 2026</time> · Research</p>
+        <h2 id="noopept-title">Noopept and HIF-1: What a 43% Laboratory Finding Really Means</h2>
+        <p className="blog-deck">A cell study reported a 43% rise in an HIF-1 reporter signal. Here’s what the result and the PHD2 hypothesis can tell us.</p>
+      </header>
+      <p><Link className="button-link" href="/blog/noopept-hif-1-brain-cell-protection-research">Read the Noopept article &rarr;</Link></p>
+    </article>
+
     <article className="blog-article blog-featured-card" aria-labelledby="phi-redaction-title">
       <header>
         <p className="blog-meta"><time dateTime="2026-11-23">November 23, 2026</time> · Healthcare Security · Python</p>

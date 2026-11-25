@@ -10,6 +10,7 @@ const publicRoutes = [
   '/tools',
   '/tools/enterprise-endpoint',
   '/blog',
+  '/blog/noopept-hif-1-brain-cell-protection-research',
   '/blog/enterprise-endpoint-toolkit',
   '/blog/windows-11-intune-cis-powershell-hardening',
   '/blog/phi-redaction-proxy',
