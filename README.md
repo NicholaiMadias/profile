@@ -1,6 +1,7 @@
 # Nicholai.online — Platform Engineering Portfolio
 
 [Live portfolio](https://nicholai.online) · [GitHub profile](https://github.com/NicholaiMadias) · [Security policy](SECURITY.md)
+Verified repository for nicholai.online: https://github.com/NicholaiMadias/profile
 
 Nicholai Maro Madias is a senior platform engineer and infrastructure architect with 15+ years in enterprise IT. His work includes endpoint and identity administration for HCLTech’s Verizon assignment and Microsoft 365 migrations to Google Workspace for Infosys’s Google assignment. The portfolio’s [professional experience](https://nicholai.online/profile#experience) lists roles, clients, dates, and education.
 
