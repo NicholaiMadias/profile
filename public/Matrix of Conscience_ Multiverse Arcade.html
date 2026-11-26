@@ -366,8 +366,8 @@
             <button class="btn-unlock" id="tool-btn-cli" onclick="toggleTool('cli')">🔒 L1: PowerShell CLI</button>
             <button class="btn-unlock" id="tool-btn-img" onclick="toggleTool('img')">🔒 L2: AI Image Studio</button>
             <button class="btn-unlock" id="tool-btn-code" onclick="toggleTool('code')">🔒 L3: AI Code Assistant</button>
-            <button class="btn-unlock" id="tool-btn-music" onclick="toggleTool('music')">🔒 L4: AI Music Synthesizer</button>
-            <button class="btn-unlock" id="tool-btn-multi" onclick="toggleTool('multi')">🔒 L5: Cloud Sync & Co-op</button>
+            <button class="btn-unlock" id="tool-btn-music" onclick="toggleTool('music')">🔒 L4: Music Synthesizer</button>
+            <button class="btn-unlock" id="tool-btn-multi" onclick="toggleTool('multi')">🔒 L5: Personal Records</button>
             <button class="btn-unlock" id="tool-btn-blog" onclick="toggleTool('blog')">🔒 L6: Conscience Blog</button>
             <button class="btn-unlock" id="tool-btn-media" onclick="toggleTool('media')">🔒 VICTORY: Verified Media Hub</button>
         </div>
@@ -392,52 +392,38 @@
 
             <div class="tool-panel" id="panel-cli">
                 <div class="modal-title" style="margin-bottom:8px;">
-                    <span>POWERSHELL / GEMINI CLI TERMINAL</span>
+                    <span>MATRIX TERMINAL</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
                 <div class="cli-output" id="cli-output">
-                    <div>Windows PowerShell v7.4.1 Matrix Conscience Instance</div>
-                    <div>Type 'help' for built-in commands or ask Gemini AI questions directly!</div>
+                    <div>Matrix of Conscience terminal</div>
+                    <div>Type help for available commands.</div>
                 </div>
                 <div class="cli-input-row">
                     <span style="color:var(--term-green); font-weight:bold;">PS C:\Matrix\Conscience&gt;</span>
-                    <input type="text" id="cli-input-field" class="cli-input" placeholder="Type AI query or CLI command..." onkeydown="handleCliInput(event)">
+                    <input type="text" id="cli-input-field" class="cli-input" placeholder="Type a command" onkeydown="handleCliInput(event)">
                 </div>
             </div>
 
             <div class="tool-panel" id="panel-img">
-                <div class="modal-title" style="margin-bottom:12px;">
-                    <span>AI STUDIO IMAGE GENERATOR (Gemini 3.1 Flash Lite)</span>
+                <div class="modal-title">
+                    <span>AI IMAGE STUDIO</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
-                <div style="display:flex; flex-direction:column; gap:10px; height:100%;">
-                    <div style="display:flex; gap:8px;">
-                        <input type="text" id="img-prompt-input" class="cli-input" style="border:1px solid var(--term-cyan); padding:8px; border-radius:4px;" placeholder="Prompt: e.g. A cybernetic tree of life glowing with emerald energy in a dark matrix core...">
-                        <button class="btn-util" onclick="generateImage()" id="btn-gen-img" style="background:var(--term-cyan); color:var(--bg-base); font-weight:bold; padding:8px 16px;">GENERATE ART</button>
-                    </div>
-                    <div id="img-output-box" style="flex:1; border:1px dashed var(--term-cyan); border-radius:6px; display:flex; justify-content:center; align-items:center; background:rgba(0,0,0,0.5); overflow:hidden;">
-                        <span style="color:var(--term-amber)">Art output area — Enter prompt above to generate artwork via Gemini API</span>
-                    </div>
-                </div>
+                <p>Image generation requires a server-side integration.</p>
             </div>
 
             <div class="tool-panel" id="panel-code">
-                <div class="modal-title" style="margin-bottom:12px;">
-                    <span>AI CODING ASSISTANT & SCRIPT STUDIO</span>
+                <div class="modal-title">
+                    <span>AI CODE STUDIO</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
-                <div style="display:flex; gap:10px; flex:1;">
-                    <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
-                        <textarea id="code-prompt-input" style="width:100%; height:80px; background:rgba(0,0,0,0.8); border:1px solid var(--term-cyan); color:#fff; padding:8px; border-radius:4px; font-family:var(--font-code); font-size:0.85rem;" placeholder="Ask AI Code Assistant to write a script, game algorithm, or web tool..."></textarea>
-                        <button class="btn-util" onclick="generateCodeScript()" style="background:var(--term-amber); color:var(--bg-base); font-weight:bold; padding:8px;">GENERATE CODE SCRIPT</button>
-                        <div id="code-output-display" style="flex:1; background:rgba(0,0,0,0.9); border:1px solid var(--term-green); padding:10px; border-radius:4px; overflow-y:auto; font-family:var(--font-code); font-size:0.8rem; color:var(--term-green); white-space:pre-wrap;">// AI Code Script Output...</div>
-                    </div>
-                </div>
+                <p>Code generation requires a server-side integration.</p>
             </div>
 
             <div class="tool-panel" id="panel-music">
                 <div class="modal-title" style="margin-bottom:12px;">
-                    <span>AI MUSIC SYNTHESIZER & TTS VOICE ENGINE</span>
+                    <span>MUSIC SYNTHESIZER &amp; BROWSER VOICE</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:12px;">
@@ -450,9 +436,9 @@
                         </div>
                     </div>
                     <div style="background:rgba(240,192,90,0.05); border:1px solid var(--term-amber); padding:12px; border-radius:6px;">
-                        <h4 style="color:var(--term-amber); margin-bottom:6px;">Gemini Voice TTS Synthesizer (gemini-2.5-flash-preview-tts)</h4>
+                        <h4 style="color:var(--term-amber); margin-bottom:6px;">Installed browser voice</h4>
                         <div style="display:flex; gap:8px;">
-                            <input type="text" id="tts-speech-input" class="cli-input" style="border:1px solid var(--term-amber); padding:8px; border-radius:4px;" value="Say cheerfully: Welcome Architect to the Matrix of Conscience voice core!">
+                            <input type="text" id="tts-speech-input" class="cli-input" style="border:1px solid var(--term-amber); padding:8px; border-radius:4px;" value="Welcome, Architect.">
                             <button class="btn-util" onclick="generateTtsVoice()" style="background:var(--term-amber); color:var(--bg-base); font-weight:bold;">SYNTHESIZE SPEECH</button>
                         </div>
                         <div id="audio-player-container" style="margin-top:10px;"></div>
@@ -461,47 +447,35 @@
             </div>
 
             <div class="tool-panel" id="panel-multi">
-                <div class="modal-title" style="margin-bottom:12px;">
-                    <span>CLOUD SYNC & MULTIPLAYER LEADERBOARD</span>
+                <div class="modal-title">
+                    <span>PERSONAL RECORDS</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; flex:1;">
-                    <div style="background:rgba(0,0,0,0.8); border:1px solid var(--term-cyan); padding:12px; border-radius:6px; display:flex; flex-direction:column;">
-                        <h4 style="color:var(--term-cyan); border-bottom:1px solid var(--term-cyan); padding-bottom:4px; margin-bottom:8px;">GLOBAL ARCHITECT LEADERBOARD</h4>
-                        <div id="leaderboard-list" style="flex:1; overflow-y:auto; font-size:0.85rem; display:flex; flex-direction:column; gap:6px;">
-                            <div>Loading Firestore Leaderboard...</div>
-                        </div>
-                    </div>
-                    <div style="background:rgba(0,0,0,0.8); border:1px solid var(--term-amber); padding:12px; border-radius:6px; display:flex; flex-direction:column; gap:8px;">
-                        <h4 style="color:var(--term-amber); border-bottom:1px solid var(--term-amber); padding-bottom:4px;">CLOUD SAVE STATUS</h4>
-                        <p style="font-size:0.85rem;">User Identification: <span id="cloud-user-id" style="color:var(--term-cyan);">Connecting...</span></p>
-                        <button class="btn-util" onclick="saveProgressToCloud()" style="background:var(--term-green); color:var(--bg-base); font-weight:bold; padding:8px;">FORCE CLOUD SYNC SAVE</button>
-                    </div>
-                </div>
+                <p>Personal best on this device: <strong id="personal-best">0</strong> points.</p>
             </div>
 
             <div class="tool-panel" id="panel-blog">
                 <div class="modal-title" style="margin-bottom:12px;">
-                    <span>CONSCIENCE CHRONICLE — COMMUNITY BLOG</span>
+                    <span>CONSCIENCE CHRONICLE</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
                 <div id="blog-posts-feed" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:10px;">
-                    <!-- Blog posts rendered dynamically -->
+                    <p>Your latest mission note will appear here after you save one.</p>
                 </div>
             </div>
 
             <div class="tool-panel" id="panel-media">
                 <div class="modal-title" style="margin-bottom:12px;">
-                    <span>VERIFIED ARCHITECT MEDIA HUB (SPAM-PROTECTED)</span>
+                    <span>MISSION JOURNAL</span>
                     <button class="btn-util" onclick="toggleTool(null)">CLOSE [X]</button>
                 </div>
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     <div style="background:rgba(0,255,102,0.08); border:1px solid var(--term-green); padding:10px; border-radius:6px; font-size:0.85rem;">
-                        ✅ <strong>VERIFICATION PASSED:</strong> You completed all 6 levels of Matrix of Conscience! You now hold full privileges to share media and blog posts to the public ecosystem.
+                        ✅ <strong>VERIFICATION PASSED:</strong> You completed all 6 levels of Matrix of Conscience! Write a mission note to keep on this device.
                     </div>
                     <input type="text" id="media-title" class="cli-input" style="border:1px solid var(--term-cyan); padding:8px;" placeholder="Media Title / Artifact Name...">
-                    <textarea id="media-content" style="height:80px; background:rgba(0,0,0,0.8); border:1px solid var(--term-cyan); color:#fff; padding:8px; font-family:var(--font-code);" placeholder="Description or image URL / text body..."></textarea>
-                    <button class="btn-util" onclick="publishMediaPost()" style="background:var(--term-green); color:var(--bg-base); font-weight:bold; padding:10px;">PUBLISH TO PUBLIC MATRIX FEED</button>
+                    <textarea id="media-content" style="height:80px; background:rgba(0,0,0,0.8); border:1px solid var(--term-cyan); color:#fff; padding:8px; font-family:var(--font-code);" placeholder="Mission note"></textarea>
+                    <button class="btn-util" onclick="saveMissionNote()" style="background:var(--term-green); color:var(--bg-base); font-weight:bold; padding:10px;">SAVE MISSION NOTE</button>
                 </div>
             </div>
         </div>
@@ -526,98 +500,6 @@
             </div>
         </footer>
     </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase mandatory globals setup
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'matrix-conscience-v4';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-            apiKey: "dummy-key-placeholder",
-            authDomain: "dummy-app.firebaseapp.com",
-            projectId: "dummy-app",
-            storageBucket: "dummy-app.appspot.com",
-            messagingSenderId: "000000000",
-            appId: "1:000000000:web:000000000"
-        };
-
-        let app, auth, db;
-        let currentUser = null;
-
-        try {
-            app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
-            db = getFirestore(app);
-
-            // Mandatory Auth Priority Check
-            const token = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-            if (token) {
-                await signInWithCustomToken(auth, token);
-            } else {
-                await signInAnonymously(auth);
-            }
-
-            currentUser = auth.currentUser;
-            document.getElementById('hud-sync').textContent = 'ONLINE';
-            document.getElementById('cloud-user-id').textContent = currentUser?.uid || 'Anonymous';
-            
-            // Setup Firestore Listeners (Rule 1 compliance)
-            setupFirestoreListeners();
-        } catch (e) {
-            console.warn("Firebase initialized in local offline fallback mode:", e);
-            document.getElementById('hud-sync').textContent = 'LOCAL-ONLY';
-        }
-
-        window.db = db;
-        window.appId = appId;
-        window.getCurrentUserId = () => auth?.currentUser?.uid || 'local-user';
-
-        function setupFirestoreListeners() {
-            if (!db) return;
-            // Public Leaderboard path: /artifacts/{appId}/public/data/leaderboard
-            const leadCol = collection(db, 'artifacts', appId, 'public', 'data', 'leaderboard');
-            onSnapshot(leadCol, (snapshot) => {
-                const listEl = document.getElementById('leaderboard-list');
-                if (!listEl) return;
-                listEl.innerHTML = '';
-                const scores = [];
-                snapshot.forEach(docSnap => scores.push(docSnap.data()));
-                // Sort in memory (Rule 2 compliance)
-                scores.sort((a, b) => b.score - a.score);
-                scores.slice(0, 10).forEach((item, idx) => {
-                    const row = document.createElement('div');
-                    row.style.display = 'flex';
-                    row.style.justifySpaceBetween = 'space-between';
-                    row.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
-                    row.style.padding = '4px 0';
-                    row.innerHTML = `<span>#${idx+1} ${item.userId.substring(0,8)}...</span> <span style="color:var(--term-amber);">${item.score} PTS (L${item.level})</span>`;
-                    listEl.appendChild(row);
-                });
-            }, (err) => console.log("Leaderboard snapshot error:", err));
-
-            // Public Blog path: /artifacts/{appId}/public/data/blog_posts
-            const blogCol = collection(db, 'artifacts', appId, 'public', 'data', 'blog_posts');
-            onSnapshot(blogCol, (snapshot) => {
-                const blogFeed = document.getElementById('blog-posts-feed');
-                if (!blogFeed) return;
-                blogFeed.innerHTML = '';
-                snapshot.forEach(docSnap => {
-                    const data = docSnap.data();
-                    const card = document.createElement('div');
-                    card.style.background = 'rgba(0,0,0,0.7)';
-                    card.style.border = '1px solid var(--term-cyan)';
-                    card.style.padding = '10px';
-                    card.style.borderRadius = '6px';
-                    card.innerHTML = `<h3 style="color:var(--term-amber); font-size:1rem; font-weight:bold;">${data.title}</h3>
-                        <p style="font-size:0.8rem; color:#cbd5e1; margin:4px 0;">${data.content}</p>
-                        <span style="font-size:0.7rem; color:var(--term-cyan);">Posted by Verified Architect ${data.userId}</span>`;
-                    blogFeed.appendChild(card);
-                });
-            }, (err) => console.log("Blog snapshot error:", err));
-        }
-    </script>
 
     <script>
         // Web Audio Synthesizer
@@ -1199,6 +1081,8 @@
         });
 
         window.addEventListener('keydown', (e) => {
+            if (!isLevelActive || activeTool || e.target.closest?.('input, textarea, button')) return;
+            if ((currentLevel === 3 || currentLevel === 5) && e.key.startsWith('Arrow')) e.preventDefault();
             if (currentLevel === 3) {
                 if (e.key === 'ArrowLeft' || e.key === 'a') moveShooter(-1);
                 if (e.key === 'ArrowRight' || e.key === 'd') moveShooter(1);
@@ -1219,8 +1103,8 @@
             if (currentLevel === 1) { unlockedTools.cli = true; showToast("🔓 UNLOCKED LEVEL 1 TOOL: PowerShell CLI Terminal!"); }
             if (currentLevel === 2) { unlockedTools.img = true; showToast("🔓 UNLOCKED LEVEL 2 TOOL: AI Studio Image Generator!"); }
             if (currentLevel === 3) { unlockedTools.code = true; showToast("🔓 UNLOCKED LEVEL 3 TOOL: AI Code Assistant!"); }
-            if (currentLevel === 4) { unlockedTools.music = true; showToast("🔓 UNLOCKED LEVEL 4 TOOL: AI Music Synthesizer!"); }
-            if (currentLevel === 5) { unlockedTools.multi = true; showToast("🔓 UNLOCKED LEVEL 5 TOOL: Cloud Sync & Leaderboard!"); }
+            if (currentLevel === 4) { unlockedTools.music = true; showToast("🔓 UNLOCKED LEVEL 4 TOOL: Music Synthesizer!"); }
+            if (currentLevel === 5) { unlockedTools.multi = true; showToast("🔓 UNLOCKED LEVEL 5 TOOL: Personal Records!"); }
             if (currentLevel === 6) { 
                 unlockedTools.blog = true; 
                 unlockedTools.media = true; 
@@ -1246,7 +1130,7 @@
                 choices.innerHTML = `<button class="btn-choice" onclick="location.reload()">REBOOT MATRIX ARCADE</button>`;
             }
 
-            saveProgressToCloud();
+            savePersonalBest();
         }
 
         function advanceNextLevel() {
@@ -1277,104 +1161,51 @@
             document.getElementById('modal-choices').innerHTML = `<button class="btn-choice" onclick="location.reload()">REBOOT TERMINAL</button>`;
         }
 
-        function saveProgressToCloud() {
-            if (window.db) {
-                const uid = window.getCurrentUserId();
-                // Firestore mandatory path Rule 1
-                const docRef = doc(window.db, 'artifacts', window.appId, 'users', uid, 'progress', 'game_state');
-                setDoc(docRef, { score, level: currentLevel, updatedAt: new Date() }, { merge: true })
-                    .then(() => showToast("☁️ Progress saved to Cloud Firestore!"))
-                    .catch(e => console.log("Cloud save error:", e));
+        const bestScoreKey = 'multiverse-arcade-best-score';
 
-                const leadRef = doc(window.db, 'artifacts', window.appId, 'public', 'data', 'leaderboard', uid);
-                setDoc(leadRef, { userId: uid, score, level: currentLevel, date: new Date() }, { merge: true });
-            }
-        }
-
-        /* ---------------- AI TOOL CALL INTEGRATIONS (GEMINI API) ---------------- */
-        async function handleCliInput(e) {
-            if (e.key === 'Enter') {
-                const field = document.getElementById('cli-input-field');
-                const query = field.value.trim();
-                if (!query) return;
-
-                const output = document.getElementById('cli-output');
-                output.innerHTML += `<div><span style="color:var(--term-cyan)">PS C:\\&gt;</span> ${query}</div>`;
-                field.value = '';
-
-                if (query.toLowerCase() === 'help') {
-                    output.innerHTML += `<div>Built-in commands: help, status, clear, or ask any AI prompt!</div>`;
-                    output.scrollTop = output.scrollHeight;
-                    return;
-                }
-
-                output.innerHTML += `<div style="color:var(--term-amber)">[Gemini AI Thinking...]</div>`;
-                output.scrollTop = output.scrollHeight;
-
-                try {
-                    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: query }] }] })
-                    });
-                    const data = await res.json();
-                    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "No AI response returned.";
-                    output.innerHTML += `<div style="color:var(--term-green)">${text}</div>`;
-                } catch (err) {
-                    output.innerHTML += `<div style="color:var(--term-alert)">AI Query Error: ${err.message}</div>`;
-                }
-                output.scrollTop = output.scrollHeight;
-            }
-        }
-
-        async function generateImage() {
-            const prompt = document.getElementById('img-prompt-input').value.trim();
-            const box = document.getElementById('img-output-box');
-            if (!prompt) { showToast("Please enter an image prompt!"); return; }
-
-            box.innerHTML = `<span style="color:var(--term-cyan)">Generating artwork with gemini-3.1-flash-lite-image...</span>`;
-
+        function readBestScore() {
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-image:generateContent?key=`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }],
-                        generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
-                    })
-                });
-                const data = await res.json();
-                const base64 = data?.candidates?.[0]?.content?.parts?.find(p => p.inlineData)?.inlineData?.data;
-                if (base64) {
-                    box.innerHTML = `<img src="data:image/png;base64,${base64}" style="max-height:100%; border-radius:4px;" />`;
-                } else {
-                    box.innerHTML = `<span style="color:var(--term-alert)">Failed to render image.</span>`;
-                }
-            } catch (err) {
-                box.innerHTML = `<span style="color:var(--term-alert)">Image Gen Error: ${err.message}</span>`;
+                return Number(localStorage.getItem(bestScoreKey)) || 0;
+            } catch {
+                return 0;
             }
         }
 
-        async function generateCodeScript() {
-            const prompt = document.getElementById('code-prompt-input').value.trim();
-            const display = document.getElementById('code-output-display');
-            if (!prompt) { showToast("Enter a coding request!"); return; }
-
-            display.textContent = "// Generating script with Gemini 3 Flash...";
-
+        function savePersonalBest() {
+            const best = Math.max(score, readBestScore());
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: `Act as an expert code assistant. Write clean executable code for: ${prompt}` }] }]
-                    })
-                });
-                const data = await res.json();
-                display.textContent = data?.candidates?.[0]?.content?.parts?.[0]?.text || "// No code generated.";
-            } catch (err) {
-                display.textContent = `// Code Gen Error: ${err.message}`;
+                localStorage.setItem(bestScoreKey, String(best));
+                document.getElementById('personal-best').textContent = String(best);
+            } catch {
+                document.getElementById('personal-best').textContent = 'Storage unavailable';
             }
+        }
+
+        function handleCliInput(event) {
+            if (event.key !== 'Enter') return;
+
+            const field = event.currentTarget;
+            const command = field.value.trim().toLowerCase();
+            if (!command) return;
+            field.value = '';
+
+            const output = document.getElementById('cli-output');
+            if (command === 'clear') {
+                output.replaceChildren();
+                return;
+            }
+
+            const replies = {
+                help: () => 'Commands: help, status, best, clear.',
+                status: () => `Level ${currentLevel} · ${score} points · ${energy} energy`,
+                best: () => `Personal best: ${readBestScore()} points`,
+            };
+            const row = document.createElement('div');
+            row.textContent = Object.hasOwn(replies, command)
+                ? replies[command]()
+                : 'Unknown command. Type help for available commands.';
+            output.appendChild(row);
+            output.scrollTop = output.scrollHeight;
         }
 
         function playSynthBeat(type) {
@@ -1385,54 +1216,52 @@
             showToast(`🎵 Playing ${type.toUpperCase()} synth sound pattern!`);
         }
 
-        async function generateTtsVoice() {
+        function generateTtsVoice() {
             const text = document.getElementById('tts-speech-input').value.trim();
-            const playerBox = document.getElementById('audio-player-container');
+            const status = document.getElementById('audio-player-container');
             if (!text) return;
 
-            playerBox.innerHTML = `<span style="color:var(--term-amber)">Generating speech audio with gemini-2.5-flash-preview-tts...</span>`;
+            const voice = window.speechSynthesis?.getVoices().find(candidate =>
+                candidate.localService && candidate.lang.toLowerCase().startsWith('en'));
+            if (!voice) {
+                status.textContent = 'An installed English voice is unavailable in this browser.';
+                return;
+            }
+
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.voice = voice;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(speech);
+            status.textContent = 'Playing with an installed browser voice.';
+        }
+
+        function saveMissionNote() {
+            const title = document.getElementById('media-title').value.trim();
+            const content = document.getElementById('media-content').value.trim();
+            if (!title || !content) { showToast('Enter a title and a note.'); return; }
 
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: text }] }],
-                        generationConfig: {
-                            responseModalities: ["AUDIO"],
-                            speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Kore" } } }
-                        }
-                    })
-                });
-                const data = await res.json();
-                const part = data?.candidates?.[0]?.content?.parts?.[0];
-                const audioData = part?.inlineData?.data;
-                const mimeType = part?.inlineData?.mimeType;
-
-                if (audioData) {
-                    playerBox.innerHTML = `<audio controls autoPlay src="data:${mimeType || 'audio/mp3'};base64,${audioData}"></audio>`;
-                } else {
-                    playerBox.innerHTML = `<span style="color:var(--term-alert)">Speech generation error.</span>`;
-                }
-            } catch (err) {
-                playerBox.innerHTML = `<span style="color:var(--term-alert)">TTS Error: ${err.message}</span>`;
+                localStorage.setItem('multiverse-arcade-mission-note', JSON.stringify({ title, content }));
+                renderMissionNote();
+                showToast('Mission note saved on this device.');
+                toggleTool('blog');
+            } catch {
+                showToast('This browser could not save the note.');
             }
         }
 
-        async function publishMediaPost() {
-            const title = document.getElementById('media-title').value.trim();
-            const content = document.getElementById('media-content').value.trim();
-            if (!title || !content) { showToast("Title and content required!"); return; }
-
-            if (window.db) {
-                const uid = window.getCurrentUserId();
-                // Rule 1 compliance
-                const blogCol = collection(window.db, 'artifacts', window.appId, 'public', 'data', 'blog_posts');
-                await addDoc(blogCol, { title, content, userId: uid, date: new Date() });
-                showToast("✅ Published verified artifact to Public Matrix Feed!");
-                document.getElementById('media-title').value = '';
-                document.getElementById('media-content').value = '';
-                toggleTool('blog');
+        function renderMissionNote() {
+            const feed = document.getElementById('blog-posts-feed');
+            try {
+                const note = JSON.parse(localStorage.getItem('multiverse-arcade-mission-note'));
+                if (!note || typeof note.title !== 'string' || typeof note.content !== 'string') return;
+                const title = document.createElement('h3');
+                title.textContent = note.title;
+                const content = document.createElement('p');
+                content.textContent = note.content;
+                feed.replaceChildren(title, content);
+            } catch {
+                feed.textContent = 'Saved notes are unavailable in this browser.';
             }
         }
 
@@ -1470,6 +1299,9 @@
             requestAnimationFrame(gameLoop);
         }
 
+        document.getElementById('hud-sync').textContent = 'LOCAL';
+        document.getElementById('personal-best').textContent = String(readBestScore());
+        renderMissionNote();
         resizeCanvas();
         requestAnimationFrame(gameLoop);
     </script>
