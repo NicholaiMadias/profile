@@ -15,9 +15,9 @@ const games = [
   { title: 'Code Matrix', type: 'Match-3', copy: 'Swap neighboring tiles to make a line of three or more. Opens on Amazing Grace.', href: 'https://www.amazinggracehl.org/arcade/code-matrix/' },
   { title: 'Relay Patrol', type: 'Arcade Shooter', copy: 'Move your ship and shoot drones before they reach the relay. Opens on Amazing Grace.', href: 'https://www.amazinggracehl.org/arcade/relay-patrol/' },
   { title: 'Matrix of Conscience', type: 'Strategy Campaign', copy: 'Choose any of the ten sectors on the campaign map.', href: '/nexus-os/matrix-of-conscience' },
-  { title: 'Matrix of Conscience: Multiverse Arcade', type: 'Standalone Game', copy: 'Play the six-level campaign and save your best score on this device.', href: '/Matrix%20of%20Conscience_%20Multiverse%20Arcade.html' },
-  { title: 'Matrix Lore Expanded', type: 'Story Archive', copy: 'Explore the original expanded Matrix story archive.', href: '/matrix-lore-expanded.html' },
-  { title: 'Noah & Norea: Cleansing the Gloom', type: 'Standalone Game', copy: 'Play the original Cleansing the Gloom.', href: '/Noah%20%26%20Norea_%20Cleansing%20the%20Gloom.html' },
+  { title: 'Matrix of Conscience: Multiverse Arcade', type: 'Standalone Game', copy: 'Play the six-level campaign and save your best score on this device.', href: '/arcade/classics/multiverse' },
+  { title: 'Matrix Lore Expanded', type: 'Story Archive', copy: 'Explore the original expanded Matrix story archive.', href: '/arcade/classics/matrix-lore' },
+  { title: 'Noah & Norea: Cleansing the Gloom', type: 'Standalone Game', copy: 'Play the original Cleansing the Gloom.', href: '/arcade/classics/noah-and-norea' },
 ];
 
 export default function ArcadePage() {
