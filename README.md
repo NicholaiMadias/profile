@@ -38,7 +38,7 @@ npm run dev
 npm run check
 ```
 
-`npm run check` performs the TypeScript check, Node gameplay/tool tests, and Next.js build. `npm run build` also assembles the allowlisted Nexus extension download. `npm run text:stats -- path/to/file.txt` runs the local text-analysis CLI. See [deployment information](docs/deployment.md) and [the curated three-domain map](docs/three-domain-map.md).
+`npm run check` performs the TypeScript check, Node gameplay/tool tests, and Next.js build. `npm run build` also assembles the Nexus extension download using the explicit file list in `scripts/nexus-package-files.mjs`; review and update that list when adding distributable files. `npm run text:stats -- path/to/file.txt` runs the local text-analysis CLI. See [deployment information](docs/deployment.md) and [the curated three-domain map](docs/three-domain-map.md).
 
 ## Security and privacy
 

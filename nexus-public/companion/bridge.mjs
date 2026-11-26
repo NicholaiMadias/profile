@@ -151,7 +151,7 @@ export async function createBridge({cwd,port=8787,token=randomBytes(32).toString
   if(req.method!=='GET'&&req.method!=='HEAD'){res.writeHead(405);res.end();return;}
   if(['/companion.zip','/sidebar-extension.zip'].includes(path)){res.writeHead(302,{Location:'https://nicholai.online/nexus'});res.end();return;}
   if(['/toolbox','/toolbox/'].includes(path)){res.writeHead(302,{Location:'/'});res.end();return;}
-  const files={'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/nexus-infinity.jpg':'nexus-mark.svg'};
+  const files={'/':'index.html','/index.html':'index.html','/style.css':'style.css','/app.js':'app.js','/nexus-infinity.jpg':'nexus-mark.svg','/nexus-mark.svg':'nexus-mark.svg'};
   const filename=files[path];if(!filename){res.writeHead(404);res.end('Not found');return;}
   try{const bytes=await readFile(resolve(ROOT,'public',filename));const type={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml'}[extname(filename)];res.writeHead(200,{'Content-Type':type});res.end(req.method==='HEAD'?undefined:bytes);}catch{res.writeHead(404);res.end('Not found');}
  });
