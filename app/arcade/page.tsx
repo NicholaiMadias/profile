@@ -8,12 +8,9 @@ export const metadata: Metadata = {
 };
 
 const games = [
-  { title: 'Quick Click', type: 'Reaction Game', copy: 'Catch as many stars as you can in twenty seconds.', href: '/arcade/quick-click' },
-  { title: 'Word Sprint', type: 'Typing Game', copy: 'Type as many words as you can in thirty seconds and check your accuracy.', href: '/arcade/word-sprint' },
-  { title: 'Vim Defender', type: 'Keyboard Game', copy: 'Practice Vim motions in a playable challenge.', href: '/arcade/vim-defender' },
   { title: 'Nexus Defense', type: 'Tower Defense', copy: 'Place turrets and defend the Core against incoming waves.', href: '/arcade/tower-defense' },
-  { title: 'Code Matrix', type: 'Match-3', copy: 'Swap neighboring tiles to make a line of three or more. Opens on Amazing Grace.', href: 'https://www.amazinggracehl.org/arcade/code-matrix/' },
-  { title: 'Relay Patrol', type: 'Arcade Shooter', copy: 'Move your ship and shoot drones before they reach the relay. Opens on Amazing Grace.', href: 'https://www.amazinggracehl.org/arcade/relay-patrol/' },
+  { title: 'Code Matrix', type: 'Puzzle & Typing', copy: 'Match tiles or see how many words you can type accurately in 30 seconds.', href: '/arcade/code-matrix' },
+  { title: 'Relay Protocol', type: 'Arcade Shooter', copy: 'Defend the relay or warm up with a 20-second Quick Click round.', href: '/arcade/relay-protocol' },
   { title: 'Noah & Norea: Cleansing the Gloom', type: 'Standalone Game', copy: 'Play the original Cleansing the Gloom.', href: '/arcade/classics/noah-and-norea' },
 ];
 

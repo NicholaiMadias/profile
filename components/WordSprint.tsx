@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { accuracyPercent, nextWord } from "../lib/games/word-sprint.js";
 
 const ROUND_SECONDS = 30;
@@ -62,7 +61,7 @@ export function WordSprint() {
   }
 
   return (
-    <section className="word-sprint-panel" aria-label="Word Sprint game">
+    <div className="word-sprint-panel">
       {status === "idle" ? (
         <>
           <p>Type each word as accurately as you can before the 30-second timer runs out.</p>
@@ -71,13 +70,12 @@ export function WordSprint() {
       ) : status === "ended" ? (
         <>
           <p className="eyebrow">ROUND COMPLETE</p>
-          <h2 ref={resultHeading} tabIndex={-1}>A good burst of focus.</h2>
+          <h3 ref={resultHeading} tabIndex={-1}>Typing results</h3>
           <p className="word-sprint-score">
             {correct} correct · {accuracyPercent(correct, attempted)}% accuracy
           </p>
           <div className="actions">
             <button className="button" onClick={startRound}>Play again</button>
-            <Link className="text-link" href="/arcade">Back to arcade →</Link>
           </div>
         </>
       ) : (
@@ -103,6 +101,6 @@ export function WordSprint() {
           <p className="word-sprint-feedback" role="status" aria-live="polite">{feedback || " "}</p>
         </>
       )}
-    </section>
+    </div>
   );
 }

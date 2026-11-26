@@ -85,13 +85,28 @@
         "type": 302
       },
       {
+        "source": "/arcade/word-sprint",
+        "destination": "/arcade/code-matrix#typing-challenge",
+        "type": 302
+      },
+      {
+        "source": "/arcade/quick-click",
+        "destination": "/arcade/relay-protocol#quick-click",
+        "type": 302
+      },
+      {
+        "source": "/arcade/vim-defender",
+        "destination": "/arcade/relay-protocol",
+        "type": 302
+      },
+      {
         "source": "/Apps/academy/vim-defense",
-        "destination": "/arcade/vim-defender",
+        "destination": "/arcade/relay-protocol",
         "type": 302
       },
       {
         "source": "/Apps/academy/vim-defense/index.html",
-        "destination": "/arcade/vim-defender",
+        "destination": "/arcade/relay-protocol",
         "type": 302
       }
     ],
