@@ -4,14 +4,14 @@ import styles from './arcade.module.css';
 
 export const metadata: Metadata = {
   title: 'Arcade | Nicholai.Online',
-  description: 'Play tower defense, match-3, an arcade shooter, or the Matrix of Conscience campaign.',
+  description: 'Play strategy games, classic campaigns, and quick skill challenges.',
 };
 
 const games = [
   { title: 'Nexus Defense', type: 'Tower Defense', copy: 'Place turrets and defend the Core against incoming waves.', href: '/arcade/tower-defense' },
-  { title: 'Code Matrix', type: 'Match-3', copy: 'Swap neighboring tiles to make a line of three or more. Opens on Amazing Grace.', href: 'https://www.amazinggracehl.org/arcade/code-matrix/' },
-  { title: 'Relay Patrol', type: 'Arcade Shooter', copy: 'Move your ship and shoot drones before they reach the relay. Opens on Amazing Grace.', href: 'https://www.amazinggracehl.org/arcade/relay-patrol/' },
-  { title: 'Matrix of Conscience', type: 'Strategy Campaign', copy: 'Choose any of the ten sectors on the campaign map.', href: '/nexus-os/matrix-of-conscience' },
+  { title: 'Code Matrix', type: 'Puzzle & Typing', copy: 'Match tiles or see how many words you can type accurately in 30 seconds.', href: '/arcade/code-matrix' },
+  { title: 'Relay Protocol', type: 'Arcade Shooter', copy: 'Defend the relay or warm up with a 20-second Quick Click round.', href: '/arcade/relay-protocol' },
+  { title: 'Noah & Norea: Cleansing the Gloom', type: 'Standalone Game', copy: 'Play the original Cleansing the Gloom.', href: '/arcade/classics/noah-and-norea' },
 ];
 
 export default function ArcadePage() {
@@ -25,9 +25,26 @@ export default function ArcadePage() {
             <p className={styles.category}>{game.type}</p>
             <h2>{game.title}</h2>
             <p>{game.copy}</p>
-            <Link href={game.href} className={styles.play}>Play {game.title} →</Link>
+            <Link href={game.href} className={styles.gameLink}>Play {game.title}</Link>
           </li>
         ))}
+        <li>
+          <h2>Matrix of Conscience</h2>
+          <ul className={styles.matrixLinks}>
+            <li>
+              <Link href="/nexus-os/matrix-of-conscience" className={styles.gameLink}>Strategy Campaign</Link>
+              <p>Choose any of the ten sectors on the campaign map.</p>
+            </li>
+            <li>
+              <Link href="/arcade/classics/multiverse" className={styles.gameLink}>Multiverse Arcade</Link>
+              <p>Play six levels and save your best score on this device.</p>
+            </li>
+            <li>
+              <Link href="/arcade/classics/matrix-lore" className={styles.gameLink}>Matrix Lore Expanded</Link>
+              <p>Read the original story archive.</p>
+            </li>
+          </ul>
+        </li>
       </ul>
       <nav className={styles.quizzes} aria-label="Optional arcade quizzes">
         <Link href="/arcade/bible-quiz">Bible quiz</Link>

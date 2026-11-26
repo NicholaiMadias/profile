@@ -1,10 +1,20 @@
 .arcade { max-width: 66rem; margin: 0 auto; padding: clamp(1.25rem, 5vw, 4rem); }
 .arcade h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); margin: 0; }
 .games { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: 1rem; list-style: none; padding: 0; }
-.games li { display: flex; flex-direction: column; align-items: flex-start; padding: 1.25rem; border: 1px solid #425568; border-radius: 0.75rem; color: #edf5fa; background: #182635; }
+.games > li { display: flex; flex-direction: column; align-items: flex-start; padding: 1.25rem; border: 1px solid #425568; border-radius: 0.75rem; color: #edf5fa; background: #182635; }
 .games p { margin: 0.4rem 0 0.9rem; }
 .games h2 { margin: 0; color: inherit; }
 .category { font-weight: 700; color: #a0e1df; }
-.play { margin-top: auto; display: inline-block; color: #071b23; background: #9ee0df; padding: 0.65rem 0.9rem; border-radius: 0.4rem; font-weight: 700; }
+.gameLink { font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; }
+.games > li > .gameLink { margin-top: auto; }
+.matrixLinks { margin: 0.75rem 0 0; padding-inline-start: 1.125rem; list-style: disc; }
+.matrixLinks li + li { margin-top: 0.75rem; }
+.matrixLinks p { margin: 0; }
+.gameFrame { display: block; width: 100%; height: clamp(32rem, 78dvh, 48rem); margin-top: 1rem; border: 1px solid #425568; border-radius: 0.75rem; }
+.sideGame { margin-top: 2rem; }
+.sideGame button:global(.button) { color: #071b23; }
+.sideGame button:global(.button):hover { background: var(--accent-hover); }
+.sideGame button:global(.button.secondary) { color: var(--accent); }
+.sideGame button:global(.button.secondary):hover { background: #182635; }
 .quizzes { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
 .quizzes a { text-decoration: underline; }

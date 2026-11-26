@@ -2,6 +2,23 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run check",
+  "redirects": [
+    {
+      "source": "/arcade/word-sprint",
+      "destination": "/arcade/code-matrix#typing-challenge",
+      "permanent": false
+    },
+    {
+      "source": "/arcade/quick-click",
+      "destination": "/arcade/relay-protocol#quick-click",
+      "permanent": false
+    },
+    {
+      "source": "/arcade/vim-defender",
+      "destination": "/arcade/relay-protocol",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
