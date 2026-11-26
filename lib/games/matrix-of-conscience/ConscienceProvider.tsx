@@ -9,8 +9,6 @@ interface ConscienceContextType {
   sectorControl: Record<number, string>;
   factions: Record<string, { name: string; color: string; special: string }>;
   triggerCosmicEvent: (event: string) => void;
-  unlockedSectors: number[];
-  unlockSector: (sectorId: number) => void;
   playerPoints: number;
   addPlayerPoints: (points: number) => void;
   spendPlayerPoints: (points: number) => boolean;
@@ -22,7 +20,6 @@ export function ConscienceProvider({ children }: { children: React.ReactNode }) 
   const [userLevel, setUserLevel] = useState(1);
   const [cosmicLogs, setCosmicLogs] = useState<string[]>(['Initialization complete.']);
   const [sectorControl, setSectorControl] = useState<Record<number, string>>({ 1: 'faith' });
-  const [unlockedSectors, setUnlockedSectors] = useState<number[]>([1]);
   const [playerPoints, setPlayerPoints] = useState(0);
   const [factions] = useState({
     faith: { name: 'Faith', color: '#ffb347', special: 'Endurance' },
@@ -31,7 +28,6 @@ export function ConscienceProvider({ children }: { children: React.ReactNode }) 
   });
 
   const triggerCosmicEvent = (event: string) => setCosmicLogs(prev => [...prev, event]);
-  const unlockSector = (sectorId: number) => setUnlockedSectors(prev => Array.from(new Set([...prev, sectorId])));
   const addPlayerPoints = (points: number) => setPlayerPoints(prev => prev + points);
   const spendPlayerPoints = (points: number) => {
     if (playerPoints >= points) {
@@ -42,7 +38,7 @@ export function ConscienceProvider({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <ConscienceContext.Provider value={{ userLevel, setUserLevel, cosmicLogs, sectorControl, factions, triggerCosmicEvent, unlockedSectors, unlockSector, playerPoints, addPlayerPoints, spendPlayerPoints }}>
+    <ConscienceContext.Provider value={{ userLevel, setUserLevel, cosmicLogs, sectorControl, factions, triggerCosmicEvent, playerPoints, addPlayerPoints, spendPlayerPoints }}>
       {children}
     </ConscienceContext.Provider>
   );

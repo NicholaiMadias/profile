@@ -1,4 +1,4 @@
-import React, { type CSSProperties, useEffect } from 'react';
+import React, { type CSSProperties } from 'react';
 import { useConscience, FactionKey } from './ConscienceProvider';
 import { motion, useReducedMotion } from 'framer-motion';
 
@@ -84,24 +84,7 @@ interface UniverseMapProps {
 
 export default function UniverseMap({ selectedSectorId, onSelectSector }: UniverseMapProps) {
   const prefersReducedMotion = useReducedMotion();
-  const {
-    userLevel,
-    sectorControl,
-    factions,
-    triggerCosmicEvent,
-    unlockedSectors,
-    unlockSector
-  } = useConscience();
-
-  // Auto-unlock sectors based on level
-  useEffect(() => {
-    SECTORS.forEach(s => {
-      if (userLevel >= s.requiredLevel && !unlockedSectors.includes(s.id)) {
-        unlockSector(s.id);
-        triggerCosmicEvent(`SECTOR UNLOCKED: ${s.name}`);
-      }
-    });
-  }, [userLevel, unlockedSectors, unlockSector, triggerCosmicEvent]);
+  const { sectorControl, factions } = useConscience();
 
   return (
     <div className="universe-map-viewport">
@@ -125,7 +108,7 @@ export default function UniverseMap({ selectedSectorId, onSelectSector }: Univer
             y1="50"
             x2={sector.x}
             y2={sector.y}
-            className={`sector-route ${unlockedSectors.includes(sector.id) ? 'sector-route-open' : ''}`}
+            className={`sector-route sector-route-open`}
           />
         ))}
         <line x1="25" y1="30" x2="75" y2="30" className="sector-route sector-route-branch" />
@@ -133,13 +116,12 @@ export default function UniverseMap({ selectedSectorId, onSelectSector }: Univer
       </svg>
 
       {SECTORS.map(sector => {
-        const unlocked = unlockedSectors.includes(sector.id);
         const factionKey = sectorControl[sector.id] as FactionKey | undefined;
         const faction = factionKey ? factions[factionKey] : undefined;
 
         // Custom glow and theme colors
         const themeColor = faction ? faction.color : '#64748b';
-        const glow = unlocked ? `0 0 25px ${themeColor}cc, inset 0 0 10px ${themeColor}` : 'none';
+        const glow = `0 0 25px ${themeColor}cc, inset 0 0 10px ${themeColor}`;
         const bossStyle = sector.isBoss ? { borderStyle: 'dashed', borderWidth: '3px' } : {};
         const selected = selectedSectorId === sector.id;
         const nodeStyle: CSSProperties & { '--theme-color': string; '--sector-glow': string } = {
@@ -156,19 +138,18 @@ export default function UniverseMap({ selectedSectorId, onSelectSector }: Univer
           <motion.button
             key={sector.id}
             type="button"
-            className={`sector-node ${unlocked ? 'unlocked' : ''} ${selected ? 'sector-selected' : ''} ${sector.isBoss ? 'boss-sector' : ''}`}
-            disabled={!unlocked}
-            title={unlocked ? `${sector.chapter}: ${sector.objective}` : `Unlocks at level ${sector.requiredLevel}`}
-            aria-label={`${sector.name}. ${sector.chapter}. ${unlocked ? sector.objective : `Requires level ${sector.requiredLevel}`}${sector.isBoss ? '. Sovereign encounter' : ''}`}
+            className={`sector-node unlocked ${selected ? 'sector-selected' : ''} ${sector.isBoss ? 'boss-sector' : ''}`}
+            title={`${sector.chapter}: ${sector.objective}`}
+            aria-label={`${sector.name}. ${sector.chapter}. ${sector.objective}${sector.isBoss ? '. Sovereign encounter' : ''}`}
             aria-pressed={selected}
             style={nodeStyle}
             onClick={() => onSelectSector(sector.id)}
             initial={prefersReducedMotion ? false : { scale: 0.8, opacity: 0.2 }}
-            animate={unlocked ? { scale: 1, opacity: 1 } : { scale: prefersReducedMotion ? 1 : 0.8, opacity: 0.55 }}
+            animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.8 }}
           >
             {/* Visual glow overlay */}
-            {unlocked && (
+            {(
               <span
                 className="sector-node-glow"
                 style={{ background: `radial-gradient(circle, ${themeColor}33, transparent)` }}
@@ -180,7 +161,7 @@ export default function UniverseMap({ selectedSectorId, onSelectSector }: Univer
               <span className="sector-node-name">
                 {sector.name}
               </span>
-              {unlocked && faction ? (
+              {faction ? (
                 <span className="sector-node-faction" style={{ color: themeColor }}>
                   {faction.name.split(' ')[0]}
                 </span>
@@ -197,7 +178,7 @@ export default function UniverseMap({ selectedSectorId, onSelectSector }: Univer
             </span>
 
             {/* Aura Ring animation */}
-            {unlocked && (
+            {(
               <span
                 className="aura-ring-layer" 
                 style={{ color: themeColor }}
