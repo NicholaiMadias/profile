@@ -6,29 +6,25 @@ import Level3SovereignConscience from './Level3SovereignConscience';
 import UniverseMap, { SECTORS } from './UniverseMap';
 import SectorCampaignMission from './SectorCampaignMission';
 import { isCampaignMissionLevel } from './campaignMissionData';
-import { BibleQuizOverlay } from './BibleQuizOverlay';
-import { CertQuizOverlay } from './CertQuizOverlay';
 import { useConscience } from './ConscienceProvider';
 import { parseMatrixProgress, serializeMatrixProgress } from './progress';
 import './cosmic-strategy.css';
 
 const CAMPAIGN_ACTS = SECTORS.map((sector) => sector.name);
 
-export default function MatrixOfConscienceApp() {
-  const [level, setLevel] = useState(0);
+export default function MatrixOfConscienceApp({ initialLevel = 0 }: { initialLevel?: number }) {
+  const [level, setLevel] = useState(initialLevel);
   return (
     <>
-      <CampaignScreen level={level} setLevel={setLevel} />
+      <CampaignScreen initialLevel={initialLevel} level={level} setLevel={setLevel} />
       <MatrixSoundtrack level={level} />
     </>
   );
 }
 
-function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: number) => void }) {
+function CampaignScreen({ initialLevel, level, setLevel }: { initialLevel: number; level: number; setLevel: (level: number) => void }) {
   const { userLevel, setUserLevel, cosmicLogs, sectorControl, factions } = useConscience();
-  const [quizPendingNextLevel, setQuizPendingNextLevel] = useState<number | null>(null);
-  const [activeCertQuiz, setActiveCertQuiz] = useState<boolean>(false);
-  const [selectedSector, setSelectedSector] = useState<number>(1);
+  const [selectedSector, setSelectedSector] = useState(initialLevel || 1);
   const [unlockedLevel, setUnlockedLevel] = useState<number>(1);
   const selectedSectorData = SECTORS.find((sector) => sector.id === selectedSector) ?? SECTORS[0];
   const selectedMissionLevel = selectedSectorData.id;
@@ -38,13 +34,13 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
       const savedProgress = localStorage.getItem('moc-progress');
       const progress = parseMatrixProgress(savedProgress, SECTORS.length);
       setUnlockedLevel(progress.unlockedLevel);
-      setSelectedSector(progress.unlockedLevel);
+      if (!initialLevel) setSelectedSector(progress.unlockedLevel);
       setUserLevel(progress.unlockedLevel);
       localStorage.setItem('moc-progress', serializeMatrixProgress(progress.unlockedLevel));
     } catch (e) {
       console.error('Failed to load level progress:', e);
     }
-  }, []);
+  }, [initialLevel]);
 
   const saveProgress = (nextLevel: number) => {
     if (nextLevel > unlockedLevel && nextLevel <= SECTORS.length) {
@@ -75,55 +71,13 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
     setSelectedSector(sectorId);
   };
 
-  const deploySelectedSector = () => {
-    if (selectedMissionLevel <= unlockedLevel) setLevel(selectedMissionLevel);
-  };
-
-  const triggerQuiz = (completedLevel: number) => {
-    setQuizPendingNextLevel(completedLevel);
-  };
-
-  const completeLevel = (completedLevel: number, autoAdvance = false) => {
+  const completeLevel = (completedLevel: number) => {
     const nextLevel = Math.min(completedLevel + 1, SECTORS.length);
     saveProgress(nextLevel);
     setUserLevel((currentLevel: number) => Math.max(currentLevel, nextLevel));
     setSelectedSector(nextLevel);
-    if (autoAdvance) {
-      setLevel(nextLevel);
-    } else {
-      setLevel(0);
-    }
+    setLevel(0);
   };
-
-  if (quizPendingNextLevel !== null) {
-    // Alternate between Bible knowledge transmissions and CompTIA Cyber/Network telemetry challenges
-    if (quizPendingNextLevel % 2 === 0) {
-      return (
-        <CertQuizOverlay
-          initialCategory={quizPendingNextLevel === 2 ? 'network-plus' : 'security-plus'}
-          onComplete={() => {
-            const next = quizPendingNextLevel;
-            setQuizPendingNextLevel(null);
-            completeLevel(next, false);
-          }}
-        />
-      );
-    }
-    return <BibleQuizOverlay onComplete={() => {
-      const next = quizPendingNextLevel;
-      setQuizPendingNextLevel(null);
-      completeLevel(next, false);
-    }} />
-  }
-
-  if (activeCertQuiz) {
-    return (
-      <CertQuizOverlay
-        initialCategory="all"
-        onComplete={() => setActiveCertQuiz(false)}
-      />
-    );
-  }
 
   // Level selector / Galaxy Map UI
   if (level === 0) {
@@ -133,22 +87,12 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
           <div className="universe-eyebrow">THE CONSCIENCE CAMPAIGN</div>
           <h1>Matrix of Conscience</h1>
           <p className="universe-intro">
-            A broken beacon divides the star grid. Reconnect ten sectors through courage, trust, and alliances that can outlast a war. Select an open signal, read its briefing, and deploy when you are ready.
+            A broken beacon divides the star grid. Reconnect ten sectors through courage, trust, and alliances that can outlast a war. Choose any of the ten sectors and start playing.
           </p>
           <div className="campaign-status">
             <div className="campaign-status-copy">
-              <span>CAMPAIGN · LEVEL {unlockedLevel} OF {SECTORS.length}</span>
-              <strong>{CAMPAIGN_ACTS[unlockedLevel - 1]}</strong>
-            </div>
-            <div
-              className="campaign-progress"
-              role="progressbar"
-              aria-label="Campaign levels unlocked"
-              aria-valuemin={1}
-              aria-valuemax={SECTORS.length}
-              aria-valuenow={unlockedLevel}
-            >
-              <span style={{ width: `${(unlockedLevel / SECTORS.length) * 100}%` }} />
+              <span>ALL {SECTORS.length} SECTORS OPEN</span>
+              <strong>Saved checkpoint · {CAMPAIGN_ACTS[unlockedLevel - 1]}</strong>
             </div>
             <div className="overlord-level">
               <span>OVERLORD LEVEL</span>
@@ -159,11 +103,10 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
 
         <div className="strategy-layout">
           <section className="strategy-map-column" aria-label="Sector deployment map">
-            <div className="map-instructions">Select an unlocked sector to read its transmission.</div>
+            <div className="map-instructions">Pick a sector, then deploy.</div>
             <UniverseMap selectedSectorId={selectedSector} onSelectSector={handleSelectSector} />
             <div className="map-legend" aria-label="Map legend">
               <span><i className="legend-swatch legend-open" />Connected sector</span>
-              <span><i className="legend-swatch legend-locked" />Signal locked</span>
               <span><i className="legend-swatch legend-boss" />Sovereign encounter</span>
             </div>
           </section>
@@ -183,10 +126,9 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
               <button
                 className="mission-deploy-button"
                 type="button"
-                onClick={deploySelectedSector}
-                disabled={selectedMissionLevel > unlockedLevel}
+                onClick={() => setLevel(selectedMissionLevel)}
               >
-                {selectedMissionLevel <= unlockedLevel ? `Deploy to level ${selectedMissionLevel}` : 'Unlock this sector to deploy'}
+                {`Deploy to level ${selectedMissionLevel}`}
                 <span aria-hidden="true">→</span>
               </button>
             </section>
@@ -221,19 +163,8 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
             </div>
 
             <div className="map-actions">
-              <button
-                className="mission-deploy-button"
-                type="button"
-                onClick={() => setActiveCertQuiz(true)}
-                style={{
-                  background: 'linear-gradient(135deg, rgba(0, 242, 255, 0.2), rgba(121, 40, 202, 0.3))',
-                  border: '1px solid #00f2ff',
-                  marginBottom: '0.75rem',
-                  fontSize: '0.85rem'
-                }}
-              >
-                Launch CompTIA Tech Diagnostic (A+, Net+, Sec+)
-              </button>
+              <a className="arcade-hub-link" href="/arcade/cert-arena">Optional CompTIA quiz</a>
+              <a className="arcade-hub-link" href="/arcade/bible-quiz">Optional Bible quiz</a>
               <button className="reset-progress-button" type="button" onClick={resetProgress}>
                 Reset Level Progress
               </button>
@@ -250,7 +181,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
     return (
       <Level1NexusDefense
         onBack={() => setLevel(0)}
-        onVictory={() => triggerQuiz(1)}
+        onVictory={() => completeLevel(1)}
       />
     );
   }
@@ -260,7 +191,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
     return (
       <Level2SyndicateSiege
         onBack={() => setLevel(0)}
-        onVictory={() => triggerQuiz(2)}
+        onVictory={() => completeLevel(2)}
         sectorId={selectedSector}
       />
     );
@@ -294,7 +225,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
           <Level3SovereignConscience
             sectorId={selectedSector}
             onBack={() => setLevel(0)}
-            onVictory={() => triggerQuiz(3)}
+            onVictory={() => completeLevel(3)}
           />
       </div>
     );

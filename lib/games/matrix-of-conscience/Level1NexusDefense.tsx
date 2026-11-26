@@ -71,6 +71,7 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
         if (faction === 'netrunners') startMoney += 50;
         if (faction === 'guardians') startHealth += 10;
 
+        setSelectedTower('basic');
         setMoney(startMoney);
         setHealth(startHealth);
         setWave(1);
@@ -525,7 +526,11 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
         const col = Math.floor(x / CELL_SIZE);
         const row = Math.floor(y / CELL_SIZE);
         
-        if (path.some(p => p.x === col && p.y === row)) return;
+        placeTower(col, row, selectedTower as keyof typeof TOWER_DEFS);
+    };
+
+    const placeTower = (col: number, row: number, tower: keyof typeof TOWER_DEFS) => {
+        if (!gameActive || !engineRef.current || path.some(p => p.x === col && p.y === row)) return;
 
         const engine = engineRef.current;
         const existingTower = engine.towers.find((t: any) => t.col === col && t.row === row);
@@ -549,18 +554,18 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
             return;
         }
 
-        const cost = getTowerCost(selectedTower as keyof typeof TOWER_DEFS);
+        const cost = getTowerCost(tower);
         if (engine.money >= cost) {
             engine.money -= cost;
             let damageMult = 1 + (metaState.upgrades.damage * 0.05);
             if (faction === 'sentinels') damageMult += 0.10;
 
-            const baseDef = TOWER_DEFS[selectedTower as keyof typeof TOWER_DEFS];
+            const baseDef = TOWER_DEFS[tower];
             engine.towers.push({
                 col, row,
                 x: col * CELL_SIZE + CELL_SIZE/2,
                 y: row * CELL_SIZE + CELL_SIZE/2,
-                type: selectedTower,
+                type: tower,
                 cooldownTimer: 0,
                 range: baseDef.range,
                 damage: Math.floor(baseDef.damage * damageMult),
@@ -596,7 +601,7 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
         <div style={{ fontFamily: 'monospace', color: '#cbd5e1', padding: '1rem', background: '#090d16', minHeight: '100vh' }}>
             <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <button onClick={onBack} style={{ background: 'transparent', border: '1px solid #00f2ff', color: '#00f2ff', padding: '0.5rem 1rem', cursor: 'pointer', fontWeight: 700, borderRadius: '4px' }}>
-                    ← Back to Selector
+                    ← Sector map
                 </button>
                 <div style={{ color: '#00f2ff', fontWeight: 800, fontSize: '1.25rem', textShadow: '0 0 10px rgba(0,242,255,0.5)' }}>LEVEL 1: NEXUS CORE GATEWAY</div>
             </nav>
@@ -604,10 +609,10 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
             {screen === 'menu' && (
                 <div style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(12px)', border: '1px solid #1e293b', borderRadius: '12px', padding: '2rem', maxWidth: '600px', margin: '2rem auto', textAlign: 'center', boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)' }}>
                     <h2 style={{ color: '#00f2ff', fontSize: '2rem', marginBottom: '1.5rem', textShadow: '0 0 8px rgba(0,242,255,0.3)' }}>NEXUS DEFENSE</h2>
-                    <p style={{ color: '#94a3b8', marginBottom: '2rem' }}>Defend the mainframe against the incoming swarms of systemic anomalies.</p>
+                    <p style={{ color: '#94a3b8', marginBottom: '2rem' }}>Place a turret next to the enemy path, then start the wave. Protect the Core through five waves.</p>
                     
-                    <div style={{ marginBottom: '2rem', textAlign: 'left' }}>
-                        <h3 style={{ color: '#cbd5e1', marginBottom: '1rem', borderBottom: '1px solid #334155', paddingBottom: '0.5rem' }}>SELECT FACTION</h3>
+                    <details style={{ marginBottom: '1.25rem', textAlign: 'left' }}>
+                        <summary style={{ color: '#cbd5e1', marginBottom: '1rem' }}>Choose a faction (optional)</summary>
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem' }}>
                             {[
                                 { key: 'netrunners', label: 'NETRUNNERS', desc: '+50 Starting Cores' },
@@ -626,10 +631,10 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
                                 </button>
                             ))}
                         </div>
-                    </div>
+                    </details>
 
                     <button onClick={startGame} style={{ background: 'linear-gradient(90deg, #00f2ff, #00ffb7)', border: 'none', color: '#090d16', padding: '1rem 2.5rem', fontSize: '1.1rem', fontWeight: 800, borderRadius: '8px', cursor: 'pointer', boxShadow: '0 4px 14px rgba(0, 242, 255, 0.3)', width: '100%' }}>
-                        INITIALIZE DEFENSES
+                        Play tower defense
                     </button>
                 </div>
             )}
@@ -653,6 +658,12 @@ export default function Level1NexusDefense({ onBack, onVictory, sectorId }: Leve
                             {waveActive ? 'DEFENDING...' : 'START WAVE'}
                         </button>
                     </div>
+
+                    {gameActive && engineRef.current?.towers.length === 0 && (
+                        <button type="button" onClick={() => placeTower(3, 2, 'basic')} style={{ background: '#1e293b', color: '#e2e8f0', padding: '0.55rem 1rem', borderRadius: '4px' }}>
+                            Place a starter turret · {getTowerCost('basic')} cores
+                        </button>
+                    )}
 
                     <div style={{ position: 'relative', border: '2px solid #1e293b', borderRadius: '8px', overflow: 'hidden', width: '100%', maxWidth: '600px', aspectRatio: '600/400' }}>
                         <canvas ref={canvasRef} width={CANVAS_WIDTH} height={CANVAS_HEIGHT} onClick={handleCanvasClick} style={{ background: '#0a0f1d', display: 'block', width: '100%', height: '100%' }} />
