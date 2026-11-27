@@ -12,22 +12,18 @@ interface Article {
   date: string;
 }
 
+const featuredArticles: Article[] = [
+  { title: 'Validated GPU Infrastructure', slug: '/blog/validated-gpu-infrastructure', date: '2026-11-07' },
+  { title: 'Matrix of Conscience', slug: '/blog/matrix-of-conscience', date: '2026-11-04' },
+  { title: 'Antigravity Dev Stack', slug: '/blog/antigravity-dev-stack', date: '2026-11-04' },
+];
+
 export const FeaturedArticles = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<Article[]>(featuredArticles);
 
   useEffect(() => {
-    const fallback = () =>
-      setArticles([
-        { title: 'Validated GPU Infrastructure', slug: '/blog/validated-gpu-infrastructure', date: '2024-10-01' },
-        { title: 'Matrix of Conscience', slug: '/blog/matrix-of-conscience', date: '2024-09-15' },
-        { title: 'Antigravity Dev Stack', slug: '/blog/antigravity-dev-stack', date: '2024-08-20' },
-      ]);
-
     const fetchFeatured = async () => {
-      if (!db) {
-        fallback();
-        return;
-      }
+      if (!db) return;
       try {
         // Grab the 3 most recent posts from Firestore collection "posts"
         const q = query(collection(db, 'posts'), where('published', '==', true), orderBy('createdAt', 'desc'), limit(3));
@@ -40,14 +36,12 @@ export const FeaturedArticles = () => {
             // Convert Firestore Timestamp → YYYY‑MM‑DD
             date: data.createdAt?.toDate
               ? data.createdAt.toDate().toISOString().split('T')[0]
-              : '1970-01-01',
+              : '',
           };
         });
-        setArticles(fetched);
+        if (fetched.length) setArticles(fetched);
       } catch (err) {
         console.error('Failed to load featured articles', err);
-        // Fallback to static list if Firestore isn’t reachable
-        fallback();
       }
     };
     fetchFeatured();
@@ -59,7 +53,7 @@ export const FeaturedArticles = () => {
       <ul>
         {articles.map((a) => (
           <li key={a.slug}>
-            <Link href={a.slug}>{a.title}</Link> <small>({a.date})</small>
+            <Link href={a.slug}>{a.title}</Link> {a.date && <small>(<time dateTime={a.date}>{a.date}</time>)</small>}
           </li>
         ))}
       </ul>
