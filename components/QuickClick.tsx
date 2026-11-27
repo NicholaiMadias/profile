@@ -1,6 +1,5 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import {
   defaultTargetLifetimeMs,
   nextSpawnDelayMs,
@@ -111,11 +110,9 @@ export function QuickClick() {
     setTarget(null);
   };
   return (
-    <section className="game-panel">
+    <div className="game-panel">
       {status === "idle" ? (
         <>
-          <span className="card-icon gold">✦</span>
-          <h2>Find your focus.</h2>
           <p>
             Catch the stars before they fade. Each hit counts once. Twenty hits
             equals 100 practice XP. Switching tabs ends the round.
@@ -144,9 +141,7 @@ export function QuickClick() {
       ) : status === "ended" ? (
         <>
           <p className="eyebrow">ROUND COMPLETE</p>
-          <h2 ref={result} tabIndex={-1}>
-            A moment of focus, well spent.
-          </h2>
+          <h3 ref={result} tabIndex={-1}>Quick Click results</h3>
           <div className="result-number">
             {score}
             <small> stars caught</small>
@@ -159,9 +154,6 @@ export function QuickClick() {
             <button className="button" onClick={() => start(keyboard.current)}>
               Play again
             </button>
-            <Link className="text-link" href="/arcade">
-              Back to arcade →
-            </Link>
           </div>
         </>
       ) : (
@@ -190,6 +182,6 @@ export function QuickClick() {
           </button>
         </>
       )}
-    </section>
+    </div>
   );
 }

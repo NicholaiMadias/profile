@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "./profile.module.css";
 
 const title = "Nicholai Maro Madias | Senior Platform Engineer";
-const description = "Nicholai Maro Madias is a Senior Platform Engineer focused on Microsoft Intune, Workspace ONE UEM, Entra ID, enterprise endpoint security, and PowerShell/Python automation.";
+const description = "Senior Platform Engineer with experience in Microsoft 365 to Google Workspace migration, Google Sheets, Apps Script, VBA conversion, and enterprise automation.";
 const preview = {
   url: "/portfolio-preview.png",
   width: 1200,
@@ -59,13 +59,13 @@ const experience = [
     company: "Amazing Grace Home Living",
     role: "Registered Agent and System Administrator",
     dates: "Apr 2026 – Present",
-    summary: "Administer Active Directory, Windows Server, Group Policy, Google Workspace, Firebase, and Google Cloud. Lead RMF hardening and build Copilot workflows and administrative tools with PowerShell, Python, JavaScript, and REST APIs.",
+    summary: "Support Microsoft 365 to Google Workspace migration and administer Active Directory, Windows Server, Group Policy, Google Workspace, Firebase, and Google Cloud. Lead RMF hardening and build Copilot workflows and administrative tools with PowerShell, Python, JavaScript, and REST APIs.",
   },
   {
     company: "HCLTech · Client: Verizon",
     role: "EDN Technical Support Engineer II",
     dates: "Jan 2025 – Apr 2026",
-    summary: "Supported endpoint and identity platforms across 70,000+ users and devices with Intune, Workspace ONE UEM, and Entra ID. Integrated Copilot APIs into remote support workflows to automate diagnostics.",
+    summary: "Supported Microsoft 365 to Google Workspace migration and endpoint and identity platforms across 70,000+ users and devices with Intune, Workspace ONE UEM, and Entra ID. Integrated Copilot APIs into remote support workflows to automate diagnostics.",
   },
   {
     company: "Amazing Grace Home Living",
@@ -100,6 +100,7 @@ const experience = [
 ];
 
 const capabilities = [
+  { label: "WORKSPACE", title: "Google Workspace migration & automation", description: "Support migrations and spreadsheet automation with documented, maintainable solutions.", tools: "Google Sheets · Apps Script · Excel VBA · JavaScript · Workspace APIs" },
   { label: "PLATFORM", title: "Endpoint engineering", description: "Keep devices configured, compliant, and ready for the people who depend on them.", tools: "Intune · Workspace ONE UEM · MECM/SCCM · Autopilot · Patching" },
   { label: "IDENTITY", title: "Identity & access", description: "Connect directory services, authentication, and access policies across enterprise environments.", tools: "Active Directory · Entra ID · IAM · RBAC · Conditional Access" },
   { label: "CLOUD", title: "Cloud & infrastructure", description: "Support cloud services and operating systems with practical troubleshooting and platform administration.", tools: "Azure · Google Cloud · AWS · Windows Server · Linux" },
@@ -122,7 +123,7 @@ export function ProfilePage() {
         <div>
           <p className={styles.eyebrow}>Nicholai Maro Madias</p>
           <h1 id="profile-heading">Senior Platform <em>Engineer</em></h1>
-          <p className={styles.intro}>I manage enterprise endpoints and hybrid identity with Intune, Entra ID, and Active Directory. In more than 15 years in IT, I’ve built PowerShell diagnostics for support teams and helped migrate more than 400,000 accounts to Google Workspace.</p>
+          <p className={styles.intro}>I support Microsoft 365 to Google Workspace migrations and build automation across enterprise platforms. At Infosys, I configured mail routing and domains for a migration spanning more than 400,000 accounts. My skills include Google Sheets, Apps Script, Excel VBA conversion, JavaScript, and Workspace APIs.</p>
           <div className={styles.actions}>
             <a className={styles.primary} href="#experience">View experience</a>
             <a className={styles.secondary} href="#contact">Contact Nicholai</a>
