@@ -28,6 +28,7 @@ export function WordSprint() {
   }, [status]);
 
   useEffect(() => {
+    if (status === "playing") inputRef.current?.focus();
     if (status === "ended") resultHeading.current?.focus();
   }, [status]);
 
@@ -40,7 +41,6 @@ export function WordSprint() {
     setRemaining(ROUND_SECONDS);
     setFeedback("");
     setStatus("playing");
-    requestAnimationFrame(() => inputRef.current?.focus());
   }
 
   function submitWord(event: React.FormEvent<HTMLFormElement>) {
