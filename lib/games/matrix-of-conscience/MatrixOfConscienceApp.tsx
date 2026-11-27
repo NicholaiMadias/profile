@@ -29,7 +29,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
   const [quizPendingNextLevel, setQuizPendingNextLevel] = useState<number | null>(null);
   const [activeCertQuiz, setActiveCertQuiz] = useState<boolean>(false);
   const [selectedSector, setSelectedSector] = useState<number>(1);
-  const [unlockedLevel, setUnlockedLevel] = useState<number>(1);
+  const [unlockedLevel, setUnlockedLevel] = useState<number>(SECTORS.length);
   const selectedSectorData = SECTORS.find((sector) => sector.id === selectedSector) ?? SECTORS[0];
   const selectedMissionLevel = selectedSectorData.id;
 
@@ -37,10 +37,11 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
     try {
       const savedProgress = localStorage.getItem('moc-progress');
       const progress = parseMatrixProgress(savedProgress, SECTORS.length);
-      setUnlockedLevel(progress.unlockedLevel);
-      setSelectedSector(progress.unlockedLevel);
-      setUserLevel(progress.unlockedLevel);
-      localStorage.setItem('moc-progress', serializeMatrixProgress(progress.unlockedLevel));
+      const effectiveUnlocked = Math.max(progress.unlockedLevel, SECTORS.length);
+      setUnlockedLevel(effectiveUnlocked);
+      setSelectedSector(1);
+      setUserLevel(effectiveUnlocked);
+      localStorage.setItem('moc-progress', serializeMatrixProgress(effectiveUnlocked));
     } catch (e) {
       console.error('Failed to load level progress:', e);
     }
@@ -250,7 +251,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
     return (
       <Level1NexusDefense
         onBack={() => setLevel(0)}
-        onVictory={() => triggerQuiz(1)}
+        onVictory={() => completeLevel(1, false)}
       />
     );
   }
@@ -260,7 +261,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
     return (
       <Level2SyndicateSiege
         onBack={() => setLevel(0)}
-        onVictory={() => triggerQuiz(2)}
+        onVictory={() => completeLevel(2, false)}
         sectorId={selectedSector}
       />
     );
@@ -294,7 +295,7 @@ function CampaignScreen({ level, setLevel }: { level: number; setLevel: (level: 
           <Level3SovereignConscience
             sectorId={selectedSector}
             onBack={() => setLevel(0)}
-            onVictory={() => triggerQuiz(3)}
+            onVictory={() => completeLevel(3, false)}
           />
       </div>
     );
