@@ -4,11 +4,12 @@ import styles from './arcade.module.css';
 
 export const metadata: Metadata = {
   title: 'Arcade | Nicholai.Online',
-  description: 'Play strategy games, classic campaigns, and quick skill challenges.',
+  description: 'Play strategy games, classic campaigns, Match-3, and quick skill challenges.',
 };
 
 const games = [
-  { title: 'Nexus Defense', type: 'Tower Defense', copy: 'Place turrets and defend the Core against incoming waves.', href: '/arcade/tower-defense' },
+  { title: 'Nexus Defense', type: 'Tower Defense', copy: 'Place turrets and defend the Core across all three tactical stages.', href: '/arcade/tower-defense' },
+  { title: 'Match-3: Code Matrix', type: 'Puzzle · 7×7 Cascade', copy: 'Swap neighboring tiles to build 3+ matches and hit the target score.', href: '/arcade/match3' },
   { title: 'Code Matrix', type: 'Puzzle & Typing', copy: 'Match tiles or see how many words you can type accurately in 30 seconds.', href: '/arcade/code-matrix' },
   { title: 'Relay Protocol', type: 'Arcade Shooter', copy: 'Defend the relay or warm up with a 20-second Quick Click round.', href: '/arcade/relay-protocol' },
   { title: 'Noah & Norea: Cleansing the Gloom', type: 'Standalone Game', copy: 'Play the original Cleansing the Gloom.', href: '/arcade/classics/noah-and-norea' },
@@ -18,7 +19,7 @@ export default function ArcadePage() {
   return (
     <section className={styles.arcade}>
       <h1>Arcade</h1>
-      <p>Choose a game and play.</p>
+      <p>Choose a game and play—all stages unlocked with no quiz gates.</p>
       <ul className={styles.games}>
         {games.map(game => (
           <li key={game.title}>
@@ -33,7 +34,7 @@ export default function ArcadePage() {
           <ul className={styles.matrixLinks}>
             <li>
               <Link href="/nexus-os/matrix-of-conscience" className={styles.gameLink}>Strategy Campaign</Link>
-              <p>Choose any of the ten sectors on the campaign map.</p>
+              <p>Choose any of the ten unlocked sectors on the campaign map.</p>
             </li>
             <li>
               <Link href="/arcade/classics/multiverse" className={styles.gameLink}>Multiverse Arcade</Link>

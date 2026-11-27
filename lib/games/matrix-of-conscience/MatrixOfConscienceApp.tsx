@@ -25,7 +25,7 @@ export default function MatrixOfConscienceApp({ initialLevel = 0 }: { initialLev
 function CampaignScreen({ initialLevel, level, setLevel }: { initialLevel: number; level: number; setLevel: (level: number) => void }) {
   const { userLevel, setUserLevel, cosmicLogs, sectorControl, factions } = useConscience();
   const [selectedSector, setSelectedSector] = useState(initialLevel || 1);
-  const [unlockedLevel, setUnlockedLevel] = useState<number>(1);
+  const [unlockedLevel, setUnlockedLevel] = useState<number>(SECTORS.length);
   const selectedSectorData = SECTORS.find((sector) => sector.id === selectedSector) ?? SECTORS[0];
   const selectedMissionLevel = selectedSectorData.id;
 
@@ -33,10 +33,11 @@ function CampaignScreen({ initialLevel, level, setLevel }: { initialLevel: numbe
     try {
       const savedProgress = localStorage.getItem('moc-progress');
       const progress = parseMatrixProgress(savedProgress, SECTORS.length);
-      setUnlockedLevel(progress.unlockedLevel);
-      if (!initialLevel) setSelectedSector(progress.unlockedLevel);
-      setUserLevel(progress.unlockedLevel);
-      localStorage.setItem('moc-progress', serializeMatrixProgress(progress.unlockedLevel));
+      const effectiveUnlocked = Math.max(progress.unlockedLevel, SECTORS.length);
+      setUnlockedLevel(effectiveUnlocked);
+      if (!initialLevel) setSelectedSector(1);
+      setUserLevel(effectiveUnlocked);
+      localStorage.setItem('moc-progress', serializeMatrixProgress(effectiveUnlocked));
     } catch (e) {
       console.error('Failed to load level progress:', e);
     }
@@ -181,7 +182,11 @@ function CampaignScreen({ initialLevel, level, setLevel }: { initialLevel: numbe
     return (
       <Level1NexusDefense
         onBack={() => setLevel(0)}
+<<<<<<< HEAD
         onVictory={() => completeLevel(1)}
+=======
+        onVictory={() => completeLevel(1, false)}
+>>>>>>> db2350f (Restore direct access and routes for arcade games without quiz gating)
       />
     );
   }
@@ -191,7 +196,11 @@ function CampaignScreen({ initialLevel, level, setLevel }: { initialLevel: numbe
     return (
       <Level2SyndicateSiege
         onBack={() => setLevel(0)}
+<<<<<<< HEAD
         onVictory={() => completeLevel(2)}
+=======
+        onVictory={() => completeLevel(2, false)}
+>>>>>>> db2350f (Restore direct access and routes for arcade games without quiz gating)
         sectorId={selectedSector}
       />
     );
